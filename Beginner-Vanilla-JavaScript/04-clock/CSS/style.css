@@ -1,0 +1,100 @@
+:root{
+  --mainColor: rgb(130, 81, 177);
+}
+
+.clock{
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  border: 7px solid var(--mainColor);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.container{
+  min-height: 100vh;
+}
+
+.container.lightMode{
+  background-color: rgb(214, 186, 241);
+}
+
+.line, .slim-lines{
+  position: fixed;
+  width: 7px;
+  height: 280px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  display:block;
+  /* background-color: var(--mainColor); */
+}
+.line:nth-of-type(2){
+  transform: translate(-50%,-50%) rotate(90deg); 
+
+}
+.r-30{
+  transform: translate(-50%,-50%) rotate(30deg); 
+
+}
+
+.r-60{
+  transform: translate(-50%,-50%) rotate(60deg); 
+
+}
+.r-120{
+  transform: translate(-50%,-50%) rotate(120deg); 
+
+}
+
+
+
+.line::before,.line::after,.slim-lines::after, .slim-lines::before{
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 30px;
+  background-color: rgb(0,0,139);
+  position: absolute;
+}
+.slim-lines::after, .slim-lines::before{
+  width: 3px;
+
+}
+.r-150{
+  transform: translate(-50%,-50%) rotate(150deg); 
+
+}
+
+
+
+.line::after, .r-30::after, .r-60::after, .r-120::after, .r-150::after{
+ bottom: 0;
+}
+
+.hand{
+  display: block;
+  background-color: var(--mainColor);
+  width: 8px;
+  height: 25%;
+  position: absolute;
+  left: 50%;
+  border-radius: 10px 10px 0 0;
+  bottom: 50%;
+  transform-origin: 45% 95%;
+  transition-timing-function:linear ;
+  /* Makes the transition from end to begining really smooth  */
+}
+
+.second{
+  width: 4px;
+  height: 29%;
+}
+
+.minute{
+  width: 2px;
+  height: 35%;
+  background-color:rgba(187,0,187,1.00) ;
+}

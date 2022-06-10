@@ -1,0 +1,34 @@
+.images{
+  width: 800px;
+  height: 400px;
+  display: none;
+  object-fit: cover;
+  /* if width and hieght is set the image coverrs it's  specified diamentions */
+
+}
+.controls{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container{
+  margin:200px auto;
+  width: 800px;
+  border: 2px solid black;
+  position: relative;
+
+
+}
+
+ .button{
+  border: none;
+  background: transparent;
+  font-weight: 600;
+  font-size: 25px;
+  color: #fff;
+
+} 

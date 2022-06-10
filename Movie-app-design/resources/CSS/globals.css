@@ -1,0 +1,36 @@
+.flex{
+  display: flex;
+}
+.j-space-a{
+  justify-content: space-between;
+}
+
+.align-items{
+align-items: center;
+}
+
+.h3{
+  color: #fff;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+
+.group3 >*{
+  width: 32%;
+}
+
+.group2 .card{
+  width: 49%;
+}
+
+.watch-btn{
+  border-radius: 20px;
+  padding: 10px;
+  background-color: rgb(245, 183, 108);
+  
+}
+
+.white{
+  color: #fff;
+}
