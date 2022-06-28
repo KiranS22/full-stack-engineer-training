@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diary</title>
+    <link rel="stylesheet" href="./resources/CSS/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    
+
+    <!-- Entry Body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="dark">
+    <main class="">
+      <section class="grid">
+        <header class="left-col">
+          <div class="search">
+            <input type="search" id="search" placeholder="Search" />
+          </div>
+          <div class="nav-buttons">
+            <a class="btns flex align-items orangebg" href="" id="newEntry">
+              <div class="a-icon">
+                <img
+                  src="https://img.icons8.com/external-simple-line-edt.graphics/50/undefined/external-Plus-ui-elements-simple-line-edt.graphics-3.png"
+                  class="icon theme add"
+                />
+              </div>
+              <span class="text"> New Entry </span>
+            </a>
+
+            <a id='delete' href="#" class="flex btns align-items white-bg">
+              <div class="a-icon">
+                <img src="https://img.icons8.com/external-tulpahn-detailed-outline-tulpahn/64/000000/external-bin-mobile-user-interface-tulpahn-detailed-outline-tulpahn.png" class="icon theme bin"/>
+
+
+              </div>
+            <span>Remove All</span>  
+            </a>
+            <div id="entries">
+            </div>
+          </div>
+        </header>
+        <div class="right-col">
+          <nav class="orange">
+            <div class="icons flex">
+              <button id="menu">
+                <img
+                  src="https://img.icons8.com/material-rounded/24/000000/menu--v1.png"
+                  width="30px"
+                  height="30px"
+                />
+              </button>
+              <button id="home">
+                <img
+                  src="https://img.icons8.com/material-sharp/24/000000/home.png"
+                  width="30px"
+                  height="30px"
+                />
+              </button>
+              <div class="empty"></div>
+              <div class="nav-title">
+                <h2>PENZU</h2>
+              </div>
+              <div class="empty"></div>
+              <div class="pro-btn flex">
+                <button class=" white-bg">Go Pro</button>
+              </div>
+              <div class="toggle-btns">
+                <div class="toggle-container flex align-items">
+                  <span class="slider"></span>
+                </div>
+              </div>
+            </div>
+          </nav class='flex'>
+          <div class="form-container">
+            <form data-action="new" id="diary-content-form" data-current="">
+              <fieldset>
+                <input
+                  class="input"
+                  type="text"
+                  id="title"
+                  placeholder="Entry Title"
+                />
+              </fieldset>
+              <fieldset>
+                <input class="input" type="date" id="date"/>
+              </fieldset>
+
+              <fieldset>
+                <textarea
+                  class="input"
+                  id="body-of-diary"
+                  placeholder="Write diary entry here"
+                ></textarea>
+              </fieldset>
+
+              <!-- Submit button -->
+              <div class="submit flex justify-center">
+                <button id="submit" type="submit">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./resources/JavaScript/diary.js"></script>
+    <script src="./resources/JavaScript/theme.js"></script>
+  </body>
+</html>
+
+
+ 
