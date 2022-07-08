@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./Resources/CSS/style.css" />
+  </head>
+  <body>
+    <div class="container grid">
+      <div class="left">
+        <header class="banner flex">
+          <div class="title"><h3>Shopping Cart</h3></div>
+          <div class="items-title"><h3>Items</h3></div>
+        </header>
+
+        <div class="grid-container">
+          <div class="cart-headings grid">
+            <span>Product Details</span>
+            <span>Quantity</span>
+            <span>Price</span>
+            <span>Total</span>
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <header class="banner">
+          <div class="title"><h3>Order Summary</h3></div>
+        </header>
+        <div class="summary flex">
+          <span class="numOfItems">5 items</span>
+          <span class="total">£</span>
+        </div>
+
+        <div class="shipping">
+          <h3>Shipping</h3>
+          <select id="shippingOptions">
+            <option value="3.99">Standard Delivery - 3.99</option>
+            <option value="5.99">Next Day Delivery - 5.99</option>
+            <option value="12.99">Same Day Delivery - 12.99</option>
+            <option value="00.00">Free Delivery - 00.00</option>
+          </select>
+          <label for="promo">Promo Code</label>
+          <input type="text" id="promo" placeholder="Enter Code Here" />
+          <button class="apply" type="button">Apply</button>
+        </div>
+
+        <div class="grand-total">
+          <span class="flex"
+            ><h4>Total Cost:</h4>
+            <h4 id="price"></h4>
+          </span>
+          <button id="checkout" type="button">Checkout</button>
+        </div>
+      </div>
+    </div>
+    <script src="./Resources/JavaScript/cart.js"></script>
+  </body>
+</html>
