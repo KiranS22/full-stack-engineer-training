@@ -4,6 +4,7 @@ let fees = 0;
 const calculateCost = () => {
   document.querySelector("#price").innerHTML = `£ ${tracker + fees}`;
 };
+const removeItems = () => {};
 
 const updateTotal = () => {
   let allInputs = document.querySelectorAll(".total-value span");
