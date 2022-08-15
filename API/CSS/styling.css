@@ -1,0 +1,202 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html{
+  font-size:16px;
+}
+.outter-container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+ min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-1500px);
+  transition: 0.4s ease-in-out;
+  overflow-y: auto;
+}
+.popup.slideIn .outter-container{
+  transform: translateY(0px);
+}
+/* Tells the outter container when to appear */
+#popupbg{
+position: absolute;
+background-color: rgba(0, 0 ,0, 0.4);
+width: 100vw;
+z-index: 9;
+height: 100vh;
+top:0;
+left: 0;
+}
+
+.inner{
+  position: relative;
+  z-index: 10;background-color: #fff;
+  max-width: 1000px;
+  padding: 10px 30px;
+  overflow: scroll;
+
+
+}
+
+      .container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 50px 30px;
+        
+      }
+      .container > div {
+        width: 24%;
+        margin: 15px 0;
+        border-radius: 25px;
+        overflow: hidden;
+
+      }
+      .movie-img img.main-img {
+        width: 100%;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .rating{
+        /* display: none; */
+        display: flex;
+        align-items: center;
+        
+      }
+
+      .rating img, .rating span{
+        display: inline-block;
+        
+
+      }
+      .movie-img {
+        position: relative;
+        padding-bottom: 400px;
+        overflow: hidden;
+        
+      }
+      .movie-strip{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(255,255,255, 0.6);
+        backdrop-filter: blur(0.5rem);
+        padding:10px 15px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+      }
+      h2{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-right: 25px;
+        font-size: 22px;
+      }
+      .popup .movie-img{
+
+        width:31.25rem;
+        margin: 10px 70px;
+      }
+      
+      .popup .popupcontent h2{
+        text-align: center;
+        margin-bottom:40px;
+      }
+      
+      .popup .popupcontent p{
+        margin:  0.5rem  6.25rem;
+      }
+      
+      button.close{
+        padding: 10px 30px;
+        font-size: 40px;
+        text-align: center;
+        display: inline-block;
+        background-color: transparent;
+        border: none;
+        color: #FF0000; 
+      }
+      .imageAndText{
+        display: grid;
+        grid-template-columns: 49% 49%;
+        place-items: center;
+      }
+
+      .imageAndText> p{
+        font-size: 18px;
+        text-align: left
+
+      }
+    
+
+@media screen and ( max-width:1073px) {
+  .movie-img{
+    padding-bottom:0;
+  }
+  .movie-img img.main-img{
+    position: unset;
+  }
+  }
+  
+
+     @media  screen and (min-width: 768px) {
+      .inner{
+        width: 95%;
+        
+      }
+      
+      
+     }
+      @media screen and (max-width: 480px) {
+        .container {
+          display: block;
+        
+        }
+        .container > div.movie {
+          width: 99%;
+        }
+        
+        }
+  
+      
+
+      @media screen and (max-width: 810px) {
+        .container > div {
+          width: 49%;
+        }
+        .imageAndText{
+          grid-template-columns: 1fr;
+        }
+
+        .inner{
+          width: 100vw;
+          height: 100vh;
+        }
+
+        .popupcontent .movie-img{
+          margin: 0;
+          width: 100%;
+          padding: 0;
+        }
+       
+        .imageAndText>p{
+          text-align: left;
+          margin: 8px 5px !important;
+          
+
+        }
+      }
+      
+
+    
+
