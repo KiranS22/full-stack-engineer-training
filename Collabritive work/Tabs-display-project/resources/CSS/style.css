@@ -1,0 +1,125 @@
+
+
+header{
+    text-align: center;
+    margin: 7rem auto;
+}
+
+body{
+    background-color: rgb(240, 248, 255);
+}
+.tabs-container{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 1000px;
+}
+.tabs-body{
+    display: flex;
+}
+.tabs-heading{
+    display: flex;
+    justify-content: flex-end; 
+}
+.tabs-heading ul{
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    overflow: hidden;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    width: 50%;
+}
+.tabs-heading li{
+    display: flex;
+    flex-grow: inherit;
+    width: 100%;
+    border-bottom: 1px solid rgb(245, 245, 245);
+    border-left: 1px solid whitesmoke;
+}
+/* non-active state */
+.tabs-heading li button{
+    padding:  1rem 2rem;
+    border: none;
+    background-color:rgb(211, 211, 211);
+    width: 100%;
+    font-size: 1rem;
+
+}
+/* active state */
+.tabs-heading li button.active{
+    background-color: #fff;
+}
+.tabs-body{
+    display: flex;
+    justify-content: flex-end;
+    overflow: hidden;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.img-container{
+    height: 500px;
+    max-width: 500px;
+}
+/* non-active state */
+.img-container img{
+    display: none;
+    height: 100%;
+}
+/* active state */
+.img-container img.active{
+    display: block;
+}
+
+.info-container{
+    width: 500px;
+    height: 500px;
+    padding: .5rem 2rem;
+    background-color: #fff;
+}
+/* non-active state */
+.info-card{
+    display: none;
+}
+/* active state */
+.info-card.active{
+    display: block;
+}
+
+footer{
+    display: block;
+ padding: 20px 5px;
+ margin-top: 15px;
+width: 100%;
+text-align: center;
+}
+
+
+
+
+
+.profile_links{
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.profile_links a{
+    text-decoration: none;
+    border: 1.5px solid rgb(128, 128, 128);
+    padding: 0.3rem;
+    color: #fff;
+    background-color: rgb(128, 128, 128);
+    border-radius: 20px;
+    font-weight: 300;
+}
+.profile_links a:hover{
+    background-color: lightgray;
+    color: #000;
+}
