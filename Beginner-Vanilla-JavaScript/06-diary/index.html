@@ -12,7 +12,6 @@
       href="https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@700&display=swap"
       rel="stylesheet"
     />
-    
 
     <!-- Entry Body -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -40,22 +39,22 @@
               <span class="text"> New Entry </span>
             </a>
 
-            <a id='delete' href="#" class="flex btns align-items white-bg">
+            <a id="delete" href="#" class="flex btns align-items white-bg">
               <div class="a-icon">
-                <img src="https://img.icons8.com/external-tulpahn-detailed-outline-tulpahn/64/000000/external-bin-mobile-user-interface-tulpahn-detailed-outline-tulpahn.png" class="icon theme bin"/>
-
-
+                <img
+                  src="https://img.icons8.com/external-tulpahn-detailed-outline-tulpahn/64/000000/external-bin-mobile-user-interface-tulpahn-detailed-outline-tulpahn.png"
+                  class="icon theme bin"
+                />
               </div>
-            <span>Remove All</span>  
+              <span>Remove All</span>
             </a>
-            <div id="entries">
-            </div>
+            <div id="entries"></div>
           </div>
         </header>
         <div class="right-col">
           <nav class="orange">
             <div class="icons flex">
-              <button id="menu">
+              <button id="menu" class="close">
                 <img
                   src="https://img.icons8.com/material-rounded/24/000000/menu--v1.png"
                   width="30px"
@@ -75,7 +74,7 @@
               </div>
               <div class="empty"></div>
               <div class="pro-btn flex">
-                <button class=" white-bg">Go Pro</button>
+                <button class="white-bg">Go Pro</button>
               </div>
               <div class="toggle-btns">
                 <div class="toggle-container flex align-items">
@@ -83,8 +82,8 @@
                 </div>
               </div>
             </div>
-          </nav class='flex'>
-          <div class="form-container">
+          </nav>
+          <div class="form-container close">
             <form data-action="new" id="diary-content-form" data-current="">
               <fieldset>
                 <input
@@ -95,7 +94,7 @@
                 />
               </fieldset>
               <fieldset>
-                <input class="input" type="date" id="date"/>
+                <input class="input" type="date" id="date" />
               </fieldset>
 
               <fieldset>
@@ -120,6 +119,3 @@
     <script src="./resources/JavaScript/theme.js"></script>
   </body>
 </html>
-
-
- 
