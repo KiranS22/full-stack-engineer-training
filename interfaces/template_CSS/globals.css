@@ -1,7 +1,7 @@
 .flex{
   display: flex;
 }
-.j-space-a{
+.j-space-b{
   justify-content: space-between;
 }
 
@@ -35,4 +35,10 @@ align-items: center;
   color: #fff;
 }
 
+.place-items-center{
+  place-items: center;
+}
 
+.j-space-a{
+  justify-content: space-around;
+}
