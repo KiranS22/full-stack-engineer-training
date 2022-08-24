@@ -1,6 +1,6 @@
 const search = (element) => document.querySelector(element);
 let fakeEntries = JSON.parse(localStorage.getItem("diary"));
-let entries = []
+let entries = [];
 console.log(entries);
 
 const form = document.querySelector("#diary-content-form");
@@ -128,6 +128,7 @@ const deleteEntry = (desiredEntry, element) => {
   entries.splice(removedEntry, 1);
   localStorage.setItem("diary", JSON.stringify(entries));
   element.remove();
+  form.reset();
 };
 search("#newEntry").addEventListener("click", () => {
   form.classList.remove("no-border");
@@ -136,10 +137,9 @@ search("#newEntry").addEventListener("click", () => {
 });
 
 (function () {
-  if (fakeEntries === null)
-    localStorage.setItem("diary", JSON.stringify([]));
+  if (fakeEntries === null) localStorage.setItem("diary", JSON.stringify([]));
   else {
-     entries = fakeEntries
+    entries = fakeEntries;
     for (let i = 0; i < entries.length; i++) {
       appendEntry(entries[i]);
     }
