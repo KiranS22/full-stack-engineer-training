@@ -128,6 +128,24 @@ a{
 }
 .left-col .btns{
   padding: 10px 20px;
+  margin: 0 10px;
+}
+.controls{
+  margin: 5px 0;
+}
+
+.controls span{
+  padding:4px 0;
+  font-size: 16px;
+  font-weight: 500;
+
+}
+.controls span.delete{
+  color: #FF1525;
+  margin-left: 20px;
+}
+.controls pan.delete:hover{
+  color: #c52a2a;
 }
 
 .orangebg{
