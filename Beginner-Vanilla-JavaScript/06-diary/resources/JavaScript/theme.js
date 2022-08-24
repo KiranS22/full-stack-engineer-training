@@ -10,7 +10,7 @@ const menuClick = document.querySelectorAll(
 );
 menuClick.forEach((element) =>
   element.addEventListener("click", (e) => {
-    e.target.matches(".form-container *,.edit, .form-containe, #entries h4")
+    e.target.matches(".form-container *,.edit, .form-container, #entries h4")
       ? search(".left-col").classList.remove("on")
       : search(".left-col").classList.toggle("on");
   })
