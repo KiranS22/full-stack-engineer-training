@@ -147,6 +147,9 @@ a{
 .controls pan.delete:hover{
   color: #c52a2a;
 }
+#entries h4{
+  margin-bottom: 15px;
+}
 
 .orangebg{
   background-color:var(--c2);
@@ -353,9 +356,10 @@ width: 100%;
     position: absolute;
     top:60px;
     left:0;      
-    min-height: 50%;
     transform: translateX(-100vw);
     transition:  0.3s ease-in-out;
+    height:calc(100vh - 60px); 
+    box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.226);
   }
 
   .left-col.on{
