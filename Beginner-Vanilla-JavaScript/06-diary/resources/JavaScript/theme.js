@@ -6,11 +6,11 @@ search(".toggle-container").addEventListener("click", () => {
 });
 
 const menuClick = document.querySelectorAll(
-  "#menu.close, .form-container.close, .edit"
+  "#menu.close, .form-container.close, .edit, #entries h4"
 );
 menuClick.forEach((element) =>
   element.addEventListener("click", (e) => {
-    e.target.matches(".form-container *,.edit, .form-container")
+    e.target.matches(".form-container *,.edit, .form-containe, #entries h4")
       ? search(".left-col").classList.remove("on")
       : search(".left-col").classList.toggle("on");
   })
