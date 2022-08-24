@@ -6,7 +6,7 @@ search(".toggle-container").addEventListener("click", () => {
 });
 
 const menuClick = document.querySelectorAll(
-  "#menu.close, .form-container.close"
+  "#menu.close, .form-container.close, .edit"
 );
 menuClick.forEach((element) =>
   element.addEventListener("click", (e) => {
