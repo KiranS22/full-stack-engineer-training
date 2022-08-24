@@ -1,5 +1,6 @@
 const search = (element) => document.querySelector(element);
-let entries = JSON.parse(localStorage.getItem("diary"));
+let fakeEntries = JSON.parse(localStorage.getItem("diary"));
+let entries = []
 console.log(entries);
 
 const form = document.querySelector("#diary-content-form");
@@ -135,9 +136,10 @@ search("#newEntry").addEventListener("click", () => {
 });
 
 (function () {
-  if (entries === null)
-    entries = localStorage.setItem("diary", JSON.stringify([]));
+  if (fakeEntries === null)
+    localStorage.setItem("diary", JSON.stringify([]));
   else {
+     entries = fakeEntries
     for (let i = 0; i < entries.length; i++) {
       appendEntry(entries[i]);
     }
