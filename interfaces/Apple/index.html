@@ -3,23 +3,46 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./template_CSS/reset.css" />
-    <link rel="stylesheet" href="./template_CSS/globals.css" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="stylesheet" href="./../template_CSS/reset.css" />
+    <link rel="stylesheet" href="./../template_CSS/globals.css" />
     <link rel="stylesheet" href="./Apple_CSS/apple.css" />
+    <link
+      rel="stylesheet"
+      href="https://kirans22.github.io/full-stack-engineer-training/Beginner-Vanilla-JavaScript/03-slideshow/CSS/style.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://kirans22.github.io/full-stack-engineer-training/Beginner-Vanilla-JavaScript/03-slideshow/CSS/globals.css"
+    />
+
     <title>Apple - by Kiran Sundal</title>
   </head>
   <body>
-    <header>
-      <nav class="nav flex">
-        <div class="logo"></div>
-        <div class="nav_links">
-          <a href=""></a><a href=""></a><a href=""></a><a href=""></a
-          ><a href=""></a><a href=""></a><a href=""></a><a href=""></a
-          ><a href=""></a><a href=""></a>
-          <div class="icons">
-            <a href="#" class="search"></a>
-            <a href="#" class="cart"></a>
+    <header class="white">
+      <nav class="nav flex align-items justify-center">
+        <div class="logo">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Apple-logo.png"
+            alt="Apple logo"
+            width="19px"
+            height="19px"
+          />
+        </div>
+        <div class="nav_links flex align-items">
+          <a href="#">Store</a>
+          <a href="#">Mac</a><a href="#">iPad</a>
+          <a href="#">iPhone</a>
+          <a href="#">Watch</a>
+          <a href="#">Airpods</a>
+          <a href="#">TV & Home</a>
+          <a href="#">Only on Apple</a>
+          <a href="#">Accessories</a>
+          <a href="#">Support</a>
+          <div class="icons align-items flex">
+            <a href="#" class="search"> </a>
+
+            <a href="#" class="bag"> </a>
           </div>
         </div>
       </nav>
@@ -28,14 +51,19 @@
       <div class="product-banner">
         <div class="global-width">
           <div class="banner-text">
-            <h2 class="product-title"></h2>
-            <h3 class="slogen"></h3>
-            <div class="info-links">
-              <a href="#" id="learn-more"></a>
-              <a href="#" id="buy"></a>
+            <div class="content">
+              <h2 class="product-title">iPhone 13</h2>
+              <h3 class="slogen">Your new superpower.</h3>
+              <div class="info-links">
+                <a href="#" id="learn-more">Learn More</a>
+                <a href="#" id="buy">Buy</a>
+              </div>
             </div>
             <div class="banner-image">
-              <img src="" alt="" />
+              <img
+                src="https://www.apple.com/v/home/aq/images/heroes/iphone-13/hero_iphone13_avail__gnqqkzuai6um_largetall.jpg"
+                alt="iPhone 13"
+              />
             </div>
           </div>
         </div>
@@ -44,14 +72,19 @@
       <div class="product-banner">
         <div class="global-width">
           <div class="banner-text">
-            <h2 class="product-title"></h2>
-            <h3 class="slogen"></h3>
-            <div class="info-links">
-              <a href="#" id="learn-more"></a>
-              <a href="#" id="buy"></a>
+            <div class="content">
+              <h2 class="product-title">iPhone 13 Pro</h2>
+              <h3 class="slogen">Oh. So. Pro.</h3>
+              <div class="info-links">
+                <a href="#" id="learn-more">Learn More</a>
+                <a href="#" id="buy">Buy</a>
+              </div>
             </div>
             <div class="banner-image">
-              <img src="" alt="" />
+              <img
+                src="https://www.apple.com/v/home/aq/images/heroes/iphone-13-pro/hero_iphone13pro_avail__iy77cld0zwii_largetall.jpg"
+                alt="iphone 13 pro"
+              />
             </div>
           </div>
         </div>
@@ -60,18 +93,245 @@
       <div class="product-banner">
         <div class="global-width">
           <div class="banner-text">
-            <h2 class="product-title"></h2>
-            <h3 class="slogen"></h3>
-            <div class="info-links">
-              <a href="#" id="learn-more"></a>
-              <a href="#" id="buy"></a>
+            <div class="content">
+              <h2 class="product-title">
+                Get <span id="color-change">supercharged</span> for college.
+              </h2>
+              <h3 class="slogen">
+                Save on Mac or iPad. Plus get a giftcard up to $150.<sub>1</sub>
+              </h3>
+              <div class="info-links">
+                <a href="#" id="learn-more">Shop now</a>
+              </div>
             </div>
             <div class="banner-image">
-              <img src="" alt="" />
+              <img
+                src="https://www.apple.com/v/home/aq/images/heroes/back-to-school-2022/hero_bts__bcuslanw39xe_large.jpg"
+                alt="suppercharged section"
+              />
             </div>
           </div>
         </div>
       </div>
+
+      <div class="grid grid-styles center-text">
+        <div class="boxes">
+          <div class="banner-text">
+            <h2 class="product-title">Apple Event</h2>
+            <h3 class="slogen">Watch online on 07/09 at 6 pm.</h3>
+            <div class="info-links">
+              <a href="#" id="learn-more">Learn more</a>
+            </div>
+          </div>
+        </div>
+        <div class="boxes">
+          <div class="banner-text">
+            <h2 class="product-title flex justify-center align-items">
+              <span class="box-logo"
+                ><img
+                  src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Apple-logo.png"
+                  alt=""
+                  width="50px"
+                  height="50px"
+                  class="white-filter" /></span
+              ><span id="box2">Watch</span>
+            </h2>
+            <h4>Series 7</h4>
+
+            <div class="info-links">
+              <a href="#" id="learn-more">Leran more</a>
+              <a href="#" id="buy">watch the film</a>
+            </div>
+          </div>
+        </div>
+        <div class="boxes">
+          <div class="banner-text">
+            <h2 class="product-title">iPad Air</h2>
+            <h3 class="slogen">Lght, Bright, full of Might</h3>
+            <div class="info-links">
+              <a href="#" id="learn-more">Learn more</a>
+              <a href="#" id="buy">buy</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="boxes">
+          <div class="banner-text">
+            <h2 class="product-title">MacBook Air</h2>
+            <h3 class="slogen">Supercharged By <span id="mac-img"></span></h3>
+            <div class="info-links">
+              <a href="#" id="learn-more">Learn more</a>
+              <a href="#" id="buy">buy</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="boxes">
+          <div class="banner-text">
+            <h2 class="product-title">MacBook Pro 13&#8482;</h2>
+            <h3 class="slogen"></h3>
+            <div class="info-links">
+              <a href="#" id="learn-more">Learn more</a>
+              <a href="#" id="buy">buy</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="boxes">
+          <div class="banner-text">
+            <h2
+              class="product-title flex justify-center align-items space-text-from-left"
+            >
+              <span class="box-logo"
+                ><img
+                  src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Apple-logo.png"
+                  alt=""
+                  width="50px"
+                  class="black-filter"
+                  height="50px"
+              /></span>
+              Fitness+
+            </h2>
+            <h3 class="slogen">
+              Get 3 months free when you buy an Apple Watch<sub>2</sub>
+            </h3>
+            <div class="info-links">
+              <a href="#" id="learn-more">Leran more</a>
+              <a href="#" id="buy">buy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Start of moving banner -->
+      <div class="moving-banner-container">
+        <img
+          src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8Y2Fyc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+          alt=""
+          class="images"
+        />
+
+        <img
+          src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=60&raw_url=true&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8Y2Fyc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500"
+          alt=""
+          class="images"
+        />
+        <img
+          src="https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=752"
+          alt=""
+          class="images"
+        />
+      </div>
+      <!-- End of moving banner -->
     </main>
+    <footer>
+      <hr />
+      <div class="footer-links flex">
+        <div class="list-groups">
+          <h6 class="footer-link-title">Shop and Leran</h6>
+          <ul>
+            <li>Store</li>
+            <li>Mac</li>
+            <li>iPad</li>
+            <li>iPhone</li>
+            <li>Watch</li>
+            <li>AirPods</li>
+            <li>TV & Home</li>
+            <li>AirTag</li>
+            <li>Accessories</li>
+            <li>Gift Cards</li>
+          </ul>
+        </div>
+
+        <div class="list-groups">
+          <h6 class="footer-link-title">Servoce</h6>
+          <ul>
+            <li>Apple Music</li>
+            <li>Apple TV+</li>
+            <li>Apple Fitness</li>
+            <li>Apple News+</li>
+            <li>Arccade</li>
+            <li>iCloud</li>
+            <li>Apple One</li>
+            <li>Apple Pay</li>
+            <li>Apple Books</li>
+            <li>Apple Podcasts</li>
+            <li>Apple Store</li>
+          </ul>
+
+          <div class="list-groups">
+            <h6 class="footer-link-title">Account</h6>
+            <ul>
+              <li>Manage Your Apple ID</li>
+              <li>Apple Store Account</li>
+              <li>iCloud</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="list-groups">
+          <h6 class="footer-link-title">Apple Store</h6>
+          <ul>
+            <li>Find a Store</li>
+            <li>Genius Bar</li>
+            <li>Today at Apple</li>
+            <li>Apple Summer Camp</li>
+            <li>Apple Store App</li>
+            <li>Refurbished and Clearance</li>
+            <li>Financing</li>
+            <li>Apple Trade In</li>
+            <li>Order Status</li>
+            <li>Shopping Help</li>
+          </ul>
+        </div>
+
+        <div class="list-groups">
+          <h6 class="footer-link-title">For Business</h6>
+          <ul>
+            <li>Apple and Business</li>
+            <li>Shop for Business</li>
+          </ul>
+
+          <div class="list-groups">
+            <h6 class="footer-link-title">Apple and Education</h6>
+            <ul>
+              <li>Shop for University</li>
+              <li></li>
+            </ul>
+          </div>
+          <div class="list-groups">
+            <h6 class="footer-link-title">for Healthcare</h6>
+            <ul>
+              <li>Apple in Healthcare</li>
+              <li>Health on Apple Watch</li>
+              <li>Health Records on iPhone</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="list-groups">
+          <h6 class="footer-link-title">Apple Values</h6>
+          <ul>
+            <li>Accessibility</li>
+            <li>Environment</li>
+            <li>Privacy</li>
+            <li>Supplier Responsibility</li>
+          </ul>
+          <div class="list-groups">
+            <h6 class="footer-link-title">About Apple</h6>
+            <ul>
+              <li>Newsroom</li>
+              <li>Apple Leadership</li>
+              <li>Career Opportunities</li>
+              <li>Warranty Investors</li>
+              <li>Ethics & Compliance</li>
+              <li>Events European Job</li>
+              <li>Creation Contact Apple</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://kirans22.github.io/full-stack-engineer-training/Beginner-Vanilla-JavaScript/03-slideshow/JavaScript/main.js"></script>
   </body>
 </html>

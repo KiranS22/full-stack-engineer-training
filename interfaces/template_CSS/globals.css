@@ -42,3 +42,39 @@ align-items: center;
 .j-space-a{
   justify-content: space-around;
 }
+
+.white{
+  color: #fff;
+}
+
+.justify-center{
+  justify-content: center;
+}
+
+.border{
+ border: 4px solid #000;
+}
+
+.grid{
+  display: grid;
+}
+
+.black-text{
+  color: #000;
+}
+.black-filter{
+  filter: invert(0%) sepia(97%) saturate(7466%) hue-rotate(52deg) brightness(89%) contrast(94%);
+}
+.white-filter{
+  filter: invert(99%) sepia(46%) saturate(2%) hue-rotate(225deg) brightness(110%) contrast(101%);
+}
+
+.center-text{
+  text-align: center;
+}
+
+
+.space-text-from-left >*:nth-child(even){ 
+  margin-left: 12px;
+}
+

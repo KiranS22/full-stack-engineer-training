@@ -1,0 +1,189 @@
+header{
+  background-color: rgba(0,0,0,0.7);
+
+}
+
+main img{
+  display: block;
+  width: 100%;
+}
+
+
+.nav_links, nav, .icons{
+  gap:50px;
+}
+
+
+a{
+  color: inherit;
+  font-size: 18px;
+  text-decoration: none;
+  font-size: 12px;
+    line-height: 3.66667;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    font-family: "SF Pro Text","Myriad Set Pro","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+}
+
+
+.search{
+  display: block;
+  width:29px;
+  height: 29px;
+  background: url("https://www.apple.com/ac/globalnav/7/en_GB/images/be15095f-5a20-57d0-ad14-cf4c638e223a/globalnav_search_image__cbllq1gkias2_large.svg");
+  background-position: 8px -8px;
+  background-size: 15px 88px;
+  background-repeat: no-repeat;
+  
+}
+
+.bag{
+  display: block;
+  width:29px;
+  height: 29px;
+  background: url("https://www.apple.com/ac/globalnav/7/en_GB/images/be15095f-5a20-57d0-ad14-cf4c638e223a/globalnav_bag_image__yzte50i47ciu_large.svg");
+  background-size: 13px 44px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  
+}
+
+.banner-text{
+  position: relative;
+  text-align: center;
+  padding: 20px;
+  padding-top: 50px;
+  padding-bottom: 600px;
+  overflow: hidden;
+}
+.product-banner img{
+  position: absolute;
+  top:0px;
+  left: 0;
+  height: 100%;
+  object-fit: cover;
+ 
+}
+
+.content{
+  z-index:1;
+  position: relative;
+
+}
+.content h2{
+  font-size: 56px;
+  line-height: 1.07143;
+  font-weight: 600;
+  letter-spacing: -.005em;
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+}
+
+.content, .slogen{
+  font-size: 28px;
+  line-height: 1.10722;
+  font-weight: 400;
+  letter-spacing: .004em;
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+  margin-top: 6px;
+}
+
+.info-links{ 
+    position: relative;
+    z-index: 4;
+    text-decoration: none;
+    color: #06c;
+}
+
+.info-links a{
+  font-size: 21px;
+}
+.info-links a::after{
+  content: "\203A";
+  font-size: inherit;
+  display: inline-block;
+  margin-left: 5px
+}
+
+.grid-styles{
+  grid-template-columns:  48% 48%;
+  justify-content: space-evenly; 
+}
+.boxes{
+  margin: 15px 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  color: #fff;
+  text-align: center;
+}
+.boxes:nth-of-type(1){
+  background-image: url(https://www.apple.com/v/home/aq/images/promos/september2022-teaser/tile__cauwwcyyn9hy_large.jpg);
+}
+
+.boxes:nth-of-type(2){
+  background-image:url(https://www.apple.com/v/home/aq/images/promos/watch-series-7-hard-knocks/promo_ws7_hard_knocks__e1bfj1fios6e_large.jpg);
+}
+
+.boxes:nth-of-type(3){
+  background-image: url(https://www.apple.com/v/home/aq/images/promos/ipad-air/promo_ipadair_avail__ferd4bfpcdm6_large.jpg);
+}
+.boxes:nth-of-type(4){
+  background-image: url(https://www.apple.com/v/home/aq/images/promos/macbook-air/promo_macbookair__fywl7i82fueu_large.png);
+}
+.boxes:nth-of-type(5){
+  background-image: url(https://www.apple.com/v/home/aq/images/promos/macbook-pro-13/promo_mbp13__buwssod6c8vm_large.jpg);
+}
+.boxes:nth-of-type(6){
+  background-image: url(https://www.apple.com/v/home/aq/images/promos/apple-fitness-plus/tile_applefitness__fdk8xvz0dvu6_large.jpg);
+}
+
+.box-logo img{
+  margin-left: 20px;
+}
+
+footer{
+  background-color: rgba(0,0,0,0.7);
+  padding: 10px 20px;
+}
+.footer-links{
+  width: 80%;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+hr{
+  border-color: #fff;
+  opacity: 0.7;
+  width: 80%;
+  margin: 20px auto;
+  display: block;
+  
+
+}
+
+h6{
+  font-size: 12px;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-weight: 600;
+
+}
+ul{
+margin-bottom: 20px;
+font-size: 16px;
+
+}
+ul li{
+  list-style-type: none;
+  color: rgba(179, 172, 172, 0.489); 
+}
+
+
+.moving-banner-container{
+  width: 100%;
+}
+.moving-banner-container img{
+  width: 100%;
+  height: 100%;
+  margin-top: 30px;
+}
+
