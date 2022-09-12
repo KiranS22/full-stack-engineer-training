@@ -1,3 +1,6 @@
+html{
+  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+}
 header{
   background-color: rgba(0,0,0,0.7);
 
@@ -129,21 +132,30 @@ a{
 }
 .boxes:nth-of-type(4){
   background-image: url(https://www.apple.com/v/home/aq/images/promos/macbook-air/promo_macbookair__fywl7i82fueu_large.png);
+  color: #000;
 }
 .boxes:nth-of-type(5){
   background-image: url(https://www.apple.com/v/home/aq/images/promos/macbook-pro-13/promo_mbp13__buwssod6c8vm_large.jpg);
 }
 .boxes:nth-of-type(6){
   background-image: url(https://www.apple.com/v/home/aq/images/promos/apple-fitness-plus/tile_applefitness__fdk8xvz0dvu6_large.jpg);
+
+  color: #000;
+
+
 }
 
-.box-logo img{
+.boxes sub{
+  font-size: 14px;
+}
+.box-logo svg{
   margin-left: 20px;
 }
 
 footer{
   background-color: rgba(0,0,0,0.7);
   padding: 10px 20px;
+  font-family: sans-serif;
 }
 .footer-links{
   width: 80%;
@@ -183,7 +195,18 @@ ul li{
 }
 .moving-banner-container img{
   width: 100%;
-  height: 100%;
-  margin-top: 30px;
+  height:600px;
+  object-fit: contain;
+  margin: 30px 0;
+
 }
 
+.boxes:nth-of-type(6) svg{
+  fill: #000;
+}
+
+
+.boxes svg{
+  width: 20px;
+  height: 20px;
+}
