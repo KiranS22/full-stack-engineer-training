@@ -16,6 +16,10 @@ main img{
   gap:50px;
 }
 
+header a{
+  display: block;
+flex-shrink: 0;
+}
 
 a{
   color: inherit;
@@ -56,7 +60,7 @@ a{
   text-align: center;
   padding: 20px;
   padding-top: 50px;
-  padding-bottom: 600px;
+  padding-bottom: 60%;
   overflow: hidden;
 }
 .product-banner img{
@@ -209,4 +213,15 @@ ul li{
 .boxes svg{
   width: 20px;
   height: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+  .nav_links, nav, .icons{
+    gap:3.5%
+  }
+  
+  .nav_links{
+    justify-content: center;
+  }
+
 }
