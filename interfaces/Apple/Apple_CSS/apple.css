@@ -18,7 +18,7 @@ main img{
 
 header a{
   display: block;
-flex-shrink: 0;
+  min-width: max-content;
 }
 
 a{
@@ -174,7 +174,7 @@ hr{
   display: block;
   
 
-}
+}              
 
 h6{
   font-size: 12px;
@@ -217,11 +217,61 @@ ul li{
 
 @media screen and (max-width: 1200px) {
   .nav_links, nav, .icons{
-    gap:3.5%
+    gap:20px;
   }
   
   .nav_links{
     justify-content: center;
   }
 
+  .footer-links ul{
+    overflow: hidden;
+    height: 0;    
+  }
+
+  .footer-links{
+    display: block;
+  }
+
+  .footer-link-title{
+    padding: 4px 0;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.723);
+    position: relative;
+  }
+hr{
+  display: none;
+}
+.footer-link-title::after{
+  content: '\203E';
+  font-size: 30px;
+  color: #fff;
+position: absolute;
+right: 0;
+top: -1px;
+}
+
+.footer-link-title:focus + ul{
+  height: auto;
+
+  
+}
+
+
+}
+
+@media screen and (max-width: 820px) {
+  .grid-styles{
+    display: block;
+  }
+  
+}
+
+@media screen and (max-width:400px) {
+  header{
+    width: 100%;
+  }
+  main{
+    margin: 0 auto;
+  }
+  
 }

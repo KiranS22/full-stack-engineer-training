@@ -1,0 +1,35 @@
+Products Table:
+id,
+name,
+product_price,
+category,
+description,
+
+
+Users Table:
+id,
+firstName,
+lastName,
+email,
+password,
+phone_number,
+address,
+city,
+postcode,
+country
+
+Orders:
+id,
+user_id,
+placed_at
+
+Ordered_Products:
+id,
+order_id,
+product_id
+
+Cart:
+id,
+product_id,
+user_id
+
