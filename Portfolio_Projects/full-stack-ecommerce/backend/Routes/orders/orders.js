@@ -4,7 +4,7 @@ const pool = require("../../db");
 //GET ALLL ORDERS THAT EXIST ON TH SIGHT
 ordersRouter.get("/", async (req, res) => {
   try {
-    const allOrders = await pool.query("SELECT * FROM users");
+    const allOrders = await pool.query("SELECT * FROM orders");
 
     res.send(allOrders.rows);
   } catch (err) {
@@ -40,9 +40,10 @@ ordersRouter.get("/:userid/:orderid", async (req, res) => {
   }
 });
 //MAKE AN ORDER
-ordersRouter.post("/:userid/:orderid", async (req, res) => {
+ordersRouter.post("/:userid", async (req, res) => {
   try {
     const { userid, orderid } = req.params;
+    const {} = req.body;
   } catch (err) {
     console.log(err);
   }

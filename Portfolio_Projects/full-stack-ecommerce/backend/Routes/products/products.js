@@ -4,6 +4,18 @@ const pool = require("../../db");
 
 // /products (GET)
 productsRouter.get("/", async (req, res) => {
+  console.log("LoggedIN :", req.session.loggedIn);
+  // if (req.session.loggedIn) {
+  //   console.log(req.session.user);
+  // }
+  // req.session.loggedIn = true; //Not Working...
+  // console.log(req.session.loggedIn);
+  req.session.save((err) => {
+    console.log("saved");
+  });
+  //checkout/3
+  //fetch all from cart based on user id
+  // orders, ordered_products
   //DB Related Code.
   try {
     const allProducts = await pool.query("SELECT * FROM products");
@@ -15,7 +27,7 @@ productsRouter.get("/", async (req, res) => {
 });
 
 productsRouter.post("/", async (req, res) => {
-  const {name, price, category, description} = req.body;
+  const { name, price, category, description } = req.body;
   try {
     const allProducts = await pool.query(
       "INSERT INTO users(name, price, category, description) VALUES($1, $2, $3, $4) RETURNING *",

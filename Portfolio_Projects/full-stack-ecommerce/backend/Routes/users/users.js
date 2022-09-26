@@ -1,6 +1,9 @@
 const express = require("express");
 const pool = require("../../db");
 const usersRouter = express.Router();
+
+const bcrypt = require("bcryptjs");
+
 //GET ALL USERS
 usersRouter.get("/", async (req, res) => {
   try {
@@ -25,7 +28,7 @@ usersRouter.get("/:id", async (req, res) => {
   }
 });
 //ADD NEW USER
-usersRouter.post("/:id", async (req, res) => {
+usersRouter.post("/", async (req, res) => {
   const {
     first_name,
     last_name,
@@ -36,14 +39,17 @@ usersRouter.post("/:id", async (req, res) => {
     city,
     postcode,
   } = req.body;
+
+  const salt = bcrypt.genSaltSync(10);
+  const hash = bcrypt.hashSync(password, salt);
   try {
     const allUsers = await pool.query(
-      "INSERT INTO users(fisrt_name, last_name, email, password, phone_number. address, city, postcode) VALUES($1, $2, $3, $4, $5, $6, $7,$8) RETURNING *",
+      "INSERT INTO users(first_name, last_name, email, password, phone_number, address, city, postcode) VALUES($1, $2, $3, $4, $5, $6, $7,$8) RETURNING *",
       [
         first_name,
         last_name,
         email,
-        password,
+        hash,
         phone_number,
         address,
         city,
@@ -67,19 +73,14 @@ usersRouter.put("/:id", async (req, res) => {
   }
 });
 //DELETE USER
-usersRouter.delete('/:id', async (req, res)=>{
+usersRouter.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {
-    await pool.query(
-     "DELETE FROM  users WHERE id = $1",
-     [id]
-   );
-   res.send("User deleted Successfully");
- } catch (err) {
-   console.log(err);
- }
-})
-
-
+    await pool.query("DELETE FROM  users WHERE id = $1", [id]);
+    res.send("User deleted Successfully");
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 module.exports = usersRouter;
