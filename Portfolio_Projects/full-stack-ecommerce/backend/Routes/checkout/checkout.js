@@ -14,8 +14,8 @@ checkoutRouter.post("/", async (req, res) => {
 
     //Creating An Order
     const newOrder = await pool.query(
-      "INSERT INTO  orders (user_id) VALUES($1) RETURNING *",
-      [user.id]
+      "INSERT INTO  orders (user_id, placed_at) VALUES($1, $2) RETURNING *",
+      [user.id, new Date()]
     );
     console.log(newOrder.rows[0]); //Contains Order Data
 
@@ -27,7 +27,6 @@ checkoutRouter.post("/", async (req, res) => {
         [newOrder.rows[0].id, usersCart.rows[i].product_id]
       );
     }
-
     //Empty Cart where user_id matches user.id
 
     pool.query("DELETE FROM cart WHERE user_id =$1", [user.id]);
