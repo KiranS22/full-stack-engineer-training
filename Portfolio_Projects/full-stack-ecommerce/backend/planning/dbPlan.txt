@@ -7,7 +7,8 @@ users:
 - phone_number varchar
 - address varchar
 - city varchar
-- postcode
+- postcode- varchar
+- password - varchar
 
 products:
 - id bigint
@@ -25,6 +26,7 @@ cart:
 - id bigint
 - user_id bigint
 - product_id bigint
+- product_qty bigint
 
 ordered_products:
 - id bigint
