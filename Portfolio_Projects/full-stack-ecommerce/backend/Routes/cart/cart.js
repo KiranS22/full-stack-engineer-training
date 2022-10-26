@@ -23,23 +23,28 @@ cartRouter.post("/:productid", async (req, res) => {
   try {
     const { productid } = req.params;
     const { user } = req.session;
-    const { product_qty } = req.body;
-    const newCart = await pool.query(
-      "INSERT INTO  cart (product_id, user_id, product_qty) VALUES($1, $2,$3) RETURNING * ",
-      [productid, user.id, product_qty]
-    );
-    res.send(newCart.rows);
+    if (user) {
+      const { product_qty } = req.body;
+      const newCart = await pool.query(
+        "INSERT INTO  cart (product_id, user_id, product_qty) VALUES($1, $2,$3) RETURNING * ",
+        [productid, user.id, product_qty]
+      );
+      res.send(newCart.rows);
+    } else {
+      res.send("User is not loggedIn!");
+    }
   } catch (err) {
     console.log(err);
   }
 });
 cartRouter.put("/:userid", async (req, res) => {
   try {
-    const { product_qty,product_id } = req.body;
+    const { product_qty, product_id } = req.body;
     const { user } = req.session;
 
-    "UPDATE  cart SET product_qty = $1 WHERE product_id = $3 AND user_id = $2"
-      [product_qty, user.id, product_id];
+    "UPDATE  cart SET product_qty = $1 WHERE product_id = $3 AND user_id = $2"[
+      (product_qty, user.id, product_id)
+    ];
     res.send("Cart Updated Successfully");
   } catch (err) {
     console.log(err);

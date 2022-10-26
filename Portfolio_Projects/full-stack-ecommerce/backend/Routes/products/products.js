@@ -27,10 +27,11 @@ productsRouter.get("/", async (req, res) => {
 });
 
 productsRouter.post("/", async (req, res) => {
+  console.log("Products Route hit!");
   const { name, price, category, description } = req.body;
   try {
     const allProducts = await pool.query(
-      "INSERT INTO users(name, price, category, description) VALUES($1, $2, $3, $4) RETURNING *",
+      "INSERT INTO products(name, price, category, description) VALUES($1, $2, $3, $4) RETURNING *",
       [name, price, category, description]
     );
     res.send(allProducts.rows[0]);
