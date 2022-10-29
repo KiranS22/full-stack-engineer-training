@@ -25,6 +25,7 @@ productsRouter.get("/", async (req, res) => {
     console.log(err);
   }
 });
+// '/products'
 //Add a new product
 productsRouter.post("/", async (req, res) => {
   console.log("Products Route hit!");
@@ -34,6 +35,7 @@ productsRouter.post("/", async (req, res) => {
       "INSERT INTO products(name, price, category, description) VALUES($1, $2, $3, $4) RETURNING *",
       [name, price, category, description]
     );
+
     res.send(allProducts.rows[0]);
   } catch (err) {
     console.log(err);

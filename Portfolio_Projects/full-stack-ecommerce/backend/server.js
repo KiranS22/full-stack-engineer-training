@@ -29,7 +29,7 @@ Passport.use(new FacebookStrategy({
   clientSecret: process.env.CLIENTSECRET,
   callbackURL:process.env.CALLBACKURL
 }, function(accessToken, refreshToken, profile,done){
-/*  function(accessToken, refreshToken, profile, cb) {
+/*
     db.get('SELECT * FROM federated_credentials WHERE provider = ? AND subject = ?', [
       'https://www.facebook.com',
       profile.id

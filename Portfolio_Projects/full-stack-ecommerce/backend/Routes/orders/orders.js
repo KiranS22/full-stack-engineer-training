@@ -1,7 +1,7 @@
 const express = require("express");
 const ordersRouter = express.Router();
 const pool = require("../../db");
-//GET ALLL ORDERS THAT EXIST ON TH SIGHT
+//GET ALLL ORDERS THAT EXIST ON TH SITE ADMIN
 ordersRouter.get("/", async (req, res) => {
   try {
     const allOrders = await pool.query("SELECT * FROM orders");
@@ -39,26 +39,15 @@ ordersRouter.get("/:userid/:orderid", async (req, res) => {
     console.log(err);
   }
 });
-//MAKE AN ORDER
-ordersRouter.post("/:userid", async (req, res) => {
-  try {
-    const { userid, orderid } = req.params;
-    const {} = req.body;
-  } catch (err) {
-    console.log(err);
-  }
-});
-//UPDATE AN ORDER
-ordersRouter.put("/:id/userid/:orderid", async (req, res) => {
-  try {
-  } catch (err) {
-    console.log(err);
-  }
-});
 
 //DELETE AN ORDER
-ordersRouter.delete("/:id/userid/:orderid", async (req, res) => {
+ordersRouter.delete("/:orderid", async (req, res) => {
   try {
+    const { orderid } = req.params;
+    const deletedOrder = await pool.query("DELETE FROM  orders WHERE id = $1", [
+      orderid,
+    ]);
+    res.send("order deleted Successfully");
   } catch (err) {
     console.log(err);
   }

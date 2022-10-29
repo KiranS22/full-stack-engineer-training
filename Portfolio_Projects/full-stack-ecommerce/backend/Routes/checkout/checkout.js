@@ -1,6 +1,7 @@
 const express = require("express");
 const checkoutRouter = express.Router();
 const pool = require("../../db");
+//THIS IS WHERE THE ORDER IS MADE
 checkoutRouter.post("/", async (req, res) => {
   try {
     // Move all the items from the cart to the orders table

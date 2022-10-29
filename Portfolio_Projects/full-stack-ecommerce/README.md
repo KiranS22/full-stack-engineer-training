@@ -9,9 +9,12 @@ I made this project in order to demonstrate all of the skills that I have learnt
 - Reactjs
 - Nodejs
 - React Router
- - Redux
+- Redux
 - Axios
 - GitHub
+- YAML
+- Swagger Editor
+- Open API
 
 ## Getting Started with Create React App
 
