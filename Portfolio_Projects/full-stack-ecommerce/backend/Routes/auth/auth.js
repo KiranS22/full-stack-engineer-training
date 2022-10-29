@@ -2,6 +2,16 @@ const express = require("express");
 const authRouter = express.Router();
 const pool = require("../../db");
 const bcrypt = require("bcryptjs");
+const Passport = require("passport")
+
+authRouter.get("/facebookauth",Passport.authenticate('facebook' ))
+authRouter.get('/facebookAuth/callback',
+Passport.authenticate('facebook', { failureRedirect: '/login' }),
+async (req, res) => {
+  res.redirect('/');
+}
+);
+
 
 authRouter.post("/login", async (req, res) => {
   try {

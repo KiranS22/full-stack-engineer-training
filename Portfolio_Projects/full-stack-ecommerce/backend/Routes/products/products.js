@@ -25,7 +25,7 @@ productsRouter.get("/", async (req, res) => {
     console.log(err);
   }
 });
-
+//Add a new product
 productsRouter.post("/", async (req, res) => {
   console.log("Products Route hit!");
   const { name, price, category, description } = req.body;
