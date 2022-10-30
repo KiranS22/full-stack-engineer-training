@@ -1,0 +1,10 @@
+
+.box{
+  background-color: pink
+  
+}
+
+.container{
+  grid-template-columns: 90% repeat(9 10%);
+  gap: 20px;
+}

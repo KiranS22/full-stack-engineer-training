@@ -1,26 +1,30 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectAllProducts, selectFilteredProducts } from "../../Redux/features/Slices/Products";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../Redux/features/Slices/Cart/Cart";
+import {
+  selectAllProducts,
+  selectFilteredProducts,
+} from "../../Redux/features/Slices/Products/Products";
 
 const AllProducts = () => {
-const products = useSelector(selectAllProducts)
-const filteredProducts = useSelector(selectFilteredProducts)
-
-  return(
+  const filteredProducts = useSelector(selectFilteredProducts);
+  const dispatch = useDispatch();
+  const handleClick = (product) => {
+    dispatch(addToCart(product));
+  };
+  return (
     <div>
-      {
-        products.map( product => {
-          return(
-          <h1>{product.name}</h1>
-          
-
-          )
-        })
-      }
-
+      {filteredProducts.map((product) => {
+        return (
+          <div>
+            <h1>{product.name}</h1>;<p>{product.price}</p>
+            <button onClick={() => handleClick(product)}>Add to Cart</button>
+          </div>
+        );
+      })}
     </div>
-    ) 
-    
+  );
 };
 
 export default AllProducts;

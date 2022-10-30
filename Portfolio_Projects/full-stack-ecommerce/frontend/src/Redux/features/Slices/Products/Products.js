@@ -16,9 +16,16 @@ const initialState = {
 };
 
 const Products = createSlice({
-  name: "products",
+  name: "product",
   initialState,
-  reducers: {},
+  reducers: {
+    filterSearch: (state, action) => {
+      console.log(action.payload);
+      state.filteredProducts = state.products.filter((item) =>
+        item.name.toLowerCase().includes(action.payload.toLowerCase())
+      );
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchAllProducts.pending, (state, action) => {
       console.log("pending");
@@ -28,7 +35,6 @@ const Products = createSlice({
       console.log("fulfilled");
       console.log(action.payload);
       state.products = action.payload;
-      state.filteredProducts = action.payload;
     });
 
     builder.addCase(fetchAllProducts.rejected, (state, action) => {
@@ -37,10 +43,9 @@ const Products = createSlice({
   },
 });
 
-export const selectFilteredProducts = (state) =>
-  state.products.filteredProducts;
-
-export const selectAllProducts = (state) => state.products.products;
-export const {} = Products.actions;
-
 export default Products.reducer;
+export const { filterSearch } = Products.actions;
+
+export const selectFilteredProducts = (state) => state.product.filteredProducts;
+
+export const selectAllProducts = (state) => state.product.products;
