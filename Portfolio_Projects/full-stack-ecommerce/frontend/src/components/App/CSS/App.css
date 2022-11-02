@@ -1,9 +1,10 @@
 :root{
-  --main-bg-colour: #FFFCE4
-  --accent-color-1:#E78FBC
+  --main-bg-colour: #FFFCE4;
+  --accent-color-1:#E78FBC;
   --button-colour:#68243C;
-  --accent-colour-2:#CFD5B8
-  --text-colour-1: #FFF;
+  --accent-colour-2:#CFD5B8;
+  --text-colour-1: #FFFFFF;
+  --text-colour-2: #000604;
 
 }
 * {
