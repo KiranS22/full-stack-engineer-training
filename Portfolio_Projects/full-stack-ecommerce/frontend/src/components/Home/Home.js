@@ -1,34 +1,39 @@
 import React from "react";
-import "../App/CSS/homepage.css";
+import { Link } from "react-router-dom";
+import Footer from "../Footer/Footer";
 
 const Home = () => {
   return (
     <>
-      <div className="container grid">
-        <div className="banner">
-          <div>
-            <h2>Welcome To Candladora</h2>
-          </div>
-        </div>
-        <div className="flex row1">
-          <div className="box 1">2</div>
-          <div className="box 2">3</div>
-          <div className="box 3">4</div>
-        </div>
-        <div className="flex row2">
-          <div className="box 4">5</div>
-          <div className="box 5">6</div>
-          <div className="box 6">7</div>
-        </div>
-        <div className="flex row3">
-          <div className="box 7">8</div>
-          <div className="box 8">9</div>
+      <div className="home-container flex">
+        <div className="hero-img">
+          <img
+            className="hero"
+            src="https://media.istockphoto.com/photos/closeup-of-3-burning-candles-on-abstract-black-background-contemplate-picture-id1352014624?b=1&k=20&m=1352014624&s=170667a&w=0&h=6d-On49ipamCWqLNMemCcRzfueYfvNgsw0wGTeFegW0="
+          />
+          <h2 className="text">Welcome To Candladora</h2>
         </div>
       </div>
-
-      <footer>
-        <h2>FOOTER</h2>
-      </footer>
+      <div className="circles flex">
+        <span className="circle c1">
+          <button type="button">
+            <Link to="/products"></Link>View Our Products
+          </button>
+        </span>
+        <span className="circle c2">
+          <button type="button">
+            <Link to="/about">s</Link>About Us
+          </button>
+        </span>
+        <span className="circle c3">
+          <button type="buttton">
+            <Link to="/products/add"></Link>List a Product
+          </button>
+        </span>
+      </div>
+      <div className="footer-container">
+        <Footer />
+      </div>
     </>
   );
 };

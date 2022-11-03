@@ -5,8 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectCartCount } from "../../Redux/features/Slices/Cart/Cart";
 import { filterSearch } from "../../Redux/features/Slices/Products/Products";
 
-import "./../App/CSS/nav.css";
-
 const Navbar = () => {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
@@ -19,62 +17,84 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="mavBar flex flex-between">
-      <div className="logo">
-        <h2 className="nav-title">Candladora</h2>
-      </div>
-
-      <ul className="nav-item flex flex-evenly">
-        <li className="nav-link">
-          <Link to="/"> Home</Link>
-        </li>
-
-        <li className="nav-link">
-          <Link to="/products"> Products</Link>
-        </li>
-
-        <li className="nav-link">
-          <Link to="/products/add"> List a Product</Link>
-        </li>
-        {/* Empty links to accommodate spacing in the navigation bar */}
-        <li className="nav-link"></li>
-        <li className="nav-link"></li>
-        <li className="nav-link"></li>
-        <li className="nav-link"></li>
-      </ul>
-      <div className="flex search_and_buttons">
-        <div className="search">
-          <input
-            className="search_bar"
-            type="text"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={(e) => searchProducts(e)}
-          />
-        </div>
-        <button style={{ position: "relative" }} className="nav-link cart-btn">
-          <Link to="/cart">
-            <img
-              src="https://img.icons8.com/material-outlined/24/000000/shopping-cart--v1.png"
-              style={{ width: 30, height: 30 }}
-            />
-            {cartCount > 0 ? (
-              <span className="cart-count"> {cartCount} </span>
-            ) : null}
-          </Link>
+    <nav className="navbar navbar-expand-lg  navbar-colors">
+      <div className="container-fluid">
+        <Link className="navbar-brand logo" to="/">
+          Candladora
+        </Link>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div>
-          <Link to="/register">
-            <button type="button" className="register-btn">
-              Register
-            </button>{" "}
-          </Link>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link className="nav-link" to="/">
+                Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/about">
+                About
+              </Link>
+            </li>
 
-          <Link to="/login">
-            <button type="button" className="login-btn">
-              Log In{" "}
-            </button>{" "}
-          </Link>
+            <li className="nav-item">
+              <Link className="nav-link" to="/products">
+                Products
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/products/add">
+                List a Product
+              </Link>
+            </li>
+
+            <div style={{ margin: ".5em 3.5em 0" }}>
+              <input
+                className="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                value={searchTerm}
+                onChange={(e) => searchProducts(e)}
+              />
+            </div>
+            <li classname="nav-item">
+              <Link to="/cart">
+                <img
+                  className="cart-img"
+                  src="https://img.icons8.com/material-outlined/24/000000/shopping-cart--v1.png"
+                  style={{ width: 30, height: 30 }}
+                />
+                {cartCount > 0 ? (
+                  <span className="cart-count"> {cartCount} </span>
+                ) : null}
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link to="/login">
+                <button type="button" className="login-btn">
+                  Log In{" "}
+                </button>{" "}
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/register">
+                <button type="button" className="register-btn">
+                  Register
+                </button>{" "}
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>

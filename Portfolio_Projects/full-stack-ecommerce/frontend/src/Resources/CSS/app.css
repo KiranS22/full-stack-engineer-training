@@ -1,0 +1,146 @@
+/* Font Imports */
+@import url("https://fonts.googleapis.com/css2?family=Fasthand&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+/* Colur variables */
+:root {
+  --main-bg-colour: #fffce4;
+  --accent-color-1: #e78fbc;
+  --button-colour: #68243c;
+  --accent-colour-2: #cfd5b8;
+  --text-colour-1: #ffffff;
+  --text-colour-2: #000604;
+  --accent-colour-3: rgb(136, 136, 136);
+}
+/* Overall Website background colour */
+body {
+  background-color: var(--main-bg-colour);
+}
+
+/* Globals */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.flex {
+  display: flex;
+}
+.home-container {
+  justify-content: center;
+}
+/* NavBar styles */
+.navbar-colors {
+  background-color: var(--accent-color-1);
+  color: var(--text-colour-1);
+}
+
+.logo {
+  font-size: 30px;
+  font-family: "Fasthand", cursive;
+}
+.nav-link {
+  color: var(--text-colour-1);
+}
+.nav-link:hover {
+  border-bottom: 2px solid var(--button-colour);
+  border-top: 2px solid var(--button-colour);
+}
+.cart-img {
+  color: var(--button-colour);
+}
+.cart-count {
+  color: var(--text-colour-1);
+}
+.register-btn,
+.login-btn {
+  background-color: var(--button-colour);
+  color: var(--text-colour-1);
+  margin: 0 20px;
+}
+
+.register-btn:hover,
+.login-btn:hover {
+  background-color: var(--text-colour-1);
+  color: var(--button-colour);
+}
+
+/* Homepage Styles */
+
+.hero-img {
+  padding: 0 100%;
+  position: relative;
+}
+.hero {
+  width: 100vw;
+}
+.hero-img .text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Fasthand", cursive;
+  color: var(--accent-colour-2);
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+  letter-spacing: 30px;
+  font-weight: 700;
+}
+.circles {
+  margin: 10px 0;
+}
+.circle {
+  padding: 15%;
+  border: 2px solid #000;
+  width: 30%;
+  border-radius: 50%;
+  margin: 0 auto;
+  position: relative;
+}
+.c1 {
+  background: url(https://i.pinimg.com/originals/92/c5/de/92c5de06ba76c46dffd6ab97451a7b2c.jpg);
+}
+.c2 {
+  background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScm4i4UxzSvIzC3WU1ymH7E7paI5QTJgQT8w&usqp=CAU);
+}
+
+.c3 {
+  background: url(https://media.istockphoto.com/photos/candles-in-a-church-background-picture-id1285468795?k=20&m=1285468795&s=170667a&w=0&h=of7YCbJiaSeROlZ_ICleAns264ymkBtEwn2p8AnYXrs=);
+}
+.c1 button,
+.c2 button,
+.c3 button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  padding: 5px 8px;
+  color: var(--button-colour);
+  background-color: var(--accent-colour-2);
+}
+
+.c1 button:hover,
+.c2 button:hover,
+.c3 button:hover {
+  background-color: var(--button-colour);
+  color: var(--accent-colour-2);
+}
+
+/* Register Form CSS */
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 0.2px);
+
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}
+
