@@ -12,11 +12,13 @@ const Register = () => {
     password: "",
     verifyPassword: "",
     tel: "",
+    address: "",
     city: "",
-    country: "",
+    postcode: "",
   });
 
   const handleSubmit = async (e) => {
+    console.log("user", user);
     e.preventDefault();
     if (user.password !== user.verifyPassword) {
       alert("Passwords Must Match");
@@ -25,6 +27,7 @@ const Register = () => {
         "http://localhost:4000/auth/register",
         user
       );
+      console.log(response.data);
 
       const status = response.data.status;
       if (status === "success") {
@@ -48,7 +51,7 @@ const Register = () => {
             <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
               <form onSubmit={(e) => handleSubmit(e)} method="POST">
                 <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-                  <p className="lead fw-normal mb-0 me-3">Registwe with</p>
+                  <p className="lead fw-normal mb-0 me-3">Register with</p>
                   <button
                     type="button"
                     className="btn btn-primary btn-floating mx-1"
@@ -159,20 +162,33 @@ const Register = () => {
                     name="verify-password"
                   />
                 </div>
+                <div className="form-outline mb-3">
+                  <label className="form-label" htmlFor="tel">
+                    Mobile Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="tel"
+                    className="form-control form-control-lg"
+                    placeholder="Enter mobile Number"
+                    value={user.telNumber}
+                    onChange={(e) => setUser({ ...user, tel: e.target.value })}
+                  />
+                </div>
 
                 <div className="form-outline mb-3">
                   <label className="form-label" htmlFor="country">
-                    Country
+                    Address
                   </label>
                   <input
                     type="text"
                     id="country"
                     name="country"
                     className="form-control form-control-lg"
-                    placeholder="Country"
-                    value={user.country}
+                    placeholder="Address"
+                    value={user.address}
                     onChange={(e) =>
-                      setUser({ ...user, country: e.target.value })
+                      setUser({ ...user, address: e.target.value })
                     }
                   />
                 </div>
@@ -193,16 +209,19 @@ const Register = () => {
                 </div>
 
                 <div className="form-outline mb-3">
-                  <label className="form-label" htmlFor="tel">
-                    Mobile Number
+                  <label className="form-label" htmlFor="city">
+                    Postcode
                   </label>
                   <input
-                    type="tel"
-                    id="tel"
+                    type="text"
+                    id="city"
+                    name="city"
                     className="form-control form-control-lg"
-                    placeholder="Enter mobile Number"
-                    value={user.telNumber}
-                    onChange={(e) => setUser({ ...user, tel: e.target.value })}
+                    placeholder="postcode"
+                    value={user.postcode}
+                    onChange={(e) =>
+                      setUser({ ...user, postcode: e.target.value })
+                    }
                   />
                 </div>
 
@@ -223,26 +242,6 @@ const Register = () => {
                 </div>
               </form>
             </div>
-          </div>
-        </div>
-        <div className="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-          <div className="text-white mb-3 mb-md-0">
-            Copyright © 2020. All rights reserved.
-          </div>
-
-          <div>
-            <a href="#!" className="text-white me-4">
-              <i className="fab fa-facebook-f"></i>
-            </a>
-            <a href="#!" className="text-white me-4">
-              <i className="fab fa-twitter"></i>
-            </a>
-            <a href="#!" className="text-white me-4">
-              <i className="fab fa-google"></i>
-            </a>
-            <a href="#!" className="text-white">
-              <i className="fab fa-linkedin-in"></i>
-            </a>
           </div>
         </div>
       </section>

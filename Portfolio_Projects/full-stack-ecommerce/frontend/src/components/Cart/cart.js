@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   selectCart,
+  selectCartCount,
   selectCartTotal,
   findCartItemsTotal,
 } from "../../Redux/features/Slices/Cart/Cart";
@@ -14,9 +14,8 @@ const Cart = () => {
   const cartTotal = useSelector(selectCartTotal);
 
   useEffect(() => {
-    console.log("useEdffect has ran");
     dispatch(findCartItemsTotal());
-  }, []);
+  }, [cart]);
   return (
     <>
       <div className="cart">
@@ -28,7 +27,8 @@ const Cart = () => {
             {cart.map((item) => {
               return (
                 <div>
-                  <h1>{item.name}</h1>
+                  {item.name}
+                  {item.price}
                 </div>
               );
             })}
@@ -87,4 +87,5 @@ const Cart = () => {
     </>
   );
 };
+
 export default Cart;

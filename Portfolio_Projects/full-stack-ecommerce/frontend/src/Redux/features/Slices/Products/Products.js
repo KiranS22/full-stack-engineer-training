@@ -32,9 +32,8 @@ const Products = createSlice({
     });
 
     builder.addCase(fetchAllProducts.fulfilled, (state, action) => {
-      console.log("fulfilled");
-      console.log(action.payload);
       state.products = action.payload;
+      state.filteredProducts = action.payload;
     });
 
     builder.addCase(fetchAllProducts.rejected, (state, action) => {

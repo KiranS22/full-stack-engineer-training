@@ -1,23 +1,28 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { logInUser } from "../../../Redux/features/Slices/Auth/Auth";
+import { useDispatch } from "react-redux";
 const Login = () => {
   const navigate = useNavigate();
-  const handleSubmit = async (e) => {
-    console.log("submitHnadler has ran");
-    e.preventDefault();
-    const response = await axios.post("http://localhost:4000auth/login", user);
-    const status = response.data.status;
-    if (status === "success") {
-      console.log("response.data frontend", response.data);
-      navigate("/");
-    }
-  };
-
+  const dispatch = useDispatch();
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
+  const handleSubmit = async (e) => {
+    console.log("submitHnadler has ran");
+    console.log("user", user);
+    e.preventDefault();
+    const response = await axios.post("http://localhost:4000/auth/login", user);
+    console.log("Response: ", response.data);
+    const status = response.data.status;
+    if (status === "success") {
+      console.log("response.data frontend", response.data);
+      dispatch(logInUser(response.data.user));
+      navigate("/");
+    }
+  };
   return (
     <>
       <section className="vh-100">

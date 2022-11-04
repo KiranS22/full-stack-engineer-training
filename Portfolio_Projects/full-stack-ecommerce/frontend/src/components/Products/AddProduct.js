@@ -14,8 +14,10 @@ const AddProduct = () => {
     price: "",
     category: "",
     description: "",
+    imageUrl: "",
   });
   const handleSubmit = async (e) => {
+    console.log("Handle Submit has Ran");
     e.preventDefault();
     try {
       console.log(product);
@@ -24,53 +26,97 @@ const AddProduct = () => {
         product
       );
 
-      console.log(response.data);
+      console.log("Response:", response.data);
+      setProduct({
+        name: "",
+        price: "",
+        category: "",
+        description: "",
+      });
     } catch (err) {
       console.log(err);
     }
   };
   return (
-    <div>
+    <>
       <form onSubmit={(e) => handleSubmit(e)}>
-        <div>
-          <label>Product Name</label>
+        <div className="form-group">
+          <label htmlFor="productName">Name</label>
           <input
             type="text"
+            className="form-control"
+            id="productName"
+            aria-describedby="productName"
+            placeholder="Enter Product Name"
             value={product.name}
-            onChange={(e) => setProduct({ ...product, name: e.target.value })}
+            onChange={(e) => {
+              setProduct({ ...product, name: e.target.value });
+            }}
           />
         </div>
-        <div>
-          <label>Product Price</label>
+        <div className="form-group">
+          <label htmlFor="productPrice">Product Price</label>
           <input
             type="text"
+            className="form-control"
+            id="productPrice"
+            aria-describedby="productPrice"
+            placeholder="Enter Product Name"
             value={product.price}
-            onChange={(e) => setProduct({ ...product, price: e.target.value })}
+            onChange={(e) => {
+              setProduct({ ...product, price: e.target.value });
+            }}
           />
         </div>
-        <div>
-          <label>Product Category</label>
+
+        <div className="form-group">
+          <label htmlFor="productCategory">Product Category</label>
           <input
             type="text"
+            className="form-control"
+            id="productCategory"
+            aria-describedby="productName"
+            placeholder="Enter Product Category"
             value={product.category}
-            onChange={(e) =>
-              setProduct({ ...product, category: e.target.value })
-            }
+            onChange={(e) => {
+              setProduct({ ...product, category: e.target.value });
+            }}
           />
         </div>
-        <div>
-          <label>Product Description</label>
+
+        <div className="form-group">
+          <label htmlFor="productDescription">Product Decription</label>
           <input
             type="text"
+            className="form-control"
+            id="productDescription"
+            aria-describedby="productDescrition"
+            placeholder="Enter Product Description"
             value={product.description}
-            onChange={(e) =>
-              setProduct({ ...product, description: e.target.value })
-            }
+            onChange={(e) => {
+              setProduct({ ...product, description: e.target.value });
+            }}
           />
         </div>
-        <button type="submit">Submit</button>
+        <div className="form-group">
+          <label htmlFor="productDescription">Product Image</label>
+          <input
+            type="text"
+            className="form-control"
+            id="productDescription"
+            aria-describedby="productDescrition"
+            placeholder="Enter Product Image"
+            value={product.imageUrl}
+            onChange={(e) => {
+              setProduct({ ...product, imageUrl: e.target.value });
+            }}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
       </form>
-    </div>
+    </>
   );
 };
 

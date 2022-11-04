@@ -29,11 +29,11 @@ productsRouter.get("/", async (req, res) => {
 //Add a new product
 productsRouter.post("/", async (req, res) => {
   console.log("Products Route hit!");
-  const { name, price, category, description } = req.body;
+  const { name, price, category, description, imageUrl } = req.body;
   try {
     const allProducts = await pool.query(
-      "INSERT INTO products(name, price, category, description) VALUES($1, $2, $3, $4) RETURNING *",
-      [name, price, category, description]
+      "INSERT INTO products(name, price, category, description, image) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      [name, price, category, description, imageUrl]
     );
 
     res.send(allProducts.rows[0]);

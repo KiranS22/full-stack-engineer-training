@@ -10,8 +10,10 @@ import Home from "../Home/Home";
 import Register from "../User_Authentication/Register/Register";
 import Login from "../User_Authentication/Login/login";
 import About from "../About/About";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '../../Resources/CSS/app.css'
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
+import "../../Resources/CSS/app.css";
+
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -22,12 +24,12 @@ const App = () => {
       <NavBar />
       <Routes>
         <Route path="/" exact element={<Home />} />
-        <Route path="/products/" exact element={<AllProducts />} />
+        <Route path="/products" exact element={<AllProducts />} />
         <Route path="/products/add" exact element={<AddProduct />} />
         <Route path="/cart" exact element={<Cart />} />
         <Route path="/register" exact element={<Register />} />
         <Route path="/login" exact element={<Login />} />
-        <Route path="/about" exact element={<About/> } />
+        <Route path="/about" exact element={<About />} />
       </Routes>
     </Router>
   );
