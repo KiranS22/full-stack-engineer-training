@@ -4,18 +4,38 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { selectCartCount } from "../../Redux/features/Slices/Cart/Cart";
 import { filterSearch } from "../../Redux/features/Slices/Products/Products";
+import { selectIsLoggedIn } from "../../Redux/features/Slices/Auth/Auth";
+import axios from "axios";
+import { logOutUser } from "../../Redux/features/Slices/Auth/Auth";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
   const cartCount = useSelector(selectCartCount);
-
+  const loggedIn = useSelector(selectIsLoggedIn);
+  const navigate = useNavigate();
+  console.log("Logged in status", loggedIn);
   const searchProducts = (e) => {
     console.log(e.target.value);
     setSearchTerm(e.target.value);
     dispatch(filterSearch(e.target.value));
   };
 
+  const logoutHandler = async () => {
+    try {
+      const { data } = await axios.post("http://localhost:4000/auth/logout");
+      console.log(data);
+      if (data.status === "success") {
+        dispatch(logOutUser());
+        navigate("/login");
+      } else {
+        console.log("something went wrong");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <nav className="navbar navbar-expand-lg  navbar-colors">
       <div className="container-fluid">
@@ -80,20 +100,36 @@ const Navbar = () => {
               </Link>
             </li>
 
-            <li className="nav-item">
-              <Link to="/login">
-                <button type="button" className="login-btn">
-                  Log In{" "}
+            {!loggedIn ? (
+              <>
+                <li className="nav-item">
+                  <Link to="/login">
+                    <button type="button" className="login-btn">
+                      Log In{" "}
+                    </button>{" "}
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/register">
+                    <button type="button" className="register-btn">
+                      Register
+                    </button>{" "}
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <li className="nav-item">
+                <button
+                  type="button"
+                  className="register-btn"
+                  onClick={() => {
+                    logoutHandler();
+                  }}
+                >
+                  Log Out
                 </button>{" "}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/register">
-                <button type="button" className="register-btn">
-                  Register
-                </button>{" "}
-              </Link>
-            </li>
+              </li>
+            )}
           </ul>
         </div>
       </div>

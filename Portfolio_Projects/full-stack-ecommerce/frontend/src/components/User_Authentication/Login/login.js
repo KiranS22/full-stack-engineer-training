@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { logInUser } from "../../../Redux/features/Slices/Auth/Auth";
 import { useDispatch } from "react-redux";
+
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const Login = () => {
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-md-9 col-lg-6 col-xl-5">
               <img
-                src="https://thumbs.dreamstime.com/b/login-illustration-letter-cubes-forming-word-36025252.jpg"
+                src="https://thumbs.dreamstime.com/b/login-elegant-pink-diamond-button-isolated-abstract-illustration-105953029.jpg"
                 className="img-fluid"
                 alt="Sample image"
               />
@@ -45,19 +46,11 @@ const Login = () => {
                   >
                     <i className="fab fa-facebook-f"></i>
                   </button>
-
                   <button
                     type="button"
                     className="btn btn-primary btn-floating mx-1"
                   >
-                    <i className="fab fa-twitter"></i>
-                  </button>
-
-                  <button
-                    type="button"
-                    className="btn btn-primary btn-floating mx-1"
-                  >
-                    <i className="fab fa-linkedin-in"></i>
+                    
                   </button>
                 </div>
 
@@ -102,8 +95,13 @@ const Login = () => {
                 <div className="text-center text-lg-start mt-4 pt-2">
                   <button
                     type="sumbit"
-                    className="btn btn-primary btn-lg"
-                    style={{ paddingLeft: "2.5rem", paddingRight: "2.5rem" }}
+                    className="btn btn-primary btn-lg stylesForButton"
+                    style={{
+                      paddingLeft: "2.5rem",
+                      paddingRight: "2.5rem",
+                      backgroundColor: "#68243c",
+                      color: "#ffffff",
+                    }}
                   >
                     Login
                   </button>
@@ -116,26 +114,6 @@ const Login = () => {
                 </div>
               </form>
             </div>
-          </div>
-        </div>
-        <div className="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-          <div className="text-white mb-3 mb-md-0">
-            Copyright © 2020. All rights reserved.
-          </div>
-
-          <div>
-            <a href="#!" className="text-white me-4">
-              <i className="fab fa-facebook-f"></i>
-            </a>
-            <a href="#!" className="text-white me-4">
-              <i className="fab fa-twitter"></i>
-            </a>
-            <a href="#!" className="text-white me-4">
-              <i className="fab fa-google"></i>
-            </a>
-            <a href="#!" className="text-white">
-              <i className="fab fa-linkedin-in"></i>
-            </a>
           </div>
         </div>
       </section>

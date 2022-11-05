@@ -41,7 +41,7 @@ const AddProduct = () => {
     <>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div className="form-group">
-          <label htmlFor="productName">Name</label>
+          <label htmlFor="productName">Product Name</label>
           <input
             type="text"
             className="form-control"
@@ -61,7 +61,7 @@ const AddProduct = () => {
             className="form-control"
             id="productPrice"
             aria-describedby="productPrice"
-            placeholder="Enter Product Name"
+            placeholder="Enter Product Price"
             value={product.price}
             onChange={(e) => {
               setProduct({ ...product, price: e.target.value });
@@ -75,7 +75,7 @@ const AddProduct = () => {
             type="text"
             className="form-control"
             id="productCategory"
-            aria-describedby="productName"
+            aria-describedby="productCategory"
             placeholder="Enter Product Category"
             value={product.category}
             onChange={(e) => {
@@ -103,8 +103,8 @@ const AddProduct = () => {
           <input
             type="text"
             className="form-control"
-            id="productDescription"
-            aria-describedby="productDescrition"
+            id="productImage"
+            aria-describedby="productImage"
             placeholder="Enter Product Image"
             value={product.imageUrl}
             onChange={(e) => {
@@ -112,8 +112,18 @@ const AddProduct = () => {
             }}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
-          Submit
+        <button
+          type="submit"
+          className="btn btn-primary stylesForButton"
+          style={{
+            paddingLeft: "2.5rem",
+            paddingRight: "2.5rem",
+            backgroundColor: "#68243c",
+            color: "#ffffff",
+          }}
+        >
+          {" "}
+          Add Product
         </button>
       </form>
     </>

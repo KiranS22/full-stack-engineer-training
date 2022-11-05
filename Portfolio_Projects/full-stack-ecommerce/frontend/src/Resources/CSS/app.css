@@ -5,21 +5,18 @@
   --accent-colour-2: #cfd5b8;
   --text-colour-1: #ffffff;
   --text-colour-2: #000604;
-  --accent-colour-3: rgb(136, 136, 136)
+  --accent-colour-3: rgb(136, 136, 136);
 }
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  
 }
 /* Font Imports */
 @import url("https://fonts.googleapis.com/css2?family=Fasthand&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
 /* Colur variables */
-;
-
 /* Overall Website background colour */
 body {
   background-color: var(--main-bg-colour);
@@ -356,7 +353,6 @@ img {
 }
 
 html {
-  
   font-family: "Roboto", sans-serif;
 }
 
@@ -393,13 +389,13 @@ html {
   padding: 10px 15px;
 }
 .btn-quantity.plus {
-  color: var(--accent-colour-3)
+  color: var(--accent-colour-3);
 }
 .btn-quantity.plus:hover {
   color: var(--text-colour-2);
 }
 .btn-quantity.minus {
-  color: var(--accent-colour-3)
+  color: var(--accent-colour-3);
 }
 .btn-quantity.minus:hover {
   color: #cc0000;
@@ -449,7 +445,7 @@ html {
 }
 
 .item {
-  background:var(--accent-color-2);
+  background: var(--accent-color-2);
   border-radius: 10px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
@@ -783,4 +779,14 @@ h1 {
   overflow: hidden;
   text-overflow: ellipsis;
   line-clamp: 2;
+}
+
+/* Buton styles */
+.stylesForButton{
+  border: none;
+}
+
+.stylesForButton:hover {
+  background-color: var(--accent-colour-3);
+  color: var(--button-colour);
 }

@@ -6,6 +6,7 @@ import {
   selectAllProducts,
   selectFilteredProducts,
 } from "../../Redux/features/Slices/Products/Products";
+import { Link } from "react-router-dom";
 
 const AllProducts = () => {
   const filteredProducts = useSelector(selectFilteredProducts);
@@ -37,6 +38,7 @@ const AllProducts = () => {
                 <button onClick={() => handleClick(product)}>
                   Add to Cart
                 </button>
+                <Link to={`/products/${product.id}`}>View</Link>
               </p>
             </div>
           </div>

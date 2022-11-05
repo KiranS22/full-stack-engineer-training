@@ -69,7 +69,7 @@ authRouter.post("/logout", (req, res) => {
       res.send("something went wrong", err);
     }
 
-    res.send("User has logged out");
+    res.send({ status: "success", message: "User has logged out" });
   });
 });
 module.exports = authRouter;

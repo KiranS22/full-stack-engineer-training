@@ -15,6 +15,10 @@ I made this project in order to demonstrate all of the skills that I have learnt
 - YAML
 - Swagger Editor
 - Open API
+- Font Awesome
+- CSS
+- Bootstrap 5 
+- Markdown
 
 ## Getting Started with Create React App
 

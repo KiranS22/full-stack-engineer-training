@@ -13,6 +13,8 @@ import About from "../About/About";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "../../Resources/CSS/app.css";
+import ProtectedRoutes from "../Routing/ProtectedRoutes";
+import ProductDetails from "../Products/ProductDetails";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -22,14 +24,18 @@ const App = () => {
   return (
     <Router>
       <NavBar />
+
       <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/products" exact element={<AllProducts />} />
-        <Route path="/products/add" exact element={<AddProduct />} />
+        <Route path="/" element={<ProtectedRoutes />}>
+          <Route path="/products/add" exact element={<AddProduct />} />
+        </Route>
         <Route path="/cart" exact element={<Cart />} />
         <Route path="/register" exact element={<Register />} />
         <Route path="/login" exact element={<Login />} />
         <Route path="/about" exact element={<About />} />
+        <Route path="/products/:id" exact element={<ProductDetails />} />
       </Routes>
     </Router>
   );
