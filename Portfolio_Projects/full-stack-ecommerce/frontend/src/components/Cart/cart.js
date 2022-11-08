@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   selectCart,
-  selectCartCount,
-  selectCartTotal,
   findCartItemsTotal,
+  deleteFromCart,
+  updateQty,
+  selectCartTotal,
 } from "../../Redux/features/Slices/Cart/Cart";
+import { Link } from "react-router-dom";
+import CartItem from "./CartItem";
 
 const Cart = () => {
-  const cart = useSelector(selectCart);
-
   const dispatch = useDispatch();
   const cartTotal = useSelector(selectCartTotal);
+  const cart = useSelector(selectCart);
+  console.log("cart in Cart.js,", cart);
+  const [user, setUser] = useState({
+    address: "",
+  });
 
   useEffect(() => {
+    console.log("Cart.js useEffect");
     dispatch(findCartItemsTotal());
   }, [cart]);
+
   return (
     <>
       <div className="cart">
@@ -23,28 +31,28 @@ const Cart = () => {
           <div className="grid_12">
             <h1>Your Cart</h1>
           </div>
-          <ul className="items">
-            {cart.map((item) => {
-              return (
-                <div>
-                  {item.name}
-                  {item.price}
-                </div>
-              );
-            })}
-          </ul>
+          <div className="table-responsive">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th scope="col">Product</th>
+                  <th scope="col">Qty</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Remove</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cart.map((item) => (
+                  <CartItem item={item} />
+                ))}
+              </tbody>
+            </table>
+          </div>
+
           <div className="grid_12 delivery-payment">
             <div className="grid_6 delivery-address">
               <h3>Delivery Address</h3>
-              <p>
-                46 Vale Road
-                <br />
-                Ramsgate
-              </p>
-            </div>
-            <div className="grid_6 payment-details">
-              <h3>Payment Card</h3>
-              <p> **** **** **** 8678</p>
+              <p>{user.address}</p>
             </div>
           </div>
           <div className="grid_12 coupon">
@@ -72,13 +80,13 @@ const Cart = () => {
                 </div>
               </div>
               <div className="btn-summary">
-                <a href="#" className="btn-checkout btn-reverse">
+                <Link to="/products" className="btn-checkout btn-reverse">
                   Continue Shopping
-                </a>
+                </Link>
 
-                <a href="#" className="btn-checkout">
+                <Link to="/checkout" className="btn-checkout">
                   Checkout
-                </a>
+                </Link>
               </div>
             </div>
           </div>

@@ -217,26 +217,9 @@ const Register = () => {
                 </div>
 
                 <div className="text-center text-lg-start mt-4 pt-2">
-                  {/* 
-                  btn-primary
-                  btn-outline-primary
-                  btn-success
-                  btn-outline-success
-                  btn-warning
-                  btn-outline-warning
-                  btn-danger
-                  btn-outline-danger
-                  
-                  */}
                   <button
                     type="submit"
                     className="btn  btn-outline-dark btn-lg"
-                    // style={{
-                    //   paddingLeft: "2.5rem",
-                    //   paddingRight: "2.5rem",
-                    //   backgroundColor: "#68243c",
-                    //   color: "#ffffff",
-                    // }}
                   >
                     Register
                   </button>

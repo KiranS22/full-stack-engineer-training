@@ -49,9 +49,7 @@ const Login = () => {
                   <button
                     type="button"
                     className="btn btn-primary btn-floating mx-1"
-                  >
-                    
-                  </button>
+                  ></button>
                 </div>
 
                 <div className="divider d-flex align-items-center my-4">

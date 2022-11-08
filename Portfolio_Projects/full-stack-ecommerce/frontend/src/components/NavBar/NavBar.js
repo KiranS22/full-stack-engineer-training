@@ -87,7 +87,7 @@ const Navbar = () => {
                 onChange={(e) => searchProducts(e)}
               />
             </div>
-            <li classname="nav-item">
+            <li className="nav-item">
               <Link to="/cart">
                 <img
                   className="cart-img"
@@ -118,17 +118,24 @@ const Navbar = () => {
                 </li>
               </>
             ) : (
-              <li className="nav-item">
-                <button
-                  type="button"
-                  className="register-btn"
-                  onClick={() => {
-                    logoutHandler();
-                  }}
-                >
-                  Log Out
-                </button>{" "}
-              </li>
+              <>
+                <li className="nav-item">
+                  <button
+                    type="button"
+                    className="register-btn"
+                    onClick={() => {
+                      logoutHandler();
+                    }}
+                  >
+                    Log Out
+                  </button>{" "}
+                </li>
+                <li className="nav-item">
+                  <Link to="/profile">
+                    <img src="https://img.icons8.com/material/24/null/administrator-male--v1.png" />
+                  </Link>
+                </li>
+              </>
             )}
           </ul>
         </div>

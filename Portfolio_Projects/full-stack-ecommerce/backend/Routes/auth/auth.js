@@ -3,7 +3,6 @@ const authRouter = express.Router();
 const pool = require("../../db");
 const bcrypt = require("bcryptjs");
 const Passport = require("passport");
-
 authRouter.get("/facebookauth", Passport.authenticate("facebook"));
 authRouter.get(
   "/facebookAuth/callback",
@@ -31,6 +30,9 @@ authRouter.post("/login", async (req, res) => {
         //Saving IN Session
         req.session.loggedIn = true;
         req.session.user = foundUser.rows[0];
+
+        console.log("Session after Logging In:", req.session);
+        console.log(req.session.user);
         //Send a Success Message Back
         res.send({ user: req.session.user, status: "success" });
       } else {
@@ -72,4 +74,35 @@ authRouter.post("/logout", (req, res) => {
     res.send({ status: "success", message: "User has logged out" });
   });
 });
+authRouter.put("/update-profile", async (req, res) => {
+  try {
+    const { firstName, lastName, email, tel, address, city, postcode } =
+      req.body;
+    // const { user } = req.session;
+    console.log("Use4r5", req.session);
+    //Check if the current user is loggedIn
+    // if (req.session.user.email === email) {
+
+    // console.log(email);
+    const response = await pool.query(
+      "UPDATE users SET first_name = $1, last_name = $2,  phone_number = $3, address = $4, city=$5, postcode=$6 WHERE email = $7 RETURNING *",
+      // ["John", "Doe", "12345", "test", "test", "test", email]
+      [firstName, lastName, tel, address, city, postcode, email]
+    );
+
+    // console.log(response.rows[0]);
+
+    res.send({
+      status: "success",
+      message: "Profile Updated Sucessfully",
+      user: response.rows[0],
+    });
+    // }
+  } catch (err) {
+    console.log(err);
+  }
+});
 module.exports = authRouter;
+
+//   "INSERT INTO users(first_name, last_name, , , phone_number, address, city, postcode) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
+// [firstName, lastName, email, hash, tel, address, city, postcode]

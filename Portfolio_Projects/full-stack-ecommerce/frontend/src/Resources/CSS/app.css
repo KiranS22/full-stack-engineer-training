@@ -304,8 +304,8 @@ body {
   border: none;
   outline: 0;
   padding: 12px;
-  color: white;
-  background-color: #000;
+  color: var(--text-colour-1);
+  background-color: var(--button-colour);
   text-align: center;
   cursor: pointer;
   width: 100%;
@@ -314,6 +314,26 @@ body {
 
 .card button:hover {
   opacity: 0.7;
+}
+
+.card a {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: var(--text-colour-1);
+  background-color: var(--text-colour-2);
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+  text-decoration: none;
+  margin-top: 50%;
+}
+
+.card a:hover {
+  opacity: 0.7;
+  background-color: var(--text-colour-1);
+  color: var(--text-colour-2);
 }
 
 /* Cart CSS */
@@ -782,7 +802,7 @@ h1 {
 }
 
 /* Buton styles */
-.stylesForButton{
+.stylesForButton {
   border: none;
 }
 

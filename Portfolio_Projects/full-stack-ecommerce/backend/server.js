@@ -1,35 +1,61 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const pool = require("./db");
 const session = require("express-session");
+const MemoryStore = require("memorystore")(session);
+const pgSessionStore = require("connect-pg-simple")(session);
 const app = express();
-app.use(cors());
+const cookie = require("cookie");
+const cookieParser = require("cookie-parser");
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    // credentials:true
+  })
+);
 app.use(express.json());
+app.use(cookieParser());
+
+app.use((req, res, next) => {
+  console.log("In Middleware:", req.session);
+  next();
+});
+
 const PORT = process.env.PORT || 4000;
-const store = new session.MemoryStore();
+// const store = new MemoryStore({
+//   checkPeriod: 86400000, // prune expired entries every 24h
+// });
 const Passport = require("passport");
-const FacebookStrategy = require("passport-facebook")
-
-
-
+const FacebookStrategy = require("passport-facebook");
+// app.set("trust proxy", 1);
 app.use(
   session({
-    name: "sid",
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     secret: process.env.SECRET_KEY,
-    cookie: { maxAge: 1000 * 60 * 60 * 24, secure: false },
-    store: store,
+    cookie: { httpOnly: true, maxAge: 1000 * 60 * 60 * 24, secure: true },
+    // store: new MemoryStore({
+    //   checkPeriod: 86400000, // prune expired entries every 24h
+    // }),
+    store: new pgSessionStore({
+      // Insert connect-pg-simple options here
+      pool: pool,
+      createTableIfMissing: true,
+      tableName: "user_sessions",
+    }),
   })
 );
 
-
-Passport.use(new FacebookStrategy({
-  clientID:process.env.CLIENTID,
-  clientSecret: process.env.CLIENTSECRET,
-  callbackURL:process.env.CALLBACKURL
-}, function(accessToken, refreshToken, profile,done){
-/*
+Passport.use(
+  new FacebookStrategy(
+    {
+      clientID: process.env.CLIENTID,
+      clientSecret: process.env.CLIENTSECRET,
+      callbackURL: process.env.CALLBACKURL,
+    },
+    function (accessToken, refreshToken, profile, done) {
+      /*
     db.get('SELECT * FROM federated_credentials WHERE provider = ? AND subject = ?', [
       'https://www.facebook.com',
       profile.id
@@ -64,8 +90,9 @@ Passport.use(new FacebookStrategy({
           if (err) { return cb(err); }
           if (!user) { return cb(null, false); }
           return cb(null, user); */
-}))
-
+    }
+  )
+);
 
 // Importing Router Files.
 const userRouter = require("./Routes/users/users");
