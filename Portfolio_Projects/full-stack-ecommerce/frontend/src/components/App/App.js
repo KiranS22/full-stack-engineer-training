@@ -16,6 +16,7 @@ import "../../Resources/CSS/app.css";
 import ProtectedRoutes from "../Routing/ProtectedRoutes";
 import ProductDetails from "../Products/ProductDetails";
 import Profile from "../Profile/Profile";
+import Payment from "../Payment/Payment";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const App = () => {
         <Route path="/login" exact element={<Login />} />
         <Route path="/about" exact element={<About />} />
         <Route path="/products/:id" exact element={<ProductDetails />} />
+        <Route path="/payment" element={<Payment/>}></Route>
       </Routes>
     </Router>
   );

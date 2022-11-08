@@ -8,10 +8,12 @@ const pgSessionStore = require("connect-pg-simple")(session);
 const app = express();
 const cookie = require("cookie");
 const cookieParser = require("cookie-parser");
+
+
 app.use(
   cors({
     origin: "http://localhost:3000",
-    // credentials:true
+    credentials: true,
   })
 );
 app.use(express.json());
@@ -46,6 +48,24 @@ app.use(
     }),
   })
 );
+
+// Stripe Implementation
+app.post("/create-checkout-session", async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+        price: "{{PRICE_ID}}",
+        quantity: 1,
+      },
+    ],
+    mode: "payment",
+    success_url: `${YOUR_DOMAIN}?success=true`,
+    cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+  });
+
+  res.redirect(303, session.url);
+});
 
 Passport.use(
   new FacebookStrategy(
@@ -101,6 +121,7 @@ const authRouter = require("./Routes/auth/auth");
 const productsRouter = require("./Routes/products/products");
 const ordersRouter = require("./Routes/orders/orders");
 const checkoutRouter = require("./Routes/checkout/checkout");
+const stripeRouter = require("./Routes/Stripe/Stripe");
 
 app.use("/products", productsRouter);
 app.use("/cart", cartRouter);
@@ -108,6 +129,7 @@ app.use("/users", userRouter);
 app.use("/auth", authRouter);
 app.use("/order", ordersRouter);
 app.use("/checkout", checkoutRouter);
+app.use("/stripe", stripeRouter)
 app.listen(PORT, () => {
   console.log(`Ecommerce app listening on port ${PORT}`);
 });

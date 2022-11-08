@@ -9,6 +9,7 @@ import {
 } from "../../Redux/features/Slices/Cart/Cart";
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
+import axios from "axios";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,10 @@ const Cart = () => {
     console.log("Cart.js useEffect");
     dispatch(findCartItemsTotal());
   }, [cart]);
+
+  const handlePayNow=()=>{
+    
+  }
 
   return (
     <>
@@ -84,9 +89,12 @@ const Cart = () => {
                   Continue Shopping
                 </Link>
 
-                <Link to="/checkout" className="btn-checkout">
-                  Checkout
-                </Link>
+                <button
+                  className="btn-checkout"
+                  onClick={() => handlePayNow()}
+                >
+                  Pay Now
+                </button>
               </div>
             </div>
           </div>
