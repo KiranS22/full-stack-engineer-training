@@ -17,6 +17,7 @@ import ProtectedRoutes from "../Routing/ProtectedRoutes";
 import ProductDetails from "../Products/ProductDetails";
 import Profile from "../Profile/Profile";
 import Payment from "../Payment/Payment";
+import SuccessfulPayment from "../Payment/SuccessfulPayment";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ const App = () => {
         <Route path="/about" exact element={<About />} />
         <Route path="/products/:id" exact element={<ProductDetails />} />
         <Route path="/payment" element={<Payment/>}></Route>
+        <Route path="/checkout-success"element={<SuccessfulPayment/>}></Route>
       </Routes>
     </Router>
   );
