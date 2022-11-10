@@ -20,7 +20,8 @@ const Profile = () => {
     e.preventDefault();
     const response = await axios.put(
       "http://localhost:4000/auth/update-profile",
-      user
+      user,
+      { withCredentials: true }
     );
     if (response.data.status == "success") {
       console.log("Update if statment");

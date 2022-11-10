@@ -48,18 +48,20 @@ const CartItem = ({ item }) => {
             className="form-control w-50"
             value={itemQuantity}
           />
-
         </div>
       </td>
       <td>
         <h4>${(Number(item.price) * itemQuantity).toFixed(2)}</h4>
       </td>
-      <td>  <i
-            className="far fa-trash-alt"
-            onClick={() => deleteItem(item.id)}
-            type="button"
-            style={{ color: "red", fontSize: "25px" }}
-          ></i></td>
+      <td>
+        {" "}
+        <i
+          className="far fa-trash-alt"
+          onClick={() => deleteItem(item.id)}
+          type="button"
+          style={{ color: "red", fontSize: "25px" }}
+        ></i>
+      </td>
     </tr>
   );
 };

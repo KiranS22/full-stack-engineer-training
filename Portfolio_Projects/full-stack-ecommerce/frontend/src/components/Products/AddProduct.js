@@ -57,7 +57,7 @@ const AddProduct = () => {
         <div className="form-group">
           <label htmlFor="productPrice">Product Price</label>
           <input
-            type="text"
+            type="number"
             className="form-control"
             id="productPrice"
             aria-describedby="productPrice"

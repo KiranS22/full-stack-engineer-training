@@ -10,6 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 import axios from "axios";
+import CheckoutBtn from "./Payments/CheckoutBtn";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -88,13 +89,7 @@ const Cart = () => {
                 <Link to="/products" className="btn-checkout btn-reverse">
                   Continue Shopping
                 </Link>
-
-                <button
-                  className="btn-checkout"
-                  onClick={() => handlePayNow()}
-                >
-                  Pay Now
-                </button>
+                <CheckoutBtn />
               </div>
             </div>
           </div>

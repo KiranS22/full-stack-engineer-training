@@ -25,7 +25,8 @@ const Register = () => {
     } else {
       const response = await axios.post(
         "http://localhost:4000/auth/register",
-        user
+        user,
+        { withCredentials: true }
       );
       console.log(response.data);
 

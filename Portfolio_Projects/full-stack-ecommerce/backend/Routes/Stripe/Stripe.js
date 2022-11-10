@@ -1,24 +1,46 @@
+require("dotenv").config();
 const express = require("express");
 const stripeRouter = express.Router();
 const stripe = require("stripe")(process.env.STRIPE_KEY);
+const pool = require("../../db");
 
-//third party login
+stripeRouter.post("/checkout", async (req, res) => {
+  const { items } = req.body;
+  console.log(items);
+  let purchasedItems = [];
+  try {
+    for (let i = 0; i < items.length; i++) {
+      console.log("Stripe functionality loop", items[i].id);
 
-stripeRouter.post("/create-checkout-session", async (req, res) => {
-  const session = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-        price: "{{PRICE_ID}}",
-        quantity: 1,
-      },
-    ],
-    mode: "payment",
-    success_url: `${process.env.CALLBACKURL}/checkout-success`,
-    cancel_url: `${process.env.CALLBACKURL}/cart`,
-  });
+      const response = await pool.query(
+        "SELECT * FROM products WHERE id = $1 ",
+        [items[i].id]
+      );
+      let db_product = response.rows[0];
 
-  res.send({url: session.url});
+      const singleProduct = {
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: db_product.name,
+          },
+          unit_amount: Number(db_product.price) * 100,
+        },
+        quantity: items[i].quantity,
+      };
+      purchasedItems.push(singleProduct);
+    }
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items: purchasedItems,
+      mode: "payment",
+      success_url: `${process.env.CLIENT_URL}/checkout-success`,
+      cancel_url: `${process.env.CLIENT_URL}/cart`,
+    });
+    res.send({ url: session.url });
+  } catch (err) {
+    console.log("Error:", err.message);
+  }
 });
 
 module.exports = stripeRouter;

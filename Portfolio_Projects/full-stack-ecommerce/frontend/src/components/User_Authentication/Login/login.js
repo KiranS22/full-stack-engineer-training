@@ -15,7 +15,7 @@ const Login = () => {
     console.log("submitHnadler has ran");
     console.log("user", user);
     e.preventDefault();
-    const response = await axios.post("http://localhost:4000/auth/login", user);
+    const response = await axios.post("http://localhost:4000/auth/login", user,{withCredentials: true});
     console.log("Response: ", response.data);
     const status = response.data.status;
     if (status === "success") {

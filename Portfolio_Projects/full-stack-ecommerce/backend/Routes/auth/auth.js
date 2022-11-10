@@ -79,7 +79,7 @@ authRouter.put("/update-profile", async (req, res) => {
     const { firstName, lastName, email, tel, address, city, postcode } =
       req.body;
     // const { user } = req.session;
-    console.log("Use4r5", req.session);
+    console.log("User", req.session.user);
     //Check if the current user is loggedIn
     // if (req.session.user.email === email) {
 
