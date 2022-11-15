@@ -17,8 +17,31 @@ I made this project in order to demonstrate all of the skills that I have learnt
 - Open API
 - Font Awesome
 - CSS
-- Bootstrap 5 
+- Bootstrap 5
 - Markdown
+- Passportjs
+- passport-sessions
+- local-sessions
+- Google Developer Console
+- dotenv
+
+### .env Files
+
+In order for this project to work locally on youer device, you will need to:
+
+1. Install the dependencies (npm install OR npm i )
+2. configure the .env files to run on your machine.
+
+This project has 2 .env files - a frontend and backend. Both of these files contain variables that are specific to the way that I set up my :
+
+- database and tables
+- API Routes
+- sessions
+- payment proccessor
+
+An environment variables (env) file relates to valiables that are specific to eacgh part of the application (frontend and backend implementation.) To customise them so that they intergrate into your own project...
+
+Navigate to the frontend or backenx folder > Click on .env and edit the variable names as you see approprate. If you do not customise the environmrnt variables you may expirence erors with the code in this repository.
 
 ## Getting Started with Create React App
 

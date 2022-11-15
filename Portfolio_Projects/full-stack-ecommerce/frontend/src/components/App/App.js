@@ -16,11 +16,12 @@ import "../../Resources/CSS/app.css";
 import ProtectedRoutes from "../Routing/ProtectedRoutes";
 import ProductDetails from "../Products/ProductDetails";
 import Profile from "../Profile/Profile";
-import Payment from "../Payment/Payment";
-import SuccessfulPayment from "../Payment/SuccessfulPayment";
+import {SuccessfulPayment} from './../Payment/SuccessfulPaymen'
+
 import axios from "axios";
 import { logInUser } from "../../Redux/features/Slices/Auth/Auth";
 import { fetchAllCartItems } from "../../Redux/features/Slices/Cart/Cart";
+import Order_History from "../Order_History/Order_History";
 
 const App = () => {
   const getLoggedInUser = async () => {
@@ -59,14 +60,14 @@ const App = () => {
         <Route path="/" element={<ProtectedRoutes />}>
           <Route path="/products/add" exact element={<AddProduct />} />
           <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/order-history" element={<Order_History />}></Route>
         </Route>
         <Route path="/cart" element={<Cart />} />
         <Route path="/register" exact element={<Register />} />
         <Route path="/login" exact element={<Login />} />
         <Route path="/about" exact element={<About />} />
         <Route path="/products/:id" exact element={<ProductDetails />} />
-        <Route path="/payment" element={<Payment />}></Route>
-        <Route path="/checkout-success" element={<SuccessfulPayment />}></Route>
+        
       </Routes>
     </Router>
   );
