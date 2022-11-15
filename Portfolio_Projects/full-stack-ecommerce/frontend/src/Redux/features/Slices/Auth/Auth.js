@@ -27,3 +27,4 @@ export const { logInUser, logOutUser, updateUser } = Auth.actions;
 export const selectUser = (state) => state.auth.user;
 export const selectIsLoggedIn = (state) => state.auth.isLoggedIn;
 export default Auth.reducer;
+

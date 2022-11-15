@@ -1,15 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+export const fetchAllCartItems = createAsyncThunk(
+  "cart/fetchAllCartItems",
+  async () => {
+    const response = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/cart`,
+      {
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  }
+);
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
     cart: [],
     cartCount: 0,
-    cartTotal: 0,
+    cartTotal: 0.0,
   },
   reducers: {
     addToCart: (state, action) => {
-      console.log("AddToCart Action");
+      console.log("AddToCart Action", action.payload);
       let item = state.cart.find((item) => item.id === action.payload.id);
       if (item) {
         item.quantity = item.quantity + 1;
@@ -17,7 +30,7 @@ const cartSlice = createSlice({
         state.cart.push({ ...action.payload, quantity: 1 });
       }
       state.cartCount++;
-      state.cartTotal += action.payload.price;
+      state.cartTotal += Number(action.payload.price);
     },
     updateQty: (state, action) => {
       state.cart = state.cart.map((cartItem) => {
@@ -48,19 +61,62 @@ const cartSlice = createSlice({
       //set cartCount tp cartCount - quantity
     },
     findCartItemsTotal: (state) => {
-      let cartTotal = 0;
+      let cartTotal = 0.0;
       //Run a Loop.
       state.cart.forEach((element) => {
-        cartTotal += element.price * element.quantity;
+        cartTotal += Number(element.price) * Number(element.quantity);
       });
 
       state.cartTotal = cartTotal.toFixed(2);
+      state.cartTotal = Number(state.cartTotal);
     },
+    clearCart: (state) => {
+      state.cart = [];
+      state.cartCount = 0;
+      state.cartTotal = 0.0;
+    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchAllCartItems.pending, (state, action) => {
+      console.log("Cart Pending");
+    });
+
+    builder.addCase(fetchAllCartItems.fulfilled, (state, action) => {
+      console.log("FULFILLED");
+      let cartCount = 0;
+      let cartTotal = 0.0;
+      // console.log(("saving  cart products ", action.payload));
+      state.cart = action.payload.map(
+        ({ user_id, price, product_id, product_qty, ...props }) => {
+          cartCount += Number(product_qty);
+          cartTotal += Number(price) * Number(product_qty);
+          return {
+            ...props,
+            price: Number(price),
+            quantity: Number(product_qty),
+          };
+        }
+      );
+
+      state.cartCount = cartCount;
+      state.cartTotal = cartTotal;
+      // {...props, quantity: product_qty}
+      console.log("Cart:", state.cart);
+    });
+
+    builder.addCase(fetchAllCartItems.rejected, (state, action) => {
+      console.log("Cart Rejected");
+    });
   },
 });
 
-export const { addToCart, deleteFromCart, updateQty, findCartItemsTotal } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  deleteFromCart,
+  updateQty,
+  findCartItemsTotal,
+  clearCart,
+} = cartSlice.actions;
 export const selectCartCount = (state) => state.cart.cartCount;
 export const selectCart = (state) => {
   return state.cart.cart;

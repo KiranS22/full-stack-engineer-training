@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
 import { logInUser } from "../../../Redux/features/Slices/Auth/Auth";
 import { useDispatch } from "react-redux";
+import { selectIsLoggedIn } from "../../../Redux/features/Slices/Auth/Auth";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -11,11 +13,25 @@ const Login = () => {
     email: "",
     password: "",
   });
+  // const loggedIn = useSelector(selectIsLoggedIn);
+  // console.log("LoggedInSelector", loggedIn);
+  // const userAlreadyLoggedIn = () => {
+  //   if (loggedIn) {
+  //     navigate("/");
+  //   }
+  // };
+  // useEffect(() => {
+  //   userAlreadyLoggedIn();
+  // }, [loggedIn]);
   const handleSubmit = async (e) => {
     console.log("submitHnadler has ran");
     console.log("user", user);
     e.preventDefault();
-    const response = await axios.post("http://localhost:4000/auth/login", user,{withCredentials: true});
+    const response = await axios.post(
+      "http://localhost:4000/auth/login",
+      user,
+      { withCredentials: true }
+    );
     console.log("Response: ", response.data);
     const status = response.data.status;
     if (status === "success") {
@@ -24,6 +40,14 @@ const Login = () => {
       navigate("/");
     }
   };
+
+  const googleHandler = () => {
+    console.log("Google handler has ran!");
+    const callback = "http://localhost:4000/auth/google";
+    console.log(callback);
+    window.open(callback, "_self");
+  };
+
   return (
     <>
       <section className="vh-100">
@@ -40,16 +64,26 @@ const Login = () => {
               <form onSubmit={(e) => handleSubmit(e)} method="POST">
                 <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                   <p className="lead fw-normal mb-0 me-3">Log in with</p>
-                  <button
-                    type="button"
-                    className="btn btn-primary btn-floating mx-1"
-                  >
-                    <i className="fab fa-facebook-f"></i>
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-primary btn-floating mx-1"
-                  ></button>
+                  <div className="row">
+                    <div className="col-md-3">
+                      <button
+                        onClick={() => googleHandler()}
+                        className="btn btn-outline-dark"
+                        style={{ textTransform: "none" }}
+                      >
+                        <img
+                          style={{
+                            width: "20px",
+                            marginBottom: "3px",
+                            marginRight: "5px",
+                          }}
+                          alt="Google sign-in"
+                          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+                        />
+                        Login with Google
+                      </button>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="divider d-flex align-items-center my-4">

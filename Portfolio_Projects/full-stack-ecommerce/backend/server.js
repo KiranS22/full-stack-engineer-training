@@ -3,11 +3,12 @@ const express = require("express");
 const cors = require("cors");
 const pool = require("./db");
 const session = require("express-session");
-const MemoryStore = require("memorystore")(session);
 const pgSessionStore = require("connect-pg-simple")(session);
 const app = express();
 const cookie = require("cookie");
 const cookieParser = require("cookie-parser");
+const passport = require("passport");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 app.use(
   cors({
@@ -18,81 +19,98 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-app.use((req, res, next) => {
-  console.log("In Middleware:", req.session);
-  next();
-});
-
 const PORT = process.env.PORT || 4000;
-const store = new MemoryStore({
-  checkPeriod: 86400000, // prune expired entries every 24h
-});
-const Passport = require("passport");
-const FacebookStrategy = require("passport-facebook");
+
 app.use(
   session({
-    resave: false,
+    resave: true,
     saveUninitialized: false,
     secret: process.env.SECRET_KEY,
     cookie: { maxAge: 1000 * 60 * 60 * 24, secure: false, sameSite: false },
-    // store: new MemoryStore({
-    //   checkPeriod: 86400000, // prune expired entries every 24h
-    // }),
     store: new pgSessionStore({
-      // Insert connect-pg-simple options here
       pool: pool,
       createTableIfMissing: true,
       tableName: "user_sessions",
     }),
   })
 );
+//Middlewares for psspor
+app.use(passport.initialize());
+app.use(passport.session());
 
-// Passport.use(
-//   new FacebookStrategy(
-//     {
-//       clientID: process.env.CLIENTID,
-//       clientSecret: process.env.CLIENTSECRET,
-//       callbackURL: process.env.CALLBACKURL,
-//     },
-//     function (accessToken, refreshToken, profile, done) {
-//       /*
-//     db.get('SELECT * FROM federated_credentials WHERE provider = ? AND subject = ?', [
-//       'https://www.facebook.com',
-//       profile.id
-//     ], function(err, cred) {
-//       if (err) { return cb(err); }
-//       if (!cred) {
-//         // The Facebook account has not logged in to this app before.  Create a
-//         // new user record and link it to the Facebook account.
-//         db.run('INSERT INTO users (name) VALUES (?)', [
-//           profile.displayName
-//         ], function(err) {
-//           if (err) { return cb(err); }
+//Serialize User
+passport.serializeUser((user, done) => {
+  return done(null, user);
+});
 
-//           var id = this.lastID;
-//           db.run('INSERT INTO federated_credentials (user_id, provider, subject) VALUES (?, ?, ?)', [
-//             id,
-//             'https://www.facebook.com',
-//             profile.id
-//           ], function(err) {
-//             if (err) { return cb(err); }
-//             var user = {
-//               id: id.toString(),
-//               name: profile.displayName
-//             };
-//             return cb(null, user);
-//           });
-//         });
-//       } else {
-//         // The Facebook account has previously logged in to the app.  Get the
-//         // user record linked to the Facebook account and log the user in.
-//         db.get('SELECT * FROM users WHERE id = ?', [ cred.user_id ], function(err, user) {
-//           if (err) { return cb(err); }
-//           if (!user) { return cb(null, false); }
-//           return cb(null, user); */
-//     }
-//   )
-// );
+//Deserialize User
+passport.deserializeUser((user, done) => {
+  return done(null, user);
+});
+
+//Gooogle Strategy Starts
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.CLIENTID,
+      clientSecret: process.env.CLIENTSECRET,
+      callbackURL: process.env.CALLBACKURL,
+      scope: ["profile", "openid", "email"],
+    },
+    async function (accessToken, refreshToken, profile, cb) {
+      //POSTGRES
+      const person = await pool.query(
+        "SELECT *  FROM users WHERE provider_id= $1",
+        [profile.id]
+      );
+      let personInfo;
+
+      console.log("Rows:", person.rowCount);
+      if (person.rowCount > 0) {
+        personInfo = person.rows[0];
+        console.log("If statment ");
+        console.log("User logged in", person.rows[0]);
+      } else {
+        console.log("else statment");
+        const insertedUser = await pool.query(
+          "INSERT INTO users( first_name,last_name,email, provider_id, provider) VALUES($1,$2,$3,$4, $5) RETURNING *",
+          [
+            profile.name.givenName,
+            profile.name.familyName,
+            profile.emails[0].value,
+            profile.id,
+            profile.provider,
+          ]
+        );
+        console.log(insertedUser);
+        personInfo = insertedUser.rows[0];
+      }
+
+      return cb(null, personInfo);
+    }
+  )
+);
+//Google Strategy Ends
+
+app.get(
+  "/auth/google",
+  passport.authenticate("google", { scope: ["profile", "openid", "email"] })
+);
+
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: `${process.env.BASE_URL}/login`,
+  }),
+  function (req, res) {
+    console.log("Req", req.user);
+    console.log("Rsession", req.session);
+    // Successful authentication, redirect home.
+    res.redirect("http://localhost:3000");
+    req.session.user = req.user;
+    console.log(" user in session", req.session.user);
+  }
+);
 
 // Importing Router Files.
 const userRouter = require("./Routes/users/users");
@@ -110,6 +128,7 @@ app.use("/auth", authRouter);
 app.use("/order", ordersRouter);
 app.use("/checkout", checkoutRouter);
 app.use("/stripe", stripeRouter);
+
 app.listen(PORT, () => {
   console.log(`Ecommerce app listening on port ${PORT}`);
   console.log(PORT);

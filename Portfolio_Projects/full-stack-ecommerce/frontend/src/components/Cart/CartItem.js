@@ -1,3 +1,4 @@
+import axios, { AxiosHeaders } from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -19,7 +20,16 @@ const CartItem = ({ item }) => {
     setItemQuantity(e.target.value);
     dispatch(updateQty({ id: id, value: e.target.value }));
   };
+  const deleteSingleItemInDb = async (id) => {
+    const respponse = await axios.delete(
+      `${process.env.REACT_APP_SERVER_URL}/cart/${id}`,
+      { withCredentials: true }
+    );
+    console.log(respponse.data);
+  };
+
   const deleteItem = (id) => {
+    deleteSingleItemInDb(id);
     dispatch(deleteFromCart(id));
   };
   return (

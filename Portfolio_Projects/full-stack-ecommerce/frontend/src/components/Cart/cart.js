@@ -3,33 +3,43 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectCart,
   findCartItemsTotal,
-  deleteFromCart,
-  updateQty,
   selectCartTotal,
+  selectCartCount,
+  clearCart,
 } from "../../Redux/features/Slices/Cart/Cart";
 import { Link } from "react-router-dom";
 import CartItem from "./CartItem";
 import axios from "axios";
 import CheckoutBtn from "./Payments/CheckoutBtn";
+import { selectUser } from "../../Redux/features/Slices/Auth/Auth";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const cartTotal = useSelector(selectCartTotal);
   const cart = useSelector(selectCart);
   console.log("cart in Cart.js,", cart);
-  const [user, setUser] = useState({
-    address: "",
-  });
+  const userInfo = useSelector(selectUser);
+
+  console.log("cart.js user Info", userInfo);
+  const cartCount = useSelector(selectCartCount);
+
+  const deleteFromDatabase = async () => {
+    const response = await axios.delete(
+      `${process.env.REACT_APP_SERVER_URL}/cart`,
+      { withCredentials: true }
+    );
+    console.log(response.data);
+  };
 
   useEffect(() => {
     console.log("Cart.js useEffect");
     dispatch(findCartItemsTotal());
   }, [cart]);
-
-  const handlePayNow=()=>{
-    
-  }
-
+  const emptyCart = async () => {
+    console.log("Empty cart function");
+    dispatch(clearCart());
+    deleteFromDatabase();
+  };
   return (
     <>
       <div className="cart">
@@ -37,28 +47,38 @@ const Cart = () => {
           <div className="grid_12">
             <h1>Your Cart</h1>
           </div>
-          <div className="table-responsive">
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Product</th>
-                  <th scope="col">Qty</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Remove</th>
-                </tr>
-              </thead>
-              <tbody>
-                {cart.map((item) => (
-                  <CartItem item={item} />
-                ))}
-              </tbody>
-            </table>
-          </div>
+          {cartCount > 0 ? (
+            <div className="table-responsive">
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Remove</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cart.map((item) => (
+                    <CartItem item={item} />
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="text-center">
+              <h3>Cart is empty</h3>
+            </div>
+          )}
 
           <div className="grid_12 delivery-payment">
             <div className="grid_6 delivery-address">
-              <h3>Delivery Address</h3>
-              <p>{user.address}</p>
+              <button
+                className="btn-summary btn btn-outline-danger"
+                onClick={() => emptyCart()}
+              >
+                Clear All({cartCount})
+              </button>
             </div>
           </div>
           <div className="grid_12 coupon">
@@ -74,10 +94,6 @@ const Cart = () => {
                     <em>Sub Total: </em>
                     <span className="amount"></span>
                   </div>
-                  <div className="taxes">
-                    <em>Plus VAT: </em>
-                    <span className="amount">@ 20%</span>
-                  </div>
                 </div>
                 <div className="col_1of2">
                   <div className="total">
@@ -89,7 +105,7 @@ const Cart = () => {
                 <Link to="/products" className="btn-checkout btn-reverse">
                   Continue Shopping
                 </Link>
-                <CheckoutBtn />
+                {cartCount > 0 ? <CheckoutBtn /> : null}
               </div>
             </div>
           </div>

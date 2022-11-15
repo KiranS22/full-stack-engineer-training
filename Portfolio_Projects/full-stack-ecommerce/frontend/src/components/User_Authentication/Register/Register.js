@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../../Resources/CSS/app.css";
 import axios from "axios";
@@ -54,16 +54,20 @@ const Register = () => {
                 <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                   <p className="lead fw-normal mb-0 me-3">Register with</p>
                   <button
-                    type="button"
-                    className="btn btn-primary btn-floating mx-1"
+                    className="btn btn-outline-dark"
+                    style={{ textTransform: "none" }}
                   >
-                    <i className="fab fa-facebook-f"></i>
+                    <img
+                      style={{
+                        width: "20px",
+                        marginBottom: "3px",
+                        marginRight: "5px",
+                      }}
+                      alt="Google sign-in"
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+                    />
+                    Register with Google
                   </button>
-
-                  <button
-                    type="button"
-                    className="btn btn-primary btn-floating mx-1"
-                  ></button>
                 </div>
 
                 <div className="divider d-flex align-items-center my-4">

@@ -5,7 +5,12 @@ import axios from "axios";
 export const fetchAllProducts = createAsyncThunk(
   "products/fetchAllProducts",
   async () => {
-    const response = await axios.get("http://localhost:4000/products");
+    const response = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/products`,
+      {
+        withCredentials: true,
+      }
+    );
     return response.data;
   }
 );

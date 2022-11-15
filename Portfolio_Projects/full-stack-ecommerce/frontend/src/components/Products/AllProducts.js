@@ -7,13 +7,24 @@ import {
   selectFilteredProducts,
 } from "../../Redux/features/Slices/Products/Products";
 import { Link } from "react-router-dom";
-
+import axios from "axios";
 const AllProducts = () => {
   const filteredProducts = useSelector(selectFilteredProducts);
   console.log("Filtered:", filteredProducts);
   const dispatch = useDispatch();
-  const handleClick = (product) => {
-    dispatch(addToCart(product));
+  const handleClick = async (product) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:4000/cart/${product.id}`,
+        { product_qty: 1, product_price: product.price },
+        { withCredentials: true }
+      );
+      // console.log("add to cart frontend response", response.data);
+      dispatch(addToCart(product));
+      // console.log(process.env.VARnAME);
+    } catch (err) {
+      console.log("Error:", err.message);
+    }
   };
   return (
     <div className="row">
