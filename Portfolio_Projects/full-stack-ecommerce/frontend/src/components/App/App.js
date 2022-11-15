@@ -16,12 +16,14 @@ import "../../Resources/CSS/app.css";
 import ProtectedRoutes from "../Routing/ProtectedRoutes";
 import ProductDetails from "../Products/ProductDetails";
 import Profile from "../Profile/Profile";
-import {SuccessfulPayment} from './../Payment/SuccessfulPaymen'
+
 
 import axios from "axios";
 import { logInUser } from "../../Redux/features/Slices/Auth/Auth";
 import { fetchAllCartItems } from "../../Redux/features/Slices/Cart/Cart";
 import Order_History from "../Order_History/Order_History";
+import SuccessfulPayment from "../Cart/Payments/SuccessfulPayment";
+
 
 const App = () => {
   const getLoggedInUser = async () => {
@@ -67,7 +69,7 @@ const App = () => {
         <Route path="/login" exact element={<Login />} />
         <Route path="/about" exact element={<About />} />
         <Route path="/products/:id" exact element={<ProductDetails />} />
-        
+        <Route path="/checkout-success" element={<SuccessfulPayment/>} ></Route>
       </Routes>
     </Router>
   );
