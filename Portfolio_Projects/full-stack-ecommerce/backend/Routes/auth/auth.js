@@ -2,16 +2,6 @@ const express = require("express");
 const authRouter = express.Router();
 const pool = require("../../db");
 const bcrypt = require("bcryptjs");
-const Passport = require("passport");
-authRouter.get("/facebookauth", Passport.authenticate("facebook"));
-authRouter.get(
-  "/facebookAuth/callback",
-  Passport.authenticate("facebook", { failureRedirect: "/login" }),
-  async (req, res) => {
-    res.redirect("/");
-  }
-);
-
 authRouter.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -64,12 +54,38 @@ authRouter.post("/register", async (req, res) => {
   }
 });
 
-authRouter.post("/logout", (req, res) => {
-  req.session.destroy((err) => {
+authRouter.get("/auth-user", (req, res) => {
+  try {
+    console.log("Inside Auth User");
+    console.log(req.session);
+    if (req.session.user) {
+      res.status(200).send({ user: req.session.user, status: "success" });
+    } else {
+      res.status(200).send("User not logged In");
+    }
+  } catch (err) {
+    res.status(404).send(err.message);
+  }
+});
+
+authRouter.post("/logout", async (req, res) => {
+  const id = req.sessionID;
+   console.log("ID", req.sessionID);
+  // req.logout(() => {
+  //   console.log("Logged Out");
+  // });
+  req.session.destroy(async (err) => {
+    console.log("Session Destroyed!");
+
     if (err) {
       console.log("something went wrong", err);
       res.send("something went wrong", err);
     }
+
+    const response = await pool.query(
+      "DELETE FROM user_sessions WHERE sid = $1",
+      [id]
+    );
 
     res.send({ status: "success", message: "User has logged out" });
   });

@@ -17,12 +17,38 @@ import ProtectedRoutes from "../Routing/ProtectedRoutes";
 import ProductDetails from "../Products/ProductDetails";
 import Profile from "../Profile/Profile";
 import Payment from "../Payment/Payment";
+import SuccessfulPayment from "../Payment/SuccessfulPayment";
+import axios from "axios";
+import { logInUser } from "../../Redux/features/Slices/Auth/Auth";
+import { fetchAllCartItems } from "../../Redux/features/Slices/Cart/Cart";
 
 const App = () => {
+  const getLoggedInUser = async () => {
+    const response = await axios.get(
+      `${process.env.REACT_APP_SERVER_URL}/auth/auth-user`,
+      {
+        withCredentials: true,
+      }
+    );
+    console.log(response.data);
+    if (response.data.status == "success") {
+      const { user } = response.data;
+      console.log("Logged In User", user);
+      dispatch(logInUser(user));
+    } else {
+      console.log("something went wrong");
+    }
+  };
+
   const dispatch = useDispatch();
   useEffect(() => {
+    // async thunks
+    dispatch(fetchAllCartItems());
     dispatch(fetchAllProducts());
+    //Send an Axios Request to the backend, and check if the user is authenticated. If Yes, then dispatch and loginUser.
+    getLoggedInUser();
   }, []);
+
   return (
     <Router>
       <NavBar />
@@ -39,7 +65,8 @@ const App = () => {
         <Route path="/login" exact element={<Login />} />
         <Route path="/about" exact element={<About />} />
         <Route path="/products/:id" exact element={<ProductDetails />} />
-        <Route path="/payment" element={<Payment/>}></Route>
+        <Route path="/payment" element={<Payment />}></Route>
+        <Route path="/checkout-success" element={<SuccessfulPayment />}></Route>
       </Routes>
     </Router>
   );

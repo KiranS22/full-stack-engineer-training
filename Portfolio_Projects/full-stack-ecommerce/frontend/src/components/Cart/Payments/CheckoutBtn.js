@@ -8,9 +8,13 @@ const CheckoutBtn = () => {
   const handlePayNow = async () => {
     console.log("I have paif you money!");
 
-    const response = await axios.post("http://localhost:4000/stripe/checkout", {
-      items: cartItems,
-    });
+    const response = await axios.post(
+      `${process.env.REACT_APP_SERVER_URL}/stripe/checkout`,
+      {
+        items: cartItems,
+      },
+      { withCredentials: true }
+    );
     console.log("Checkout via stripe:", response.data);
     const { url } = response.data;
     window.location.href = url;
