@@ -2,6 +2,7 @@ const express = require("express");
 const authRouter = express.Router();
 const pool = require("../../db");
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 authRouter.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -111,6 +112,23 @@ authRouter.put("/update-profile", async (req, res) => {
     console.log(err);
   }
 });
+
+authRouter.get(
+  "/google",
+  passport.authenticate("google", { scope: ["profile", "openid", "email"] })
+);
+
+authRouter.get(
+  "/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: `${process.env.BASE_URL}/login`,
+  }),
+  function (req, res) {
+    // Successful authentication, redirect home.
+    res.redirect("http://localhost:3000");
+    req.session.user = req.user;
+  }
+);
 module.exports = authRouter;
 
 //   "INSERT INTO users(first_name, last_name, , , phone_number, address, city, postcode) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",

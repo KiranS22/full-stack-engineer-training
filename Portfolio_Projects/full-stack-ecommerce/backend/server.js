@@ -88,22 +88,7 @@ passport.use(
 );
 //Google Strategy Ends
 
-app.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["profile", "openid", "email"] })
-);
 
-app.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    failureRedirect: `${process.env.BASE_URL}/login`,
-  }),
-  function (req, res) {
-    // Successful authentication, redirect home.
-    res.redirect("http://localhost:3000");
-    req.session.user = req.user;
-  }
-);
 
 // Importing Router Files.
 const userRouter = require("./Routes/users/users");
@@ -122,22 +107,7 @@ app.use("/orders", ordersRouter);
 app.use("/checkout", checkoutRouter);
 app.use("/stripe", stripeRouter);
 
-// app.get("/orders", async (req, res) => {
-//   try {
-//     if (req.session.user) {
-//       const { user } = req.session;
-//       const AllOrdersFromUser = await pool.query(
-//         "SELECT * FROM orders WHERE user_id= $1",
-//         [user.id]
-//       );
-//       res.send(AllOrdersFromUser.rows);
-//     } else {
-//       res.send({ status: "fail", message: "User is not logged in" });
-//     }
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
+
 
 app.listen(PORT, () => {
   console.log(`Ecommerce app listening on port ${PORT}`);
