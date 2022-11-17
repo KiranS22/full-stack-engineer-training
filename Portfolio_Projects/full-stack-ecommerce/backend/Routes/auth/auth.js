@@ -8,7 +8,7 @@ authRouter.post("/login", async (req, res) => {
     const foundUser = await pool.query("SELECT *  FROM users WHERE email= $1", [
       email,
     ]);
-    console.log(foundUser.rows[0]);
+
     //if the length is > 0, Email is found.
     //Check Password
     // else user does not exist
@@ -16,13 +16,10 @@ authRouter.post("/login", async (req, res) => {
     if (foundUser.rows.length > 0) {
       //email is matched now compare password
       if (await bcrypt.compare(password, foundUser.rows[0].password)) {
-        console.log("Comparsion:", email);
         //Saving IN Session
         req.session.loggedIn = true;
         req.session.user = foundUser.rows[0];
 
-        console.log("Session after Logging In:", req.session);
-        console.log(req.session.user);
         //Send a Success Message Back
         res.send({ user: req.session.user, status: "success" });
       } else {
@@ -56,8 +53,6 @@ authRouter.post("/register", async (req, res) => {
 
 authRouter.get("/auth-user", (req, res) => {
   try {
-    console.log("Inside Auth User");
-    console.log(req.session);
     if (req.session.user) {
       res.status(200).send({ user: req.session.user, status: "success" });
     } else {
@@ -70,10 +65,7 @@ authRouter.get("/auth-user", (req, res) => {
 
 authRouter.post("/logout", async (req, res) => {
   const id = req.sessionID;
-   console.log("ID", req.sessionID);
-  // req.logout(() => {
-  //   console.log("Logged Out");
-  // });
+
   req.session.destroy(async (err) => {
     console.log("Session Destroyed!");
 
@@ -86,6 +78,7 @@ authRouter.post("/logout", async (req, res) => {
       "DELETE FROM user_sessions WHERE sid = $1",
       [id]
     );
+    res.clearCookie("connect.sid");
 
     res.send({ status: "success", message: "User has logged out" });
   });

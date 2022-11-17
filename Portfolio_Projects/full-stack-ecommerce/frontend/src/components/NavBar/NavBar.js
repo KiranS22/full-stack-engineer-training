@@ -81,6 +81,11 @@ const Navbar = () => {
                 Add A Product
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/order-history">
+                Order History
+              </Link>
+            </li>
 
             <div style={{ margin: ".5em 3.5em 0" }}>
               <input

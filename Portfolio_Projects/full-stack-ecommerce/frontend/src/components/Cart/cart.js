@@ -18,9 +18,8 @@ const Cart = () => {
   const cartTotal = useSelector(selectCartTotal);
   const cart = useSelector(selectCart);
   console.log("cart in Cart.js,", cart);
-  const userInfo = useSelector(selectUser);
+  const user = useSelector(selectUser);
 
-  console.log("cart.js user Info", userInfo);
   const cartCount = useSelector(selectCartCount);
 
   const deleteFromDatabase = async () => {
@@ -105,7 +104,7 @@ const Cart = () => {
                 <Link to="/products" className="btn-checkout btn-reverse">
                   Continue Shopping
                 </Link>
-                {cartCount > 0 ? <CheckoutBtn /> : null}
+                {cartCount > 0 && user !== null ? <CheckoutBtn /> : null}
               </div>
             </div>
           </div>

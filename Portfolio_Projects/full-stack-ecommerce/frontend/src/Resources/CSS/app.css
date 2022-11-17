@@ -8,11 +8,6 @@
   --accent-colour-3: rgb(136, 136, 136);
 }
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
 /* Font Imports */
 @import url("https://fonts.googleapis.com/css2?family=Fasthand&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
@@ -33,10 +28,10 @@ body {
 .flex {
   display: flex;
 }
-.home-container {
-  justify-content: center;
+.border {
+  border: 2px solid red;
 }
-/* NavBar styles */
+/*NavBar styles */
 .navbar-colors {
   background-color: var(--accent-color-1);
   color: var(--text-colour-1);
@@ -132,7 +127,12 @@ body {
   background-color: var(--button-colour);
   color: var(--accent-colour-2);
 }
+/* About page stylings */
 
+.about-header {
+  margin-top: auto;
+  border: 2px solid pink;
+}
 /* Register Form CSS */
 .divider:after,
 .divider:before {
@@ -150,7 +150,7 @@ body {
   }
 }
 
-/* [roduct Details CSS */
+/* product Details CSS */
 .details-container {
   margin: 0px auto 0px;
   background: #fff;
@@ -814,29 +814,29 @@ h1 {
 /*Checkout Success page styles*/
 
 .success-pg h1 {
-  color: #88B04B;
+  color: #88b04b;
   font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
   font-weight: 900;
   font-size: 40px;
   margin-bottom: 10px;
 }
 .success-pg p {
-  color: #404F5E;
+  color: #404f5e;
   font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
-  font-size:20px;
+  font-size: 20px;
   margin: 0;
 }
 .success-pg i {
-color: #9ABC66;
-font-size: 100px;
-line-height: 200px;
-margin-left:-15px;
+  color: #9abc66;
+  font-size: 100px;
+  line-height: 200px;
+  margin-left: -15px;
 }
 .success-card {
-background: white;
-padding: 60px;
-border-radius: 4px;
-box-shadow: 0 2px 3px #C8D0D8;
-display: inline-block;
-margin: 0 auto;
+  background: white;
+  padding: 60px;
+  border-radius: 4px;
+  box-shadow: 0 2px 3px #c8d0d8;
+  display: inline-block;
+  margin: 0 auto;
 }

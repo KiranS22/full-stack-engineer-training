@@ -65,13 +65,9 @@ passport.use(
       );
       let personInfo;
 
-      console.log("Rows:", person.rowCount);
       if (person.rowCount > 0) {
         personInfo = person.rows[0];
-        console.log("If statment ");
-        console.log("User logged in", person.rows[0]);
       } else {
-        console.log("else statment");
         const insertedUser = await pool.query(
           "INSERT INTO users( first_name,last_name,email, provider_id, provider) VALUES($1,$2,$3,$4, $5) RETURNING *",
           [
@@ -82,7 +78,7 @@ passport.use(
             profile.provider,
           ]
         );
-        console.log(insertedUser);
+
         personInfo = insertedUser.rows[0];
       }
 
@@ -103,12 +99,9 @@ app.get(
     failureRedirect: `${process.env.BASE_URL}/login`,
   }),
   function (req, res) {
-    console.log("Req", req.user);
-    console.log("Rsession", req.session);
     // Successful authentication, redirect home.
     res.redirect("http://localhost:3000");
     req.session.user = req.user;
-    console.log(" user in session", req.session.user);
   }
 );
 
@@ -125,11 +118,27 @@ app.use("/products", productsRouter);
 app.use("/cart", cartRouter);
 app.use("/users", userRouter);
 app.use("/auth", authRouter);
-app.use("/order", ordersRouter);
+app.use("/orders", ordersRouter);
 app.use("/checkout", checkoutRouter);
 app.use("/stripe", stripeRouter);
 
+// app.get("/orders", async (req, res) => {
+//   try {
+//     if (req.session.user) {
+//       const { user } = req.session;
+//       const AllOrdersFromUser = await pool.query(
+//         "SELECT * FROM orders WHERE user_id= $1",
+//         [user.id]
+//       );
+//       res.send(AllOrdersFromUser.rows);
+//     } else {
+//       res.send({ status: "fail", message: "User is not logged in" });
+//     }
+//   } catch (err) {
+//     console.log(err);
+//   }
+// });
+
 app.listen(PORT, () => {
   console.log(`Ecommerce app listening on port ${PORT}`);
-  console.log(PORT);
 });

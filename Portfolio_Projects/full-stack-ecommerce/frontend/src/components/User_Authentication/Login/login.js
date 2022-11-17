@@ -61,8 +61,7 @@ const Login = () => {
               />
             </div>
             <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-              <form onSubmit={(e) => handleSubmit(e)} method="POST">
-                <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+            <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                   <p className="lead fw-normal mb-0 me-3">Log in with</p>
                   <div className="row">
                     <div className="col-md-3">
@@ -86,6 +85,7 @@ const Login = () => {
                   </div>
                 </div>
 
+              <form onSubmit={(e) => handleSubmit(e)}>              
                 <div className="divider d-flex align-items-center my-4">
                   <p className="text-center fw-bold mx-3 mb-0">Or</p>
                 </div>

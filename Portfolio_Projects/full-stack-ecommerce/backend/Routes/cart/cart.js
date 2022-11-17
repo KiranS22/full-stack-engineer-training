@@ -7,10 +7,8 @@ const pool = require("../../db");
 // });
 cartRouter.get("/", async (req, res) => {
   if (req.session.user) {
-    console.log("If Running");
     const { user } = req.session;
     try {
-      console.log("Fetching Cart Items");
       const usersCart = await pool.query(
         "SELECT * FROM cart INNER JOIN products ON cart.product_id = products.id WHERE cart.user_id = $1",
         [user.id]
@@ -21,7 +19,6 @@ cartRouter.get("/", async (req, res) => {
       console.log(err);
     }
   } else {
-    console.log("Else Runnning");
     res.send([]);
   }
 });
@@ -32,7 +29,6 @@ cartRouter.post("/:productid", async (req, res) => {
       const { user } = req.session;
       const { productid } = req.params;
       const { product_qty, product_price } = req.body;
-      console.log("Product ID:", productid, " product Qty:", product_qty);
 
       //Check if this user has already added the product
       const existingProducts = await pool.query(
@@ -80,11 +76,9 @@ cartRouter.post("/:productid", async (req, res) => {
 //   }
 // });
 cartRouter.delete("/:productid", async (req, res) => {
-  console.log("Route hit - delete singlle product");
   try {
     const { productid } = req.params;
     if (req.session.user) {
-      console.log("Single product if is running");
       const { user } = req.session;
       const deletedCartItem = await pool.query(
         "DELETE FROM cart WHERE product_id = $1 AND user_id = $2",

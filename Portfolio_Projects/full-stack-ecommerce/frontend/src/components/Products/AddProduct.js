@@ -1,10 +1,3 @@
-//A Component to Add Products
-
-// /products (POST)
-
-// Form with inputs & state management
-// a submit Handler with axios request to backend.
-
 import React, { useState } from "react";
 import axios from "axios";
 
