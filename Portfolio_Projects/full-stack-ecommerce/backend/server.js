@@ -88,15 +88,12 @@ passport.use(
 );
 //Google Strategy Ends
 
-
-
 // Importing Router Files.
 const userRouter = require("./Routes/users/users");
 const cartRouter = require("./Routes/cart/cart");
 const authRouter = require("./Routes/auth/auth");
 const productsRouter = require("./Routes/products/products");
 const ordersRouter = require("./Routes/orders/orders");
-const checkoutRouter = require("./Routes/checkout/checkout");
 const stripeRouter = require("./Routes/Stripe/Stripe");
 
 app.use("/products", productsRouter);
@@ -104,10 +101,7 @@ app.use("/cart", cartRouter);
 app.use("/users", userRouter);
 app.use("/auth", authRouter);
 app.use("/orders", ordersRouter);
-app.use("/checkout", checkoutRouter);
 app.use("/stripe", stripeRouter);
-
-
 
 app.listen(PORT, () => {
   console.log(`Ecommerce app listening on port ${PORT}`);

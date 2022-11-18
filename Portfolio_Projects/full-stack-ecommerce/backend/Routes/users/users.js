@@ -17,8 +17,8 @@ usersRouter.get("/", async (req, res) => {
 
 //GET SINGLE USER
 usersRouter.get("/:id", async (req, res) => {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
     const singleUser = await pool.query("SELECT * FROM users WHERE id = $1", [
       id,
     ]);
@@ -29,20 +29,20 @@ usersRouter.get("/:id", async (req, res) => {
 });
 //ADD NEW USER
 usersRouter.post("/", async (req, res) => {
-  const {
-    first_name,
-    last_name,
-    email,
-    password,
-    phone_number,
-    address,
-    city,
-    postcode,
-  } = req.body;
-
-  const salt = bcrypt.genSaltSync(10);
-  const hash = bcrypt.hashSync(password, salt);
+  
   try {
+    const {
+      first_name,
+      last_name,
+      email,
+      password,
+      phone_number,
+      address,
+      city,
+      postcode,
+    } = req.body;
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password, salt);
     const allUsers = await pool.query(
       "INSERT INTO users(first_name, last_name, email, password, phone_number, address, city, postcode) VALUES($1, $2, $3, $4, $5, $6, $7,$8) RETURNING *",
       [
@@ -74,8 +74,8 @@ usersRouter.put("/:id", async (req, res) => {
 });
 //DELETE USER
 usersRouter.delete("/:id", async (req, res) => {
-  const { id } = req.params;
   try {
+    const { id } = req.params;
     await pool.query("DELETE FROM  users WHERE id = $1", [id]);
     res.send("User deleted Successfully");
   } catch (err) {

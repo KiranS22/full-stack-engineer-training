@@ -41,7 +41,6 @@ const Routing = () => {
           <Route path="/products/:id" exact element={<ProductDetails />} />
         </Routes>
       </Router>
-      );
     </>
   );
 };

@@ -43,15 +43,15 @@ stripeRouter.post("/checkout", async (req, res) => {
     console.log("Error:", err.message);
   }
 });
-stripeRouter.get("/order/success", async (req, res) => {
-  const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
-  const { customer_details } = session;
-  console.log("stripe session", session.id);
-  console.log("stripe customer", customer_details);
 
-  //Create an Order
-  //Move the items from cart to Ordered_products
+//Create an Order
+//Move the items from cart to Ordered_products
+stripeRouter.get("/order/success", async (req, res) => {
   try {
+    const session = await stripe.checkout.sessions.retrieve(
+      req.query.session_id
+    );
+    const { customer_details } = session;
     if (req.session.user) {
       //   // Move all the items from the cart to the orders table
       const { user } = req.session;
@@ -85,7 +85,7 @@ stripeRouter.get("/order/success", async (req, res) => {
       }
       //   //Empty Cart where user_id matches user.id
       pool.query("DELETE FROM cart WHERE user_id =$1", [user.id]);
-      res.redirect(`${process.env.CLIENT_URL}/checkout-success`)
+      res.redirect(`${process.env.CLIENT_URL}/checkout-success`);
     }
   } catch (err) {
     console.log(err);

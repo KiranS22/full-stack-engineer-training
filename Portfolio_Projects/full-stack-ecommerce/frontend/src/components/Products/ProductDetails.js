@@ -11,7 +11,7 @@ const ProductDetails = () => {
   let singleProduct = products.find(
     (product) => Number(product.id) === Number(id)
   );
-  console.log("product ID", id);
+  console.log("product" ,  );
   console.log("single product", singleProduct);
   return (
     <>

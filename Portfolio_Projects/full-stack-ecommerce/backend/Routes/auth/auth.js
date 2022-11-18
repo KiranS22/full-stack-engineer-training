@@ -3,6 +3,7 @@ const authRouter = express.Router();
 const pool = require("../../db");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
+
 authRouter.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -36,12 +37,20 @@ authRouter.post("/login", async (req, res) => {
   }
 });
 authRouter.post("/register", async (req, res) => {
-  const { firstName, lastName, email, password, tel, address, city, postcode } =
-    req.body;
-
-  const salt = bcrypt.genSaltSync(10);
-  const hash = bcrypt.hashSync(password, salt);
   try {
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      tel,
+      address,
+      city,
+      postcode,
+    } = req.body;
+
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password, salt);
     const allUsers = await pool.query(
       "INSERT INTO users(first_name, last_name, email, password, phone_number, address, city, postcode) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
       [firstName, lastName, email, hash, tel, address, city, postcode]
@@ -65,24 +74,29 @@ authRouter.get("/auth-user", (req, res) => {
 });
 
 authRouter.post("/logout", async (req, res) => {
-  const id = req.sessionID;
+  try {
+    const id = req.sessionID;
 
-  req.session.destroy(async (err) => {
-    console.log("Session Destroyed!");
+    req.session.destroy(async (err) => {
+      console.log("Session Destroyed!");
 
-    if (err) {
-      console.log("something went wrong", err);
-      res.send("something went wrong", err);
-    }
+      if (err) {
+        console.log("something went wrong", err);
+        res.send("something went wrong", err);
+      }
 
-    const response = await pool.query(
-      "DELETE FROM user_sessions WHERE sid = $1",
-      [id]
-    );
-    res.clearCookie("connect.sid");
+      const response = await pool.query(
+        "DELETE FROM user_sessions WHERE sid = $1",
+        [id]
+      );
+      res.clearCookie("connect.sid");
 
-    res.send({ status: "success", message: "User has logged out" });
-  });
+      res.send({ status: "success", message: "User has logged out" });
+    });
+  } catch (err) {
+    console.log("Error:", err.message);
+    res.send({ status: "Error", message: err.message });
+  }
 });
 authRouter.put("/update-profile", async (req, res) => {
   try {
@@ -130,6 +144,3 @@ authRouter.get(
   }
 );
 module.exports = authRouter;
-
-//   "INSERT INTO users(first_name, last_name, , , phone_number, address, city, postcode) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
-// [firstName, lastName, email, hash, tel, address, city, postcode]

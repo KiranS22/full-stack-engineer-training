@@ -17,19 +17,23 @@ import Complete_Order from "../Order_History/Complete_Order";
 
 const App = () => {
   const getLoggedInUser = async () => {
-    const response = await axios.get(
-      `${process.env.REACT_APP_SERVER_URL}/auth/auth-user`,
-      {
-        withCredentials: true,
+    try {
+      const response = await axios.get(
+        `${process.env.REACT_APP_SERVER_URL}/auth/auth-user`,
+        {
+          withCredentials: true,
+        }
+      );
+
+      if (response.data.status == "success") {
+        const { user } = response.data;
+        console.log("Logged In User", user);
+        dispatch(logInUser(user));
+      } else {
+        console.log("something went wrong");
       }
-    );
-    console.log(response.data);
-    if (response.data.status == "success") {
-      const { user } = response.data;
-      console.log("Logged In User", user);
-      dispatch(logInUser(user));
-    } else {
-      console.log("something went wrong");
+    } catch (err) {
+      console.log(err.message);
     }
   };
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import moment from "moment";
 
 const Complete_Order = () => {
   const [order, setOrder] = useState({});
@@ -32,18 +31,58 @@ const Complete_Order = () => {
         ) : (
           <p>No address Provided</p>
         )}
-        <p>{moment(order.placed_at).format("DD/MM/YYYY HH:MM")}</p>
+        <p>{order.placed_at}</p>
       </div>
-      <div>
-        {products.map((product) => {
-          return (
-            <>
-              <p>{product.product_name}</p>;
-              <img src={product.product_image} />
-              <p>{product.product_category}</p>;<p>{product.product_price}</p>;
-            </>
-          );
-        })}
+
+      <div className="container">
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Product Name</th>
+              <th scope="col">Product Image </th>
+              <th scope="col">Product Price</th>
+              <th scope="col">Category</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((product) => {
+              return (
+                <tr>
+                  <td>
+                    <div className="">
+                      <p className="product-in-order-history">
+                        {product.product_name}
+                      </p>
+                    </div>
+                  </td>
+                  <td>
+                    <div className="">
+                      <img
+                        src={product.product_image}
+                        style={{ maxWidth: "25%" }}
+                      />
+                    </div>
+                  </td>
+
+                  <td>
+                    <div className="">
+                      <p className="product-in-order-history">
+                        ${product.product_price}
+                      </p>
+                    </div>
+                  </td>
+                  <td>
+                    <div className="">
+                      <p className="product-in-order-history">
+                        {product.product_category}
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </>
   );

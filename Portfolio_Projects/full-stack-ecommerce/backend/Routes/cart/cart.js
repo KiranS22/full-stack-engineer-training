@@ -1,10 +1,6 @@
 const express = require("express");
 const cartRouter = express.Router();
 const pool = require("../../db");
-// cartRouter.get("/", async (req, res) => {
-//   const allCartItems = await pool.query("SELECT * FROM  cart");
-//   res.send(allCartItems.rows);
-// });
 cartRouter.get("/", async (req, res) => {
   if (req.session.user) {
     const { user } = req.session;
@@ -14,7 +10,6 @@ cartRouter.get("/", async (req, res) => {
         [user.id]
       );
       res.send(usersCart.rows);
-      // res.send([]);
     } catch (err) {
       console.log(err);
     }
@@ -62,19 +57,7 @@ cartRouter.post("/:productid", async (req, res) => {
     console.log(err);
   }
 });
-// cartRouter.put("/:userid", async (req, res) => {
-//   try {
-//     const { product_qty, product_id } = req.body;
-//     const { user } = req.session;
 
-//   const updatedProduct = await pool.  ("UPDATE  cart SET product_qty = $1 WHERE product_id = $3 AND user_id = $2"[
-//       product_qty, user.id, product_id
-//     ]);
-//     res.send("Cart Updated Successfully");
-//   } catch (err) {
-//     console.log(err);
-//   }
-// });
 cartRouter.delete("/:productid", async (req, res) => {
   try {
     const { productid } = req.params;
@@ -93,9 +76,7 @@ cartRouter.delete("/:productid", async (req, res) => {
 //clear the whole cart from the database
 cartRouter.delete("/", async (req, res) => {
   try {
-    console.log("Delete hit");
     if (req.session.user) {
-      console.log("Inside if");
       const { user } = req.session;
       await pool.query("DELETE FROM cart WHERE user_id =$1", [user.id]);
       res.send({
