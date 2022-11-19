@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../../../Resources/CSS/app.css";
 import axios from "axios";
-
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 const Register = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -16,16 +17,18 @@ const Register = () => {
     city: "",
     postcode: "",
   });
+  const [value, setValue] = useState();
 
   const handleSubmit = async (e) => {
     console.log("user", user);
     e.preventDefault();
+    console.log("value on phone", value);
     if (user.password !== user.verifyPassword) {
       alert("Passwords Must Match");
     } else {
       const response = await axios.post(
         "http://localhost:4000/auth/register",
-        user,
+        { ...user, tel: value },
         { withCredentials: true }
       );
       console.log(response.data);
@@ -39,8 +42,8 @@ const Register = () => {
 
   return (
     <>
-      <section className="vh-100">
-        <div className="container-fluid h-custom">
+      <section>
+        <div className="container-fluid ">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-md-9 col-lg-6 col-xl-5">
               <img
@@ -54,6 +57,7 @@ const Register = () => {
                 <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                   <p className="lead fw-normal mb-0 me-3">Register with</p>
                   <button
+                    type="button"
                     className="btn btn-outline-dark"
                     style={{ textTransform: "none" }}
                   >
@@ -66,7 +70,7 @@ const Register = () => {
                       alt="Google sign-in"
                       src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
                     />
-                    Register with Google
+                    Google
                   </button>
                 </div>
 
@@ -88,6 +92,7 @@ const Register = () => {
                       setUser({ ...user, firstName: e.target.value })
                     }
                     name="firstName"
+                    required
                   />
                 </div>
 
@@ -105,6 +110,7 @@ const Register = () => {
                       setUser({ ...user, lastName: e.target.value })
                     }
                     name="lastName"
+                    required
                   />
                 </div>
                 <div className="form-outline mb-3">
@@ -121,6 +127,7 @@ const Register = () => {
                       setUser({ ...user, email: e.target.value })
                     }
                     name="email"
+                    required
                   />
                 </div>
 
@@ -138,6 +145,7 @@ const Register = () => {
                       setUser({ ...user, password: e.target.value })
                     }
                     name="password"
+                    required
                   />
                 </div>
 
@@ -156,19 +164,17 @@ const Register = () => {
                       setUser({ ...user, verifyPassword: e.target.value })
                     }
                     name="verify-password"
+                    required
                   />
                 </div>
                 <div className="form-outline mb-3">
                   <label className="form-label" htmlFor="tel">
                     Mobile Number
                   </label>
-                  <input
-                    type="tel"
-                    id="tel"
-                    className="form-control form-control-lg"
-                    placeholder="Enter mobile Number"
-                    value={user.telNumber}
-                    onChange={(e) => setUser({ ...user, tel: e.target.value })}
+                  <PhoneInput
+                    placeholder="Enter phone number"
+                    value={value}
+                    onChange={setValue}
                   />
                 </div>
 
@@ -186,6 +192,7 @@ const Register = () => {
                     onChange={(e) =>
                       setUser({ ...user, address: e.target.value })
                     }
+                    required
                   />
                 </div>
 
@@ -218,6 +225,7 @@ const Register = () => {
                     onChange={(e) =>
                       setUser({ ...user, postcode: e.target.value })
                     }
+                    required
                   />
                 </div>
 

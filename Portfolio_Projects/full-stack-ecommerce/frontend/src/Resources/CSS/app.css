@@ -1,139 +1,52 @@
-:root {
-  --main-bg-colour: #cfd5b8;
-  --accent-color-1: #e78fbc;
-  --button-colour: #68243c;
-  --accent-colour-2: #cfd5b8;
-  --text-colour-1: #ffffff;
-  --text-colour-2: #000604;
-  --accent-colour-3: rgb(136, 136, 136);
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-
 /* Font Imports */
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Chango&family=Roboto&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fasthand&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400&display=swap");
-/* Colur variables */
-/* Overall Website background colour */
-body {
-  background-color: var(--main-bg-colour);
-  width: 100vw;
-  overflow-x: hidden;
+
+/* CLass for Cursor: pointer */
+.cursor-pointer {
+  cursor: pointer;
 }
 
-/* Globals */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-.flex {
-  display: flex;
-}
-.border {
-  border: 2px solid red;
-}
-/*NavBar styles */
-.navbar-colors {
-  background-color: var(--accent-color-1);
-  color: var(--text-colour-1);
+/* Class for Hover Effect */
+.underline {
+  border-bottom: 1px solid transparent;
+  transition: 0.2s linear;
 }
 
-.logo {
-  font-size: 30px;
-  font-family: "Fasthand", cursive;
-}
-.nav-link {
-  color: var(--text-colour-1);
-}
-.nav-link:hover {
-  border-bottom: 2px solid var(--button-colour);
-  border-top: 2px solid var(--button-colour);
-}
-.cart-img {
-  color: var(--button-colour);
-}
-.cart-count {
-  color: var(--text-colour-1);
-}
-.register-btn,
-.login-btn {
-  background-color: var(--button-colour);
-  color: var(--text-colour-1);
-  margin: 0 20px;
+.underline:hover {
+  border-bottom: 1px solid #000;
 }
 
-.register-btn:hover,
-.login-btn:hover {
-  background-color: var(--text-colour-1);
-  color: var(--button-colour);
-}
-
-/* Homepage Styles */
-
+/* Home Page Styling */
 .hero-img {
-  position: relative;
-}
-.hero {
   width: 100vw;
-}
-.hero-img .text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: "Fasthand", cursive;
-  color: var(--accent-colour-2);
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000;
-  letter-spacing: 30px;
-  font-weight: 700;
-}
-.circles {
-  margin: 10px 0;
-}
-.circle {
-  padding: 15%;
-  border: 2px solid #000;
-  width: 30%;
-  border-radius: 50%;
-  margin: 0 auto;
-  position: relative;
-}
-.c1 {
-  background: url(https://i.pinimg.com/originals/92/c5/de/92c5de06ba76c46dffd6ab97451a7b2c.jpg);
-}
-.c2 {
-  background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScm4i4UxzSvIzC3WU1ymH7E7paI5QTJgQT8w&usqp=CAU);
+  height: 100vh;
 }
 
-.c3 {
-  background: url(https://media.istockphoto.com/photos/candles-in-a-church-background-picture-id1285468795?k=20&m=1285468795&s=170667a&w=0&h=of7YCbJiaSeROlZ_ICleAns264ymkBtEwn2p8AnYXrs=);
+.content-wrapper {
+  margin: 3rem 0;
 }
-.c1 button,
-.c2 button,
-.c3 button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: none;
-  padding: 5px 8px;
-  color: var(--button-colour);
-  background-color: var(--accent-colour-2);
+/* Class for footer styluings */
+.f-icon {
+  font-size: 20px;
+  margin: 0 10px;
+}
+/* Class for about section */
+.about-section {
+  margin-top: 40px;
+}
+/* Not Found class */
+.notfound {
+  margin-top: 60px;
 }
 
-.c1 button:hover,
-.c2 button:hover,
-.c3 button:hover {
-  background-color: var(--button-colour);
-  color: var(--accent-colour-2);
-}
-/* About page stylings */
-
-.about-header {
-  margin-top: auto;
-  border: 2px solid pink;
-}
 /* Register Form CSS */
 .divider:after,
 .divider:before {
@@ -142,9 +55,7 @@ body {
   height: 1px;
   background: #eee;
 }
-.h-custom {
-  height: calc(100% - 0.2px);
-}
+
 @media (max-width: 450px) {
   .h-custom {
     height: 100%;
@@ -158,12 +69,6 @@ body {
   width: 800px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.15);
 }
-
-/* @media (max-width: 1000px) {
-  .container {
-    width: 80%;
-  }
-} */
 
 .left {
   padding: 60px;
@@ -315,38 +220,6 @@ body {
 
 .card button:hover {
   opacity: 0.7;
-}
-
-.card a {
-  border: none;
-  outline: 0;
-  padding: 12px;
-  color: var(--text-colour-1);
-  background-color: var(--text-colour-2);
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-  font-size: 18px;
-  text-decoration: none;
-  margin-top: 50%;
-}
-
-.card a:hover {
-  opacity: 0.7;
-  background-color: var(--text-colour-1);
-  color: var(--text-colour-2);
-}
-
-/* Cart CSS */
-@import url("https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Chango&family=Roboto&display=swap");
-* {
-  box-sizing: border-box;
-}
-
-img {
-  width: 100%;
-  height: auto;
-  vertical-align: sub;
 }
 
 .left {
@@ -545,13 +418,13 @@ html {
   text-align: center;
   line-height: 65px;
 }
-
+/* 
 .container {
   max-width: 1140px;
   margin: 0 auto;
   padding: 0 50px;
   margin-top: 200px;
-}
+} */
 
 .picker {
   display: flex;

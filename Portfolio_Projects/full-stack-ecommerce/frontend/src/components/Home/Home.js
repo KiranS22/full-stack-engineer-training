@@ -1,38 +1,76 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Footer from "../Footer/Footer";
+import { selectFilteredProducts } from "../../Redux/features/Slices/Products/Products";
+import { useSelector } from "react-redux";
+import Slider from "./Slider/Slider";
+
 const Home = () => {
+  const products = useSelector(selectFilteredProducts);
+
   return (
     <>
-      <div className="home-container flex">
-        <div className="hero-img">
-          <img
-            className="hero"
-            src="https://media.istockphoto.com/photos/closeup-of-3-burning-candles-on-abstract-black-background-contemplate-picture-id1352014624?b=1&k=20&m=1352014624&s=170667a&w=0&h=6d-On49ipamCWqLNMemCcRzfueYfvNgsw0wGTeFegW0="
-          />
-          <h2 className="text">Welcome To Candladora</h2>
+      <div className="slider-container">
+        <Slider />
+      </div>
+      <div className="home-container">
+        <div className="container content-wrapper">
+          <h2 className="text-center mt-4 mb-4">Our Latest Products</h2>
+          <div className="row">
+            {products.map((product) => {
+              return (
+                <div className="col-12 col-md-4">
+                  <div className="card m-2">
+                    <img
+                      src={product.image}
+                      className="card-img-top"
+                      alt={product.description}
+                    />
+                    <div className="card-body">
+                      <h5 className="card-title">{product.name}</h5>
+
+                      <p className="card-text">{product.description}</p>
+                      <Link
+                        to={`/products/${product.id}`}
+                        className="btn btn-outline-info"
+                      >
+                        View Details
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <hr />
+          <div className="about-section">
+            <header>
+              <h2 className="text-center mt-4 mb-4">Our Mission</h2>
+            </header>
+            <div className="row">
+              <div className="col-sm-6">
+                <img
+                  src="https://ironbridgecandles.co.uk/wp-content/uploads/2021/03/Effete-Luxury-Candle-With-box-Lit.jpg"
+                  style={{ maxWidth: "100%" }}
+                />
+              </div>
+              <div className="col-sm-6 other">
+                <p>
+                  Here at Candladora we believe that everyone deserves to have a
+                  comfortable snd inviting home, However, with the globak
+                  finacial crisis, candles and other home accessories are seen
+                  more as a luxary item that perhaps isn't so affordable With
+                  this in mind, we have partnered up with some of the best small
+                  bussinesses from around the globe, to offer{" "}
+                  <b>high-quality, luxiourious</b> candles tat an{" "}
+                  <b>affirdable</b> price!
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="circles flex">
-        <span className="circle c1">
-          <button type="button">
-            <Link to="/products"></Link>View Our Products
-          </button>
-        </span>
-        <span className="circle c2">
-          <button type="button">
-            <Link to="/about">s</Link>About Us
-          </button>
-        </span>
-        <span className="circle c3">
-          <button type="buttton">
-            <Link to="/products/add"></Link>List a Product
-          </button>
-        </span>
-      </div>
-      <div className="footer-container">
-        <Footer />
-      </div>
+      {/* ////////////////// */}
     </>
   );
 };

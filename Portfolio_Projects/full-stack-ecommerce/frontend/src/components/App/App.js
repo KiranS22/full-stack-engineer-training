@@ -13,8 +13,6 @@ import {
   selectFilteredOrders,
   selectAllOrders,
 } from "../../Redux/features/Slices/Orders/orders";
-import Complete_Order from "../Order_History/Complete_Order";
-
 const App = () => {
   const getLoggedInUser = async () => {
     try {

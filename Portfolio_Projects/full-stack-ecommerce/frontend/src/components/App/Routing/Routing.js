@@ -6,7 +6,6 @@ import Cart from "../../Cart/Cart";
 import Home from "../../Home/Home";
 import Register from "../../User_Authentication/Register/Register";
 import Login from "../../User_Authentication/Login/login";
-import About from "../../About/About";
 import ProtectedRoutes from "../../Routing/ProtectedRoutes";
 import ProductDetails from "../../Products/ProductDetails";
 import Profile from "../../Profile/Profile";
@@ -14,6 +13,8 @@ import Order_History from "../../Order_History/Order_History";
 import SuccessfulPayment from "../../Cart/Payments/SuccessfulPayment";
 import AddProduct from "../../Products/AddProduct";
 import Complete_Order from "../../Order_History/Complete_Order";
+import Footer from "../../Footer/Footer";
+import { NotFound } from "../../NotFound/NotFound";
 
 const Routing = () => {
   return (
@@ -37,9 +38,10 @@ const Routing = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/register" exact element={<Register />} />
           <Route path="/login" exact element={<Login />} />
-          <Route path="/about" exact element={<About />} />
           <Route path="/products/:id" exact element={<ProductDetails />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
+        <Footer />
       </Router>
     </>
   );

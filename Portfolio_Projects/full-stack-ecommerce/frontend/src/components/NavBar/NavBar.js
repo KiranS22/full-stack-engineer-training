@@ -60,34 +60,29 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <li className="nav-item">
+            <li className="nav-item underline">
               <Link className="nav-link" to="/">
                 Home
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/about">
-                About
-              </Link>
-            </li>
 
-            <li className="nav-item">
+            <li className="nav-item underline">
               <Link className="nav-link" to="/products">
                 Products
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item underline">
               <Link className="nav-link" to="/products/add">
                 Add A Product
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="nav-item underline">
               <Link className="nav-link" to="/order-history">
                 Order History
               </Link>
             </li>
 
-            <div style={{ margin: ".5em 3.5em 0" }}>
+            <div style={{ margin: "0 3.5em" }}>
               <input
                 className="form-control me-2"
                 type="search"
@@ -98,7 +93,7 @@ const Navbar = () => {
               />
             </div>
             <li className="nav-item">
-              <Link to="/cart">
+              <Link to="/cart" className="nav-link">
                 <img
                   className="cart-img"
                   src="https://img.icons8.com/material-outlined/24/000000/shopping-cart--v1.png"
@@ -112,38 +107,33 @@ const Navbar = () => {
 
             {!loggedIn ? (
               <>
-                <li className="nav-item">
-                  <Link to="/login">
-                    <button type="button" className="login-btn">
-                      Log In{" "}
-                    </button>{" "}
+                <li className="nav-item underline">
+                  <Link to="/login" className="nav-link">
+                    Log In
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link to="/register">
-                    <button type="button" className="register-btn">
-                      Register
-                    </button>{" "}
+                <li className="nav-item underline">
+                  <Link to="/register" className="nav-link">
+                    Register
                   </Link>
                 </li>
               </>
             ) : (
               <>
                 <li className="nav-item">
-                  <button
-                    type="button"
-                    className="register-btn"
+                  <Link to="/profile" className="nav-link">
+                    <img src="https://img.icons8.com/material/24/null/administrator-male--v1.png" />
+                  </Link>
+                </li>
+                <li className="nav-item underline">
+                  <span
+                    className="nav-link cursor-pointer"
                     onClick={() => {
                       logoutHandler();
                     }}
                   >
                     Log Out
-                  </button>{" "}
-                </li>
-                <li className="nav-item">
-                  <Link to="/profile">
-                    <img src="https://img.icons8.com/material/24/null/administrator-male--v1.png" />
-                  </Link>
+                  </span>{" "}
                 </li>
               </>
             )}

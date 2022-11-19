@@ -34,8 +34,7 @@ stripeRouter.post("/checkout", async (req, res) => {
       payment_method_types: ["card"],
       line_items: purchasedItems,
       mode: "payment",
-      success_url:
-        "http://localhost:4000/stripe/order/success?session_id={CHECKOUT_SESSION_ID}",
+      success_url: `${process.env.CLIENT_URL}/checkout-success`,
       cancel_url: `${process.env.CLIENT_URL}/cart`,
     });
     res.send({ url: session.url });
