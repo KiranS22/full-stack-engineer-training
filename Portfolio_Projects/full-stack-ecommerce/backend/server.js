@@ -96,6 +96,10 @@ const productsRouter = require("./Routes/products/products");
 const ordersRouter = require("./Routes/orders/orders");
 const stripeRouter = require("./Routes/Stripe/Stripe");
 
+app.get("/", (req, res) => {
+  res.send({ status: "Working" });
+});
+
 app.use("/products", productsRouter);
 app.use("/cart", cartRouter);
 app.use("/users", userRouter);
