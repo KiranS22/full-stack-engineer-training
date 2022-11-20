@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Footer from "../Footer/Footer";
 import { selectFilteredProducts } from "../../Redux/features/Slices/Products/Products";
 import { useSelector } from "react-redux";
 import Slider from "./Slider/Slider";
 
 const Home = () => {
   const products = useSelector(selectFilteredProducts);
+  let latestProducts = products.slice(0, 3);
 
   return (
     <>
@@ -17,7 +17,7 @@ const Home = () => {
         <div className="container content-wrapper">
           <h2 className="text-center mt-4 mb-4">Our Latest Products</h2>
           <div className="row">
-            {products.map((product) => {
+            {latestProducts.map((product) => {
               return (
                 <div className="col-12 col-md-4">
                   <div className="card m-2">
@@ -27,9 +27,8 @@ const Home = () => {
                       alt={product.description}
                     />
                     <div className="card-body">
-                      <h5 className="card-title">{product.name}</h5>
+                      <h5 className="card-title limit">{product.name}</h5>
 
-                      <p className="card-text">{product.description}</p>
                       <Link
                         to={`/products/${product.id}`}
                         className="btn btn-outline-info"

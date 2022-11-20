@@ -4,10 +4,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      <div>
-        <hr />
-      </div>
-      <footer className="text-center">
+      <footer className="text-center ">
         Candladora - &#169; 2022 - All Rights Reversed
         <div className="row">
           <p>Developed By:</p>

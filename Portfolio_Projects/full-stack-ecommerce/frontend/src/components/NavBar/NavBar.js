@@ -30,7 +30,6 @@ const Navbar = () => {
           withCredentials: true,
         }
       );
-      console.log(data);
       if (data.status === "success") {
         dispatch(logOutUser());
         navigate("/login");

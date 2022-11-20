@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
@@ -9,26 +10,26 @@ const AddProduct = () => {
     description: "",
     imageUrl: "",
   });
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
-    console.log("Handle Submit has Ran");
     e.preventDefault();
     try {
-      console.log(product);
       const response = await axios.post(
         "http://localhost:4000/products",
         product
       );
 
-      console.log("Response:", response.data);
       setProduct({
         name: "",
         price: "",
         category: "",
         description: "",
+        imageUrl: "",
       });
     } catch (err) {
       console.log(err);
     }
+    navigate("/products");
   };
   return (
     <>
@@ -83,8 +84,8 @@ const AddProduct = () => {
 
           <div className="form-group mt-4">
             <label htmlFor="productDescription">Product Decription</label>
-            <input
-              type="text"
+            <textarea
+              maxLength="500"
               className="form-control"
               id="productDescription"
               aria-describedby="productDescrition"

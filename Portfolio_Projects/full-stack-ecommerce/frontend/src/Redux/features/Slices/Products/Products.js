@@ -25,7 +25,6 @@ const Products = createSlice({
   initialState,
   reducers: {
     filterSearch: (state, action) => {
-      console.log(action.payload);
       state.filteredProducts = state.products.filter((item) =>
         item.name.toLowerCase().includes(action.payload.toLowerCase())
       );

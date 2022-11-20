@@ -11,7 +11,7 @@ cartRouter.get("/", async (req, res) => {
       );
       res.send(usersCart.rows);
     } catch (err) {
-      console.log(err);
+      onsole.log("Error:", err.message);
     }
   } else {
     res.send([]);
@@ -54,7 +54,7 @@ cartRouter.post("/:productid", async (req, res) => {
         .send({ status: "error", message: "User is not loggedIn!" });
     }
   } catch (err) {
-    console.log(err);
+    onsole.log("Error:", err.message);
   }
 });
 

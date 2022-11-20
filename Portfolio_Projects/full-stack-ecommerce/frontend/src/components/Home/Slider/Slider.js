@@ -5,18 +5,9 @@ const Slider = () => {
   return (
     <>
       <slider>
-        <slide>
-          <p>PURE CSS</p>
-        </slide>
-        <slide>
-          <p>PURE CSS</p>
-        </slide>
-        <slide>
-          <p>PURE CSS</p>
-        </slide>
-        <slide>
-          <p>❤️</p>
-        </slide>
+        <slide></slide>
+        <slide></slide>
+        <slide></slide>
       </slider>
     </>
   );

@@ -39,7 +39,7 @@ slide:nth-child(1) {
   -moz-animation-delay: -1s;
   -o-animation-delay: -1s;
   animation-delay: -1s;
-  background-image: url(http://cdn.magdeleine.co/wp-content/uploads/2015/08/photo-1431965400057-a84b80cfdbff-1400x1400.jpeg);
+  background-image: url(https://scontent-man2-1.xx.fbcdn.net/v/t39.30808-6/244701692_115806964192316_822893792364264782_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=e3f864&_nc_ohc=_WMHFY6ezOcAX8wnaZJ&tn=_eiPJe7H_U00lB-5&_nc_ht=scontent-man2-1.xx&oh=00_AfCznnO5JK8VGDlkfJ-8QhFiTUDywtC6MxdkxE_yHIWvow&oe=637F82B2);
   background-size: cover;
   background-position: bottom;
 }
@@ -49,7 +49,7 @@ slide:nth-child(2) {
   -moz-animation-delay: 2s;
   -o-animation-delay: 2s;
   animation-delay: 2s;
-  background-image: url(http://cdn.magdeleine.co/wp-content/uploads/2015/01/YS6_6310_1-1400x935.jpg);
+  background-image: url(https://www.hoppingharecandles.co.uk/wp-content/uploads/2018/01/Hopping-Hare-Rose-and-Oud-lit-candle-landscape-with-roses-and-petals.jpg);
   background-size: cover;
   background-position: bottom;
 }
@@ -59,31 +59,9 @@ slide:nth-child(3) {
   -moz-animation-delay: 5s;
   -o-animation-delay: 5s;
   animation-delay: 5s;
-  background-image: url(http://cdn.magdeleine.co/wp-content/uploads/2015/09/19459589499_a0aed895c7_o-1400x933.jpg);
+  background-image: url(https://cantocandle.com/wp-content/uploads/2021/04/trio-coast-yoghurt-pot-landscape-800x400.jpg);
   background-size: cover;
   background-position: bottom;
-}
-
-slide:nth-child(4) {
-  -webkit-animation-delay: 8s;
-  -moz-animation-delay: 8s;
-  -o-animation-delay: 8s;
-  animation-delay: 8s;
-}
-
-slide p {
-  font-family: "Sue Ellen Francisco", cursive;
-  font-size: 20vh;
-  text-align: center;
-  display: inline-block;
-  width: 100%;
-  margin-top: 30vh;
-  color: white;
-  text-shadow: 0px 0px 500px black;
-}
-
-slide:nth-child(4) p {
-  color: red;
 }
 
 @-webkit-keyframes slide {

@@ -17,7 +17,6 @@ const Cart = () => {
   const dispatch = useDispatch();
   const cartTotal = useSelector(selectCartTotal);
   const cart = useSelector(selectCart);
-  console.log("cart in Cart.js,", cart);
   const user = useSelector(selectUser);
 
   const cartCount = useSelector(selectCartCount);
@@ -27,15 +26,14 @@ const Cart = () => {
       `${process.env.REACT_APP_SERVER_URL}/cart`,
       { withCredentials: true }
     );
-    console.log(response.data);
+    
   };
 
   useEffect(() => {
-    console.log("Cart.js useEffect");
+    
     dispatch(findCartItemsTotal());
   }, [cart]);
   const emptyCart = async () => {
-    console.log("Empty cart function");
     dispatch(clearCart());
     deleteFromDatabase();
   };
@@ -44,10 +42,10 @@ const Cart = () => {
       <div className="cart">
         <div className="container">
           <div className="grid_12">
-            <h1>Your Cart</h1>
+            <h1 className="text-center">Your Cart</h1>
           </div>
           {cartCount > 0 ? (
-            <div className="table-responsive">
+            <div>
               <table className="table">
                 <thead>
                   <tr>
@@ -65,24 +63,24 @@ const Cart = () => {
               </table>
             </div>
           ) : (
-            <div className="text-center">
+            <div className="text-center  empty">
               <h3>Cart is empty</h3>
             </div>
           )}
 
           <div className="grid_12 delivery-payment">
             <div className="grid_6 delivery-address">
-              <button
-                className="btn-summary btn btn-outline-danger"
-                onClick={() => emptyCart()}
-              >
-                Clear All({cartCount})
-              </button>
+              {cartCount <= 0 ? (
+                <div></div>
+              ) : (
+                <button
+                  className="btn-summary btn btn-outline-danger"
+                  onClick={() => emptyCart()}
+                >
+                  Clear All({cartCount})
+                </button>
+              )}
             </div>
-          </div>
-          <div className="grid_12 coupon">
-            <h3>Apply Coupon</h3>
-            <input className="coupon-input" type="text" />
           </div>
 
           <div className="grid_12 summary">

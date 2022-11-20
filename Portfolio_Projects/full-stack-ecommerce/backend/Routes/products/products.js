@@ -4,21 +4,15 @@ const pool = require("../../db");
 
 // /products (GET)
 productsRouter.get("/", async (req, res) => {
-  console.log("LoggedIN :", req.session.loggedIn);
-  // if (req.session.loggedIn) {
-  //   console.log(req.session.user);
-  // }
-  // req.session.loggedIn = true; //Not Working...
-  // console.log(req.session.loggedIn);
+
   req.session.save((err) => {
     console.log("saved");
   });
-  //checkout/3
-  //fetch all from cart based on user id
-  // orders, ordered_products
-  //DB Related Code.
+
   try {
-    const allProducts = await pool.query("SELECT * FROM products");
+    const allProducts = await pool.query(
+      "SELECT * FROM products ORDER BY id DESC "
+    );
 
     res.send(allProducts.rows);
   } catch (err) {
@@ -28,7 +22,6 @@ productsRouter.get("/", async (req, res) => {
 // '/products'
 //Add a new product
 productsRouter.post("/", async (req, res) => {
-  console.log("Products Route hit!");
   const { name, price, category, description, imageUrl } = req.body;
   try {
     const allProducts = await pool.query(

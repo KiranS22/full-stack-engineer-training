@@ -9,6 +9,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400&display=swap");
 
+nav,
+footer {
+  background-color: rgb(202, 228, 241);
+}
+
+body {
+  background-color: rgb(207, 207, 196);
+}
 /* CLass for Cursor: pointer */
 .cursor-pointer {
   cursor: pointer;
@@ -46,7 +54,12 @@
 .notfound {
   margin-top: 60px;
 }
-
+/* Limit text class  */
+.limit {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 /* Register Form CSS */
 .divider:after,
 .divider:before {
@@ -196,9 +209,16 @@
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-width: 300px;
+  max-height: 100vh;
   margin: auto;
   text-align: center;
   font-family: arial;
+}
+
+/* Card Image */
+.card-img-top {
+  height: 240px;
+  object-fit: contain;
 }
 
 .price {
@@ -206,20 +226,19 @@
   font-size: 22px;
 }
 
-.card button {
-  border: none;
-  outline: 0;
-  padding: 12px;
-  color: var(--text-colour-1);
-  background-color: var(--button-colour);
+.card .a-p-btn {
+  background-color: rgb(193, 205, 245);
   text-align: center;
   cursor: pointer;
-  width: 100%;
+  width: 80%;
   font-size: 18px;
 }
 
 .card button:hover {
   opacity: 0.7;
+}
+.view {
+  background-color: #000;
 }
 
 .left {
@@ -262,7 +281,11 @@ html {
   vertical-align: text-top;
   background-position: 14px 14px;
 }
+/* Cart */
 
+.empty {
+  margin-top: 3rem;
+}
 .icon-plus {
   background-position: -408px -96px;
 }
@@ -418,13 +441,6 @@ html {
   text-align: center;
   line-height: 65px;
 }
-/* 
-.container {
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 0 50px;
-  margin-top: 200px;
-} */
 
 .picker {
   display: flex;
@@ -725,4 +741,8 @@ h3.product-in-order-history {
 }
 p.product-in-order-history {
   font-weight: 300;
+}
+
+.order-history {
+  margin: 8rem 0;
 }

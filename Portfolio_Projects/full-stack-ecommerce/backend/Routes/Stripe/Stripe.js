@@ -6,12 +6,9 @@ const pool = require("../../db");
 
 stripeRouter.post("/checkout", async (req, res) => {
   const { items } = req.body;
-  console.log(items);
   let purchasedItems = [];
   try {
     for (let i = 0; i < items.length; i++) {
-      console.log("Stripe functionality loop", items[i].id);
-
       const response = await pool.query(
         "SELECT * FROM products WHERE id = $1 ",
         [items[i].id]
@@ -87,7 +84,7 @@ stripeRouter.get("/order/success", async (req, res) => {
       res.redirect(`${process.env.CLIENT_URL}/checkout-success`);
     }
   } catch (err) {
-    console.log(err);
+    onsole.log("Error:", err.message);
   }
 
   // res.send("Your order has been made successfully!");

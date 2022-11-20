@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 const Profile = () => {
   const userInfo = useSelector(selectUser);
   const dispatch = useDispatch();
-  console.log("User Info", userInfo);
   const [user, setUser] = useState({
     firstName: userInfo.first_name,
     lastName: userInfo.last_name,
@@ -19,18 +18,14 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await axios.put(
-      "http://localhost:4000/auth/update-profile",
+      `${process.env.REACT_APP_SERVEE_URL}/auth/update-profile`,
       user,
       { withCredentials: true }
     );
     if (response.data.status == "success") {
-      console.log("Update if statment");
       // setUser(response.data.user);
       dispatch(updateUser(response.data.user));
     }
-
-    console.log("My frontend response", response);
-    console.log("My frontend response data", response.data);
   };
 
   return (

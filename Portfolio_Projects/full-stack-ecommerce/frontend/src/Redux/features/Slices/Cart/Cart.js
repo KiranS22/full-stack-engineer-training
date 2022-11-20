@@ -77,15 +77,11 @@ const cartSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchAllCartItems.pending, (state, action) => {
-      console.log("Cart Pending");
-    });
+    builder.addCase(fetchAllCartItems.pending, (state, action) => {});
 
     builder.addCase(fetchAllCartItems.fulfilled, (state, action) => {
-      console.log("FULFILLED");
       let cartCount = 0;
       let cartTotal = 0.0;
-      // console.log(("saving  cart products ", action.payload));
       state.cart = action.payload.map(
         ({ user_id, price, product_id, product_qty, ...props }) => {
           cartCount += Number(product_qty);
@@ -100,12 +96,10 @@ const cartSlice = createSlice({
 
       state.cartCount = cartCount;
       state.cartTotal = cartTotal;
-      // {...props, quantity: product_qty}
-      console.log("Cart:", state.cart);
     });
 
     builder.addCase(fetchAllCartItems.rejected, (state, action) => {
-      console.log("Cart Rejected");
+      console.log("rejected");
     });
   },
 });

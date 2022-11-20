@@ -57,7 +57,7 @@ authRouter.post("/register", async (req, res) => {
     );
     res.send({ user: allUsers.rows[0], status: "success" });
   } catch (err) {
-    console.log(err);
+    onsole.log("Error:", err.message);
   }
 });
 
@@ -102,19 +102,11 @@ authRouter.put("/update-profile", async (req, res) => {
   try {
     const { firstName, lastName, email, tel, address, city, postcode } =
       req.body;
-    // const { user } = req.session;
-    console.log("User", req.session.user);
-    //Check if the current user is loggedIn
-    // if (req.session.user.email === email) {
 
-    // console.log(email);
     const response = await pool.query(
       "UPDATE users SET first_name = $1, last_name = $2,  phone_number = $3, address = $4, city=$5, postcode=$6 WHERE email = $7 RETURNING *",
-      // ["John", "Doe", "12345", "test", "test", "test", email]
       [firstName, lastName, tel, address, city, postcode, email]
     );
-
-    // console.log(response.rows[0]);
 
     res.send({
       status: "success",
@@ -123,7 +115,7 @@ authRouter.put("/update-profile", async (req, res) => {
     });
     // }
   } catch (err) {
-    console.log(err);
+    onsole.log("Error:", err.message);
   }
 });
 
@@ -139,7 +131,7 @@ authRouter.get(
   }),
   function (req, res) {
     // Successful authentication, redirect home.
-    res.redirect("http://localhost:3000");
+    res.redirect(`${process.env.CLIENT_URL}`);
     req.session.user = req.user;
   }
 );

@@ -5,14 +5,12 @@ import { selectAllProducts } from "../../Redux/features/Slices/Products/Products
 
 const ProductDetails = () => {
   const products = useSelector(selectAllProducts);
-  console.log(products);
 
   const { id } = useParams();
   let singleProduct = products.find(
     (product) => Number(product.id) === Number(id)
   );
-  console.log("product" ,  );
-  console.log("single product", singleProduct);
+
   return (
     <>
       <div className="details-container">

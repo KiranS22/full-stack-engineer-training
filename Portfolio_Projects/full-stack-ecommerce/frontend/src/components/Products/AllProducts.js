@@ -19,9 +19,7 @@ const AllProducts = () => {
         { product_qty: 1, product_price: product.price },
         { withCredentials: true }
       );
-      // console.log("add to cart frontend response", response.data);
       dispatch(addToCart(product));
-      // console.log(process.env.VARnAME);
     } catch (err) {
       console.log("Error:", err.message);
     }
@@ -29,13 +27,13 @@ const AllProducts = () => {
   return (
     <div className="row">
       {filteredProducts.map((product, index) => {
-        console.log("Product", product);
         return (
           <>
-            <div className="col-12 col-md-4">
+            <div className="col-12 col-md-4 mt-4">
               <div className="card" key={index}>
                 {product.image ? (
                   <img
+                    className="card-img-top"
                     src={product.image}
                     alt={product.description}
                     style={{ width: "100%" }}
@@ -47,15 +45,23 @@ const AllProducts = () => {
                     style={{ width: "100%" }}
                   />
                 )}
-                <h1>{product.name}</h1>
-                <p className="price">{product.price}</p>
-                <p>{product.description}</p>
+                <h1 className="limit">{product.name}</h1>
+                <p>${product.price}</p>
                 <p>
-                  <button type="button" onClick={() => handleClick(product)}>
+                  <button
+                    className="btn a-p-btn"
+                    type="button"
+                    onClick={() => handleClick(product)}
+                  >
                     Add to Cart
                   </button>
 
-                  <Link to={`/products/${product.id}`}>View Details</Link>
+                  <Link
+                    to={`/products/${product.id}`}
+                    className="btn btn-outline-dark mt-4"
+                  >
+                    View Details
+                  </Link>
                 </p>
               </div>
             </div>

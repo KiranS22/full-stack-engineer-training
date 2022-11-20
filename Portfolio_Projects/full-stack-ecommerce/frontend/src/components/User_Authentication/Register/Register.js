@@ -22,7 +22,6 @@ const Register = () => {
   const handleSubmit = async (e) => {
     console.log("user", user);
     e.preventDefault();
-    console.log("value on phone", value);
     if (user.password !== user.verifyPassword) {
       alert("Passwords Must Match");
     } else {
@@ -31,7 +30,6 @@ const Register = () => {
         { ...user, tel: value },
         { withCredentials: true }
       );
-      console.log(response.data);
 
       const status = response.data.status;
       if (status === "success") {

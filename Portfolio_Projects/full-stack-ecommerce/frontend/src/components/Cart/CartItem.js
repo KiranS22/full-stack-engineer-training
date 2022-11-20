@@ -7,16 +7,10 @@ import {
   selectCartTotal,
 } from "../../Redux/features/Slices/Cart/Cart";
 const CartItem = ({ item }) => {
-  console.log("Cart Item in Cart Item", item);
-  useEffect(() => {
-    console.log("cart Item Rendered");
-  }, []);
   const dispatch = useDispatch();
   const [itemQuantity, setItemQuantity] = useState(item.quantity);
 
   const updateCartQuantity = (e, id) => {
-    console.log("update cart quantity is running");
-    console.log("VaL, ID:", e.target.value, id);
     setItemQuantity(e.target.value);
     dispatch(updateQty({ id: id, value: e.target.value }));
   };
@@ -25,7 +19,6 @@ const CartItem = ({ item }) => {
       `${process.env.REACT_APP_SERVER_URL}/cart/${id}`,
       { withCredentials: true }
     );
-    console.log(respponse.data);
   };
 
   const deleteItem = (id) => {
@@ -38,12 +31,12 @@ const CartItem = ({ item }) => {
         <div className="items">
           <h3>{item.name}</h3>
           {item.image ? (
-            <img src={item.image} />
+            <img src={item.image} style={{ maxWidth: "140px" }} />
           ) : (
             <img
               src="https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg?ver=6"
               alt={item.description}
-              style={{ width: "25%" }}
+              style={{ maxWidth: "140px" }}
             />
           )}
         </div>
@@ -64,7 +57,6 @@ const CartItem = ({ item }) => {
         <h4>${(Number(item.price) * itemQuantity).toFixed(2)}</h4>
       </td>
       <td>
-        {" "}
         <i
           className="far fa-trash-alt"
           onClick={() => deleteItem(item.id)}

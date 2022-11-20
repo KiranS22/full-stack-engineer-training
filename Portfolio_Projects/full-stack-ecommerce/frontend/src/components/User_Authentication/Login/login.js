@@ -15,7 +15,6 @@ const Login = () => {
     password: "",
   });
   const loggedIn = useSelector(selectIsLoggedIn);
-  console.log("LoggedInSelector", loggedIn);
   const userAlreadyLoggedIn = () => {
     if (loggedIn) {
       navigate("/");
@@ -25,27 +24,21 @@ const Login = () => {
     userAlreadyLoggedIn();
   }, [loggedIn]);
   const handleSubmit = async (e) => {
-    console.log("submitHnadler has ran");
-    console.log("user", user);
+   
     e.preventDefault();
     const response = await axios.post(
       "http://localhost:4000/auth/login",
       user,
       { withCredentials: true }
     );
-    console.log("Response: ", response.data);
     const status = response.data.status;
     if (status === "success") {
-      console.log("response.data frontend", response.data);
-      dispatch(logInUser(response.data.user));
       navigate("/");
     }
   };
 
   const googleHandler = () => {
-    console.log("Google handler has ran!");
     const callback = "http://localhost:4000/auth/google";
-    console.log(callback);
     window.open(callback, "_self");
   };
 

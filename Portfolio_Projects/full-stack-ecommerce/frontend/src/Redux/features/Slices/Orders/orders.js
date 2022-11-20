@@ -23,7 +23,6 @@ const orders = createSlice({
   initialState,
   reducers: {
     filterOrders: (state, action) => {
-      console.log(action.payload);
       state.filteredOrders = state.orders.filter((order) =>
         order.placed_at.toLowerCase().includes(action.payload.toLowerCase())
       );
@@ -31,17 +30,14 @@ const orders = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchUserOrders.pending, (state, action) => {
-      console.log("pending Orders");
     });
 
     builder.addCase(fetchUserOrders.fulfilled, (state, action) => {
-      console.log("Fulfilled Orders", action.payload);
       state.orders = action.payload;
       state.filteredOrders = action.payload;
     });
 
     builder.addCase(fetchUserOrders.rejected, (state, action) => {
-      console.log("rejected Orders");
     });
   },
 });
