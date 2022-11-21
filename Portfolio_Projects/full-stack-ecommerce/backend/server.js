@@ -97,6 +97,7 @@ const ordersRouter = require("./Routes/orders/orders");
 const stripeRouter = require("./Routes/Stripe/Stripe");
 
 app.get("/", (req, res) => {
+  console.log("Route Hit");
   res.send({ status: "Working" });
 });
 
@@ -110,3 +111,5 @@ app.use("/stripe", stripeRouter);
 app.listen(PORT, () => {
   console.log(`Ecommerce app listening on port ${PORT}`);
 });
+
+module.exports = app;
