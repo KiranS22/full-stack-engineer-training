@@ -4,19 +4,30 @@ const pool = require("../../db");
 
 // /products (GET)
 productsRouter.get("/", async (req, res) => {
-
   req.session.save((err) => {
     console.log("saved");
   });
 
   try {
-    const allProducts = await pool.query(
-      "SELECT * FROM products ORDER BY id DESC "
-    );
-
-    res.send(allProducts.rows);
+    // const allProducts = await pool.query(
+    //   "SELECT * FROM products ORDER BY id DESC "
+    // );
+    // res.send(allProducts.rows);
+    res.send([
+      {
+        id: 1,
+        name: "Shirt",
+        price: "100",
+      },
+      {
+        id: 2,
+        name: "Jeans",
+        price: "200",
+      },
+    ]);
   } catch (err) {
     console.log(err);
+    res.status(403).send({ status: "error" });
   }
 });
 // '/products'
