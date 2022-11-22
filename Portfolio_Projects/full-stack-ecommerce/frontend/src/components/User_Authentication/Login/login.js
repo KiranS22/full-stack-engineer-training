@@ -6,7 +6,6 @@ import { logInUser } from "../../../Redux/features/Slices/Auth/Auth";
 import { useDispatch } from "react-redux";
 import { selectIsLoggedIn } from "../../../Redux/features/Slices/Auth/Auth";
 
-
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -24,13 +23,15 @@ const Login = () => {
     userAlreadyLoggedIn();
   }, [loggedIn]);
   const handleSubmit = async (e) => {
-   
     e.preventDefault();
     const response = await axios.post(
       "http://localhost:4000/auth/login",
       user,
       { withCredentials: true }
     );
+
+    console.log(response.data);
+
     const status = response.data.status;
     if (status === "success") {
       navigate("/");

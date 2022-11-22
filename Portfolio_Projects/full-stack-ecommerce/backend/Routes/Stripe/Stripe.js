@@ -2,9 +2,10 @@ require("dotenv").config();
 const express = require("express");
 const stripeRouter = express.Router();
 const stripe = require("stripe")(process.env.STRIPE_KEY);
-const pool = require("../../db");
+const pool = require("../../elephant");
 
 stripeRouter.post("/checkout", async (req, res) => {
+  
   const { items } = req.body;
   let purchasedItems = [];
   try {
@@ -84,7 +85,7 @@ stripeRouter.get("/order/success", async (req, res) => {
       res.redirect(`${process.env.CLIENT_URL}/checkout-success`);
     }
   } catch (err) {
-    onsole.log("Error:", err.message);
+    console.log("Error:", err.message);
   }
 
   // res.send("Your order has been made successfully!");

@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const pool = require("./db");
+const pool = require("./elephant");
 const session = require("express-session");
 const pgSessionStore = require("connect-pg-simple")(session);
 const app = express();

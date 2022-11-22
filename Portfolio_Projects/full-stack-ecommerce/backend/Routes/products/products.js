@@ -1,6 +1,6 @@
 const express = require("express");
 const productsRouter = express.Router();
-const pool = require("../../db");
+const pool = require("../../elephant");
 
 // /products (GET)
 productsRouter.get("/", async (req, res) => {
@@ -9,22 +9,11 @@ productsRouter.get("/", async (req, res) => {
   });
 
   try {
-    // const allProducts = await pool.query(
-    //   "SELECT * FROM products ORDER BY id DESC "
-    // );
-    // res.send(allProducts.rows);
-    res.send([
-      {
-        id: 1,
-        name: "Shirt",
-        price: "100",
-      },
-      {
-        id: 2,
-        name: "Jeans",
-        price: "200",
-      },
-    ]);
+    const allProducts = await pool.query(
+      "SELECT * FROM products ORDER BY id DESC"
+    );
+    console.log(allProducts.rows);
+    res.send(allProducts.rows);
   } catch (err) {
     console.log(err);
     res.status(403).send({ status: "error" });

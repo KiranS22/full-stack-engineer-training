@@ -1,6 +1,6 @@
 const express = require("express");
 const cartRouter = express.Router();
-const pool = require("../../db");
+const pool = require("../../elephant");
 cartRouter.get("/", async (req, res) => {
   if (req.session.user) {
     const { user } = req.session;
@@ -11,7 +11,7 @@ cartRouter.get("/", async (req, res) => {
       );
       res.send(usersCart.rows);
     } catch (err) {
-      onsole.log("Error:", err.message);
+      console.log("Error:", err.message);
     }
   } else {
     res.send([]);
@@ -54,7 +54,7 @@ cartRouter.post("/:productid", async (req, res) => {
         .send({ status: "error", message: "User is not loggedIn!" });
     }
   } catch (err) {
-    onsole.log("Error:", err.message);
+    console.log("Error:", err.message);
   }
 });
 

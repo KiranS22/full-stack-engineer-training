@@ -1,6 +1,6 @@
 const express = require("express");
 const authRouter = express.Router();
-const pool = require("../../db");
+const pool = require("../../elephant");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 
@@ -10,6 +10,8 @@ authRouter.post("/login", async (req, res) => {
     const foundUser = await pool.query("SELECT *  FROM users WHERE email= $1", [
       email,
     ]);
+
+    // console.log("Found:", foundUser.rows[0]);
 
     //if the length is > 0, Email is found.
     //Check Password
@@ -32,8 +34,8 @@ authRouter.post("/login", async (req, res) => {
     } else {
       res.send("User with that email or password not found");
     }
-  } catch (e) {
-    console.log("something went wrong", error);
+  } catch (err) {
+    console.log("something went wrong", err);
   }
 });
 authRouter.post("/register", async (req, res) => {
@@ -57,7 +59,7 @@ authRouter.post("/register", async (req, res) => {
     );
     res.send({ user: allUsers.rows[0], status: "success" });
   } catch (err) {
-    onsole.log("Error:", err.message);
+    console.log("Error:", err.message);
   }
 });
 
@@ -115,7 +117,7 @@ authRouter.put("/update-profile", async (req, res) => {
     });
     // }
   } catch (err) {
-    onsole.log("Error:", err.message);
+    console.log("Error:", err.message);
   }
 });
 

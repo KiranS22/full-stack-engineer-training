@@ -1,10 +1,8 @@
 const express = require("express");
-const pool = require("../../db");
+const pool = require("../../elephant");
 const usersRouter = express.Router();
 
 const bcrypt = require("bcryptjs");
-
-
 
 //GET SINGLE USER
 usersRouter.get("/:id", async (req, res) => {
@@ -15,12 +13,11 @@ usersRouter.get("/:id", async (req, res) => {
     ]);
     res.send(singleUser.rows[0]);
   } catch (err) {
-    onsole.log("Error:", err.message);
+    console.log("Error:", err.message);
   }
 });
 //ADD NEW USER
 usersRouter.post("/", async (req, res) => {
-  
   try {
     const {
       first_name,
@@ -49,7 +46,7 @@ usersRouter.post("/", async (req, res) => {
     );
     res.send(allUsers.rows[0]);
   } catch (err) {
-    onsole.log("Error:", err.message);
+    console.log("Error:", err.message);
   }
 });
 usersRouter.put("/:id", async (req, res) => {
@@ -60,7 +57,7 @@ usersRouter.put("/:id", async (req, res) => {
     "UPDATE  users SET email = $1 WHERE id = $2", [email, id];
     res.send("Information Updated Successfully");
   } catch (err) {
-    onsole.log("Error:", err.message);
+    console.log("Error:", err.message);
   }
 });
 //DELETE USER
@@ -70,7 +67,7 @@ usersRouter.delete("/:id", async (req, res) => {
     await pool.query("DELETE FROM  users WHERE id = $1", [id]);
     res.send("User deleted Successfully");
   } catch (err) {
-    onsole.log("Error:", err.message);
+    console.log("Error:", err.message);
   }
 });
 

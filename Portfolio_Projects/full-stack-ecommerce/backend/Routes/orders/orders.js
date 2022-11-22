@@ -1,6 +1,6 @@
 const express = require("express");
 const ordersRouter = express.Router();
-const pool = require("../../db");
+const pool = require("../../elephant");
 //GET ALL ORDERS ON A SPECIFIC USERS ACCOUNT
 
 ordersRouter.get("/", async (req, res) => {
@@ -16,7 +16,7 @@ ordersRouter.get("/", async (req, res) => {
       res.send({ status: "fail", message: "User is not logged in" });
     }
   } catch (err) {
-    onsole.log("Error:", err.message);
+    console.log("Error:", err.message);
   }
 });
 
@@ -40,7 +40,7 @@ ordersRouter.get("/:orderid", async (req, res) => {
     } else {
     }
   } catch (err) {
-    onsole.log("Error:", err.message);
+    console.log("Error:", err.message);
   }
 });
 
@@ -53,7 +53,7 @@ ordersRouter.delete("/:orderid", async (req, res) => {
     ]);
     res.send("order deleted Successfully");
   } catch (err) {
-    onsole.log("Error:", err.message);
+    console.log("Error:", err.message);
   }
 });
 
