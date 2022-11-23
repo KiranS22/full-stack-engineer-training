@@ -25,7 +25,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await axios.post(
-      "http://localhost:4000/auth/login",
+      `${process.env.REACT_APP_SEVER_URL}/auth/login`,
       user,
       { withCredentials: true }
     );
@@ -39,8 +39,7 @@ const Login = () => {
   };
 
   const googleHandler = () => {
-    const callback = "http://localhost:4000/auth/google";
-    window.open(callback, "_self");
+    window.open(`${process.env.REACT_APP_CALLBACKURL}`, "_self");
   };
 
   return (

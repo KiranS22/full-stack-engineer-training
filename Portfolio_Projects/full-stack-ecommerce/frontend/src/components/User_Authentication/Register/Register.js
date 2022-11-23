@@ -26,7 +26,7 @@ const Register = () => {
       alert("Passwords Must Match");
     } else {
       const response = await axios.post(
-        "http://localhost:4000/auth/register",
+        `${process.env.REACT_APP_SEVER_URL}/auth/register`,
         { ...user, tel: value },
         { withCredentials: true }
       );
