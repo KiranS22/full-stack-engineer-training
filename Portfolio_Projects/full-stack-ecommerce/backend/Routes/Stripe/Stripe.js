@@ -5,7 +5,6 @@ const stripe = require("stripe")(process.env.STRIPE_KEY);
 const pool = require("../../elephant");
 
 stripeRouter.post("/checkout", async (req, res) => {
-  
   const { items } = req.body;
   let purchasedItems = [];
   try {
@@ -58,14 +57,13 @@ stripeRouter.get("/order/success", async (req, res) => {
         [user.id]
       );
       console.log("Uers' cart data", usersCart.rows[0]);
-      //user_id, stripe_session, due_amount, shipping_address, contact, email,
       //   //Creating An Order
       let amount_total = session.amount_total / 100;
       const newOrder = await pool.query(
         "INSERT INTO  orders (user_id, placed_at, stripe_payment_id,amount_due, email) VALUES($1, $2, $3, $4, $5) RETURNING *",
         [user.id, new Date(), session.id, amount_total, user.email]
       );
-      console.log(newOrder.rows[0]); //Contains Order Data
+      console.log("new order", newOrder.rows[0]); //Contains Order Data
       // iNSERTING into Ordered_products Table
       //order_id, product_id
 
