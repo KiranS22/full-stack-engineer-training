@@ -39,6 +39,7 @@ authRouter.post("/login", async (req, res) => {
   }
 });
 authRouter.post("/register", async (req, res) => {
+  console.log('inside regester route!');
   try {
     const {
       firstName,
