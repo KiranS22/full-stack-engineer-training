@@ -12,12 +12,14 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 app.use(
   cors({
-    // origin: `${process.env.CLIENT_URL}`,
+    origin: `${process.env.CLIENT_URL}`,
     credentials: true,
   })
 );
 app.use(express.json());
 app.use(cookieParser());
+
+console.log("Client URL:", process.env.CLIENT_URL);
 
 const PORT = process.env.PORT || 4000;
 
@@ -95,8 +97,6 @@ const authRouter = require("./Routes/auth/auth");
 const productsRouter = require("./Routes/products/products");
 const ordersRouter = require("./Routes/orders/orders");
 const stripeRouter = require("./Routes/Stripe/Stripe");
-
-
 
 app.use("/products", productsRouter);
 app.use("/cart", cartRouter);
