@@ -100,6 +100,7 @@ const stripeRouter = require("./Routes/Stripe/Stripe");
 
 app.get("/", (req, res) => {
   console.log("Backend Working");
+  res.send({ message: "Hello" });
 });
 
 app.use("/products", productsRouter);
