@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AllProducts from "../../Products/AllProducts";
 import NavBar from "../../NavBar/NavBar";
-import Cart from "./../../Cart/Cart";
+// import Cart from "./../../Cart/Cart";
 import Home from "../../Home/Home";
 import Register from "../../User_Authentication/Register/Register";
 import Login from "../../User_Authentication/Login/login";
@@ -35,7 +35,7 @@ const Routing = () => {
               element={<Complete_Order />}
             />
           </Route>
-          <Route path="/cart" element={<Cart />} />
+          {/* <Route path="/cart" element={<Cart />} /> */}
           <Route path="/register" exact element={<Register />} />
           <Route path="/login" exact element={<Login />} />
           <Route path="/products/:id" exact element={<ProductDetails />} />
