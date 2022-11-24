@@ -12,7 +12,7 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 app.use(
   cors({
-    origin: `${process.env.CLIENT_URL}`,
+    // origin: `${process.env.CLIENT_URL}`,
     credentials: true,
   })
 );
