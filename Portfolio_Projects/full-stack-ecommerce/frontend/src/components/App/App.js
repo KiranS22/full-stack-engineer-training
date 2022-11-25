@@ -22,7 +22,7 @@ const App = () => {
           withCredentials: true,
         }
       );
-      console.log("Response:", response.data);
+      console.log("Response:", response);
       if (response.data.status == "success") {
         const { user } = response.data;
 
