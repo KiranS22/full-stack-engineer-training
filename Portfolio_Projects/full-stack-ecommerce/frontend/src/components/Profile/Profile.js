@@ -18,7 +18,7 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await axios.put(
-      `${process.env.REACT_APP_SERVEE_URL}/auth/update-profile`,
+      `${process.env.REACT_APP_SERVER_URL}/auth/update-profile`,
       user,
       { withCredentials: true }
     );

@@ -21,11 +21,19 @@ const Home = () => {
               return (
                 <div className="col-12 col-md-4">
                   <div className="card m-2">
-                    <img
-                      src={product.image}
-                      className="card-img-top"
-                      alt={product.description}
-                    />
+                    {!product.image ? (
+                      <img
+                        src="https://us.123rf.com/450wm/pavelstasevich/pavelstasevich1811/pavelstasevich181101028/112815904-no-image-available-icon-flat-vector-illustration.jpg?ver=6"
+                        alt={product.description}
+                        style={{ width: "100%" }}
+                      />
+                    ) : (
+                      <img
+                        src={product.image}
+                        className="card-img-top"
+                        alt={product.description}
+                      />
+                    )}
                     <div className="card-body">
                       <h5 className="card-title limit">{product.name}</h5>
 
@@ -69,7 +77,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      {/* ////////////////// */}
+      
     </>
   );
 };

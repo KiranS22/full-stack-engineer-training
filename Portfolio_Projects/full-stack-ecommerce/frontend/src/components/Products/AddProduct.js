@@ -15,7 +15,7 @@ const AddProduct = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:4000/products",
+        `${process.enc.REACT_APP_SERVER_URL}/products`,
         product
       );
 

@@ -15,13 +15,13 @@ const AllProducts = () => {
   const handleClick = async (product) => {
     try {
       const response = await axios.post(
-        `http://localhost:4000/cart/${product.id}`,
+        `${process.env.REACT_APP_SERVER_UR}/cart/${product.id}`,
         { product_qty: 1, product_price: product.price },
         { withCredentials: true }
       );
       dispatch(addToCart(product));
     } catch (err) {
-      console.log("Error:", err.message);
+      console.log({ status: "Error", message: err.message });
     }
   };
   return (

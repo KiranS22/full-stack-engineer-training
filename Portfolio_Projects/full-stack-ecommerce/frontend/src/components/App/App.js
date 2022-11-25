@@ -31,7 +31,7 @@ const App = () => {
         console.log("something went wrong");
       }
     } catch (err) {
-      console.log(err.message);
+      console.log({ status: "Error", message: err.meesage });
     }
   };
 

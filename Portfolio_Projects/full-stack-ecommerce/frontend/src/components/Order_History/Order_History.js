@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import axios from "axios";
+import React  from "react";
 import { selectAllOrders } from "../../Redux/features/Slices/Orders/orders";
 import { useSelector } from "react-redux";
 import moment from "moment";

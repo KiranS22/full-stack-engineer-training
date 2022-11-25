@@ -83,9 +83,8 @@ stripeRouter.get("/order/success", async (req, res) => {
       res.redirect(`${process.env.CLIENT_URL}/checkout-success`);
     }
   } catch (err) {
-    console.log("Error:", err.message);
+    res.send({status:"Error", message: err.meesage})
   }
 
-  // res.send("Your order has been made successfully!");
 });
 module.exports = stripeRouter;

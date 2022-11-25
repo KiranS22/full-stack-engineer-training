@@ -120,9 +120,8 @@ authRouter.put("/update-profile", async (req, res) => {
       message: "Profile Updated Sucessfully",
       user: response.rows[0],
     });
-    // }
   } catch (err) {
-    console.log("Error:", err.message);
+    res.send({ status: "Error", message: err.message });
   }
 });
 

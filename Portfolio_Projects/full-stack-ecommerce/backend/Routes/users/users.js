@@ -13,7 +13,7 @@ usersRouter.get("/:id", async (req, res) => {
     ]);
     res.send(singleUser.rows[0]);
   } catch (err) {
-    console.log("Error:", err.message);
+    res.send({status:"Error", message: err.meesage})
   }
 });
 //ADD NEW USER
@@ -46,7 +46,7 @@ usersRouter.post("/", async (req, res) => {
     );
     res.send(allUsers.rows[0]);
   } catch (err) {
-    console.log("Error:", err.message);
+    res.send({status:"Error", message: err.meesage})
   }
 });
 usersRouter.put("/:id", async (req, res) => {
@@ -57,7 +57,7 @@ usersRouter.put("/:id", async (req, res) => {
     "UPDATE  users SET email = $1 WHERE id = $2", [email, id];
     res.send("Information Updated Successfully");
   } catch (err) {
-    console.log("Error:", err.message);
+    res.send({status:"Error", message: err.meesage})
   }
 });
 //DELETE USER
@@ -67,7 +67,7 @@ usersRouter.delete("/:id", async (req, res) => {
     await pool.query("DELETE FROM  users WHERE id = $1", [id]);
     res.send("User deleted Successfully");
   } catch (err) {
-    console.log("Error:", err.message);
+    res.send({status:"Error", message: err.meesage})
   }
 });
 
