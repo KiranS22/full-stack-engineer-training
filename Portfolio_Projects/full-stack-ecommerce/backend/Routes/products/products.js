@@ -19,7 +19,7 @@ productsRouter.get("/", async (req, res) => {
     res.status(403).send({ status: "error" });
   }
 });
-// '/products'
+
 //Add a new product
 productsRouter.post("/", async (req, res) => {
   const { name, price, category, description, imageUrl } = req.body;
