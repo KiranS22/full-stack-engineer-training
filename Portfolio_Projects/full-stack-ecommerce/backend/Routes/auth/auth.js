@@ -69,9 +69,11 @@ authRouter.get("/auth-user", (req, res) => {
     if (req.session.user) {
       res.status(200).send({ user: req.session.user, status: "success" });
     } else {
-      res
-        .status(200)
-        .send({ status: "success", message: "User not logged In" });
+      res.status(200).send({
+        status: "success",
+        message: "User not logged In",
+        session: req.session,
+      });
     }
   } catch (err) {
     res.status(404).send({ status: "error", message: err.message });
