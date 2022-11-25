@@ -39,7 +39,7 @@ authRouter.post("/login", async (req, res) => {
   }
 });
 authRouter.post("/register", async (req, res) => {
-  console.log('inside regester route!');
+  console.log("inside regester route!");
   try {
     const {
       firstName,
@@ -69,10 +69,12 @@ authRouter.get("/auth-user", (req, res) => {
     if (req.session.user) {
       res.status(200).send({ user: req.session.user, status: "success" });
     } else {
-      res.status(200).send("User not logged In");
+      res
+        .status(200)
+        .send({ status: "success", message: "User not logged In" });
     }
   } catch (err) {
-    res.status(404).send(err.message);
+    res.status(404).send({ status: "error", message: err.message });
   }
 });
 
