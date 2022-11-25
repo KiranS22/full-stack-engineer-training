@@ -66,19 +66,19 @@ authRouter.post("/register", async (req, res) => {
 
 authRouter.get("/auth-user", (req, res) => {
   res.send("Come On!!");
-  // try {
-  //   if (req.session.user) {
-  //     res.status(200).send({ user: req.session.user, status: "success" });
-  //   } else {
-  //     res.status(203).send({
-  //       status: "success",
-  //       message: "Why not logged In",
-  //       session: req.session,
-  //     });
-  //   }
-  // } catch (err) {
-  //   res.status(404).send({ status: "error", message: err.message });
-  // }
+  //   // try {
+  //   //   if (req.session.user) {
+  //   //     res.status(200).send({ user: req.session.user, status: "success" });
+  //   //   } else {
+  //   //     res.status(203).send({
+  //   //       status: "success",
+  //   //       message: "Why not logged In",
+  //   //       session: req.session,
+  //   //     });
+  //   //   }
+  //   // } catch (err) {
+  //   //   res.status(404).send({ status: "error", message: err.message });
+  //   // }
 });
 
 authRouter.post("/logout", async (req, res) => {
