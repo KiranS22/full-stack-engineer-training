@@ -25,7 +25,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await axios.post(
-      `${process.env.REACT_APP_SEVER_URL}/auth/login`,
+      `${process.env.REACT_APP_SERVER_URL}/auth/login`,
       user,
       { withCredentials: true }
     );
