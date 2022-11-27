@@ -21,6 +21,7 @@ const AddProduct = () => {
         `${process.env.REACT_APP_SERVER_URL}/products`,
         product
       );
+      console.log("frontend add product", response.data);
 
       if (response.data.status === "success") {
         let product = response.data.product;
