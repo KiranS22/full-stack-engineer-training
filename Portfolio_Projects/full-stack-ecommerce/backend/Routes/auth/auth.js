@@ -64,13 +64,13 @@ authRouter.post("/register", async (req, res) => {
 authRouter.get("/auth-user", (req, res) => {
   //No req.session.user
   try {
-    console.log("session in auth-user", req.session);
     if (req.session.user) {
       res.status(200).send({ user: req.session.user, status: "success" });
     } else {
       res.status(203).send({
         status: "error",
         message: "User is not logged In",
+        session: req.session,
       });
     }
   } catch (err) {
