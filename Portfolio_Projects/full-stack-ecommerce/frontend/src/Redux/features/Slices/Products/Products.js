@@ -39,8 +39,8 @@ const Products = createSlice({
       );
     },
     addProduct: (state, action) => {
-      state.products = state.products.push(action.payload);
-      state.filteredProducts = state.products;
+      state.products.push(action.payload);
+      state.filteredProducts.push(action.payload);
     },
   },
   extraReducers: (builder) => {
