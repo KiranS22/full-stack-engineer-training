@@ -8,6 +8,7 @@ const Slider = () => {
         <slide></slide>
         <slide></slide>
         <slide></slide>
+        <slide></slide>
       </slider>
     </>
   );
