@@ -29,7 +29,7 @@ productsRouter.post("/", async (req, res) => {
       [name, price, category, description, imageUrl]
     );
 
-    res.send(allProducts.rows[0]);
+    res.send({ status: "success", product: allProducts.rows[0] });
   } catch (err) {
     console.log(err);
   }

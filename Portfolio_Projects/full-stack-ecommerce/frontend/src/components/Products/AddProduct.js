@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { addProduct } from "../../Redux/features/Slices/Products/Products";
+import { useDispatch } from "react-redux";
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
@@ -11,6 +13,7 @@ const AddProduct = () => {
     imageUrl: "",
   });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -18,6 +21,13 @@ const AddProduct = () => {
         `${process.env.REACT_APP_SERVER_URL}/products`,
         product
       );
+
+      if (response.data.status === "success") {
+        let product = response.data.product;
+        //dispatch Add Product
+        dispatch(addProduct(product));
+        navigate("/products");
+      }
 
       setProduct({
         name: "",
@@ -29,7 +39,6 @@ const AddProduct = () => {
     } catch (err) {
       console.log(err);
     }
-    navigate("/products");
   };
   return (
     <>

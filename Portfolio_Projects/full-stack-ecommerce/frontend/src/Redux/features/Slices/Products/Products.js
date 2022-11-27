@@ -38,6 +38,10 @@ const Products = createSlice({
         item.name.toLowerCase().includes(action.payload.toLowerCase())
       );
     },
+    addProduct: (state, action) => {
+      state.products = state.products.push(action.payload);
+      state.filteredProducts = state.products;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAllProducts.pending, (state, action) => {
@@ -56,7 +60,7 @@ const Products = createSlice({
 });
 
 export default Products.reducer;
-export const { filterSearch } = Products.actions;
+export const { filterSearch, addProduct } = Products.actions;
 
 export const selectFilteredProducts = (state) => state.product.filteredProducts;
 
