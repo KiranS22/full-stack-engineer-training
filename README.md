@@ -16,6 +16,6 @@ Together, we will be studdying the PERN-Stack curriculum. Join me on this exciti
 <a href="https://www.postgresql.org/docs/" target="_blank" rel="noreferrer"> <img src="https://img.icons8.com/color/48/null/postgreesql.png" alt="Postgres" width="40" height="40"/> </a>
 <a href="http://expressjs.com/en/5x/api.html" target="_blank" rel="noreferrer"> <img src="https://w7.pngwing.com/pngs/545/451/png-transparent-node-js-express-js-javascript-solution-stack-web-application-others-angle-text-rectangle-thumbnail.png" alt="Express" width="40" height="40"/> </a>
 <a href="https://reactjs.org/docs/getting-started.html" target="_blank" rel="noreferrer"> <img src="https://img.icons8.com/officel/16/null/react.png" alt="Reactjs" width="40" height="40"/> </a>
-<a href="https://nodejs.org/en/docs/" target="_blank" rel="noreferrer"> <img src="https://img.icons8.com/color/48/null/nodejs.png  " alt="node" width="40" height="40"/> </a>
+<a href="https://nodejs.org/en/docs/" target="_blank" rel="noreferrer"> <img src="https://img.icons8.com/color/48/null/nodejs.png" alt="node" width="40" height="40"/> </a>
 <a href="https://git-scm.com/video/what-is-version-control" target="_blank" rel="noreferrer"> <img src="https://img.icons8.com/color/48/null/git.png" alt="git" width="40" height="40"/> </a>
 </p>
