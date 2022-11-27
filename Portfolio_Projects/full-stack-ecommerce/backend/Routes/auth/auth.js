@@ -20,7 +20,7 @@ authRouter.post("/login", async (req, res) => {
         //Saving IN Session
         req.session.loggedIn = true;
         req.session.user = foundUser.rows[0];
-        console.log("Who is stored in the session?", req.session.user);
+        res.send({ userInSession: req.session.user });
 
         //Send a Success Message Back
         res.send({ user: req.session.user, status: "success" });
