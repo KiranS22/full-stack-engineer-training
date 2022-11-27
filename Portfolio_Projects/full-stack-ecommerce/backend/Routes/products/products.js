@@ -16,7 +16,7 @@ productsRouter.get("/", async (req, res) => {
     res.send(allProducts.rows);
   } catch (err) {
     console.log(err);
-    res.status(403).send({ status: "error" });
+    res.status(403).send({ status: "error", message: err.message });
   }
 });
 
