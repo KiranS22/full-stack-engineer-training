@@ -26,10 +26,10 @@ slider > * {
   height: 100%;
   left: 100%;
   background-color: #1f1f1f;
-  -webkit-animation: slide 12s infinite;
-  -moz-animation: slide 12s infinite;
-  -o-animation: slide 12s infinite;
-  animation: slide 12s infinite;
+  -webkit-animation: slide 15s infinite;
+  -moz-animation: slide 15s infinite;
+  -o-animation: slide 15s infinite;
+  animation: slide 15s infinite;
   overflow: hidden;
 }
 
