@@ -14,13 +14,13 @@ authRouter.post("/login", async (req, res) => {
 
     console.log("Found:", foundUser.rows[0]);
 
-
     if (foundUser.rows.length > 0) {
       //email is matched now compare password
       if (await bcrypt.compare(password, foundUser.rows[0].password)) {
         //Saving IN Session
         req.session.loggedIn = true;
         req.session.user = foundUser.rows[0];
+        console.log("Who is stored in the session?", req.session.user);
 
         //Send a Success Message Back
         res.send({ user: req.session.user, status: "success" });
