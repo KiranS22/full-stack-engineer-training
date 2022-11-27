@@ -25,7 +25,7 @@ const App = () => {
       console.log("Response:", response.data);
       if (response.data.status == "success") {
         const { user } = response.data;
-
+        console.log('user in app.js:',user);
         dispatch(logInUser(user));
       } else {
         console.log("something went wrong");
