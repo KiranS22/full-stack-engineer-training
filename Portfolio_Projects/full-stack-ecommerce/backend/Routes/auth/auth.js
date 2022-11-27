@@ -70,7 +70,6 @@ authRouter.get("/auth-user", (req, res) => {
       res.status(203).send({
         status: "error",
         message: "User is not logged In",
-        
       });
     }
   } catch (err) {
@@ -86,8 +85,7 @@ authRouter.post("/logout", async (req, res) => {
       console.log("Session Destroyed!");
 
       if (err) {
-        console.log("something went wrong", err);
-        res.send("something went wrong", err);
+        res.send({ status: "Error", message: err.message });
       }
 
       const response = await pool.query(

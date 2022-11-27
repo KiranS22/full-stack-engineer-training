@@ -21,26 +21,22 @@ const Login = () => {
     userAlreadyLoggedIn();
   }, [loggedIn]);
   const handleSubmit = async (e) => {
-    let x = 1;
-    e.preventDefault();
-    while (x < 4) {
-      try {
-        const response = await axios.post(
-          `${process.env.REACT_APP_SERVER_URL}/auth/login`,
-          user,
-          { withCredentials: true }
-        );
-      } catch (err) {
-        x++;
-        continue;
+    try {
+      e.preventDefault();
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/auth/login`,
+        user,
+        { withCredentials: true }
+      );
+
+      console.log("login response", response.data);
+
+      const status = response.data.status;
+      if (status === "success") {
+        navigate("/");
       }
-    }
-
-    console.log("login response", response.data);
-
-    const status = response.data.status;
-    if (status === "success") {
-      navigate("/");
+    } catch (err) {
+      console.log(err.message);
     }
   };
 
