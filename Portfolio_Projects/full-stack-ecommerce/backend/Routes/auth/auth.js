@@ -65,12 +65,13 @@ authRouter.post("/register", async (req, res) => {
 });
 
 authRouter.get("/auth-user", (req, res) => {
+  //No req.session.user
   try {
     if (req.session.user) {
       res.status(200).send({ user: req.session.user, status: "success" });
     } else {
       res.status(203).send({
-        status: "success",
+        status: "error",
         message: "User is not logged In",
       });
     }
