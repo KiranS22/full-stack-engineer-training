@@ -2,13 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { logInUser } from "../../../Redux/features/Slices/Auth/Auth";
-import { useDispatch } from "react-redux";
 import { selectIsLoggedIn } from "../../../Redux/features/Slices/Auth/Auth";
 
 const Login = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -31,7 +28,7 @@ const Login = () => {
       { withCredentials: true }
     );
 
-    console.log(response.data);
+    console.log("login response", response.data);
 
     const status = response.data.status;
     if (status === "success") {
