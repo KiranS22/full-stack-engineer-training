@@ -37,7 +37,7 @@ app.use(
     }),
   })
 );
-//Middlewares for psspor
+//Middlewares for passport
 app.use(passport.initialize());
 app.use(passport.session());
 

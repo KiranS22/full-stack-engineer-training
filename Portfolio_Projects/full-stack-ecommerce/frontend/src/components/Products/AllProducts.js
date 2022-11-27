@@ -15,7 +15,7 @@ const AllProducts = () => {
   const handleClick = async (product) => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_SERVER_UR}/cart/${product.id}`,
+        `${process.env.REACT_APP_SERVER_URL}/cart/${product.id}`,
         { product_qty: 1, product_price: product.price },
         { withCredentials: true }
       );
