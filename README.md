@@ -2,7 +2,7 @@
 
 <p>Welcome to my programming journey!
 
-Together, we will be studdying the PERN-Stack curriculum. Join me on this excitingly,unpredictable rode to becoming a Junior Software Engineer </p>
+Together, we will be studdying the PERN-Stack curriculum. Join me on this excitingly, unpredictable rode to becoming a Junior Software Engineer </p>
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
