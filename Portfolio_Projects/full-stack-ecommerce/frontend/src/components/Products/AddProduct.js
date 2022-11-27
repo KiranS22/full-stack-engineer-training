@@ -14,6 +14,7 @@ const AddProduct = () => {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
