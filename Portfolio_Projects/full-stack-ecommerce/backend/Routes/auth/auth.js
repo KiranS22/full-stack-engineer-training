@@ -5,17 +5,15 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 
 authRouter.post("/login", async (req, res) => {
+  console.log("log in Route hit!");
   try {
     const { email, password } = req.body;
     const foundUser = await pool.query("SELECT *  FROM users WHERE email= $1", [
       email,
     ]);
 
-    // console.log("Found:", foundUser.rows[0]);
+    console.log("Found:", foundUser.rows[0]);
 
-    //if the length is > 0, Email is found.
-    //Check Password
-    // else user does not exist
 
     if (foundUser.rows.length > 0) {
       //email is matched now compare password
