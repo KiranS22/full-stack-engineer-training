@@ -5,13 +5,22 @@ import axios from "axios";
 export const fetchAllProducts = createAsyncThunk(
   "products/fetchAllProducts",
   async () => {
-    const response = await axios.get(
-      `${process.env.REACT_APP_SERVER_URL}/products`,
-      {
-        withCredentials: true,
+    let x = 1;
+    while (x < 4) {
+      try {
+        const response = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/products`,
+          {
+            withCredentials: true,
+          }
+        );
+        return response.data;
+      } catch (err) {
+        x++;
+        continue;
       }
-    );
-    return response.data;
+    }
+    throw new Error("Failed");
   }
 );
 const initialState = {
