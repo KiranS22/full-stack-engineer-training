@@ -21,12 +21,20 @@ const Login = () => {
     userAlreadyLoggedIn();
   }, [loggedIn]);
   const handleSubmit = async (e) => {
+    let x = 1;
     e.preventDefault();
-    const response = await axios.post(
-      `${process.env.REACT_APP_SERVER_URL}/auth/login`,
-      user,
-      { withCredentials: true }
-    );
+    while (x < 4) {
+      try {
+        const response = await axios.post(
+          `${process.env.REACT_APP_SERVER_URL}/auth/login`,
+          user,
+          { withCredentials: true }
+        );
+      } catch (err) {
+        x++;
+        continue;
+      }
+    }
 
     console.log("login response", response.data);
 
