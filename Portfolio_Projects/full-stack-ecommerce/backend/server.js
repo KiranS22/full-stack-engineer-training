@@ -1,5 +1,4 @@
 require("dotenv").config();
-// const allowCors = require("./allowCors");
 const express = require("express");
 const cors = require("cors");
 const pool = require("./elephant");
@@ -7,21 +6,18 @@ const session = require("express-session");
 const pgSessionStore = require("connect-pg-simple")(session);
 const app = express();
 const cookie = require("cookie");
-const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
-// app.use(allowCors);
 app.use(
   cors({
     origin: `${process.env.CLIENT_URL}`,
     credentials: true,
   })
 );
-//fake commit
-app.use(express.json());
-app.use(cookieParser());
 
-console.log("Client URL:", process.env.CLIENT_URL);
+app.use(express.json());
+
+
 
 const PORT = process.env.PORT || 4000;
 

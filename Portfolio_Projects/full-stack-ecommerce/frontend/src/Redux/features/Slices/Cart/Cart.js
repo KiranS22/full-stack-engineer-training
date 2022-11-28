@@ -19,6 +19,7 @@ const cartSlice = createSlice({
     cart: [],
     cartCount: 0,
     cartTotal: 0.0,
+   
   },
   reducers: {
     addToCart: (state, action) => {
@@ -78,7 +79,7 @@ const cartSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAllCartItems.pending, (state, action) => {
-      console.log('Pending');
+   
     });
 
     builder.addCase(fetchAllCartItems.fulfilled, (state, action) => {
