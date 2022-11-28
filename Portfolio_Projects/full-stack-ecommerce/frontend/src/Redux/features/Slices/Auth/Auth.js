@@ -5,6 +5,9 @@ const initialState = {
   isLoggedIn: false,
 };
 
+//can you hear me?No
+//I sent an invite to a google meet ok
+
 const Auth = createSlice({
   name: "auth",
   initialState,

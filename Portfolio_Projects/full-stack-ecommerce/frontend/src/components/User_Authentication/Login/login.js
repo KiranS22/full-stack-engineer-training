@@ -2,9 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { selectIsLoggedIn } from "../../../Redux/features/Slices/Auth/Auth";
+import {
+  selectIsLoggedIn,
+  logInUser,
+} from "../../../Redux/features/Slices/Auth/Auth";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
@@ -30,7 +35,7 @@ const Login = () => {
       );
 
       console.log("login response", response.data);
-
+      dispatch(logInUser(response.data.user));
       const status = response.data.status;
       if (status === "success") {
         navigate("/");
