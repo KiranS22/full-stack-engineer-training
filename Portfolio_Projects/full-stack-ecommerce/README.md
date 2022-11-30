@@ -2,6 +2,8 @@
 
 I made this project in order to demonstrate all of the skills that I have learnt in [Codecademy's ](https://www.codecademy.com) Full Stack Engineer career path.
 
+## Wireframes
+
 ## Languages and Frameworks Used
 
 - PostgreSQL
@@ -43,7 +45,12 @@ An environment variables (env) file relates to valiables that are specific to ea
 
 Navigate to the frontend or backenx folder > Click on .env and edit the variable names as you see approprate. If you do not customise the environmrnt variables you may expirence erors with the code in this repository.
 
+## Things I've learnt whilst making this oroject
+
+## Things that I've struggled with
+
 ## Getting Started with Create React App
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

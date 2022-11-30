@@ -27,6 +27,7 @@ const initialState = {
   products: [],
   filteredProducts: [],
   isLoading: false,
+  isError: false,
 };
 
 const Products = createSlice({
@@ -39,23 +40,27 @@ const Products = createSlice({
       );
     },
     addProduct: (state, action) => {
-      console.log('add product action.payload', action.payload);
+      console.log("add product action.payload", action.payload);
       state.products.push(action.payload);
       state.filteredProducts.push(action.payload);
     },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAllProducts.pending, (state, action) => {
-      console.log("pending");
+      state.isLoading = true;
+      state.isError = false;
     });
 
     builder.addCase(fetchAllProducts.fulfilled, (state, action) => {
       state.products = action.payload;
       state.filteredProducts = action.payload;
+      state.isLoading = false;
+      state.isError = false;
     });
 
     builder.addCase(fetchAllProducts.rejected, (state, action) => {
-      console.log("rejected");
+      state.isError = true;
+      state.isLoading = true;
     });
   },
 });
@@ -64,5 +69,6 @@ export default Products.reducer;
 export const { filterSearch, addProduct } = Products.actions;
 
 export const selectFilteredProducts = (state) => state.product.filteredProducts;
-
 export const selectAllProducts = (state) => state.product.products;
+export const selectProductsIsError = (state) => state.product.isError;
+export const selectProductsIsLoading = (state) => state.product.isLoading;

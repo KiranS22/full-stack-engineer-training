@@ -2,13 +2,18 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../Redux/features/Slices/Cart/Cart";
+import { fetchAllProducts } from "../../Redux/features/Slices/Products/Products";
 import {
   selectAllProducts,
   selectFilteredProducts,
 } from "../../Redux/features/Slices/Products/Products";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useEffect } from "react";
 const AllProducts = () => {
+  useEffect(() => {
+    dispatch(fetchAllProducts());
+  }, []);
   const filteredProducts = useSelector(selectFilteredProducts);
   console.log("Filtered:", filteredProducts);
   const dispatch = useDispatch();

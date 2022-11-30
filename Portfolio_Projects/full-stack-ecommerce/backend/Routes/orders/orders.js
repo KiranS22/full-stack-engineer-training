@@ -1,6 +1,6 @@
 const express = require("express");
 const ordersRouter = express.Router();
-const pool = require("../../elephant");
+const pool = require("../../db");
 //GET ALL ORDERS ON A SPECIFIC USERS ACCOUNT
 
 ordersRouter.get("/", async (req, res) => {
@@ -44,7 +44,7 @@ ordersRouter.get("/:orderid", async (req, res) => {
   }
 });
 
-//DELETE AN ORDER
+//DELETE AN ORDER- will be a
 ordersRouter.delete("/:orderid", async (req, res) => {
   try {
     const { orderid } = req.params;

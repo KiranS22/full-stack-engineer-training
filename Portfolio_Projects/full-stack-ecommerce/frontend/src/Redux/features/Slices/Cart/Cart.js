@@ -19,7 +19,8 @@ const cartSlice = createSlice({
     cart: [],
     cartCount: 0,
     cartTotal: 0.0,
-   
+    isLoading: false,
+    isError: false,
   },
   reducers: {
     addToCart: (state, action) => {
@@ -79,10 +80,13 @@ const cartSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchAllCartItems.pending, (state, action) => {
-   
+      state.isError = false;
+      state.isLoading = true;
     });
 
     builder.addCase(fetchAllCartItems.fulfilled, (state, action) => {
+      state.isError = false;
+      state.isLoading = false;
       let cartCount = 0;
       let cartTotal = 0.0;
       state.cart = action.payload.map(
@@ -102,7 +106,8 @@ const cartSlice = createSlice({
     });
 
     builder.addCase(fetchAllCartItems.rejected, (state, action) => {
-      console.log("rejected");
+      state.isError = true;
+      state.isLoading = true;
     });
   },
 });
@@ -119,5 +124,7 @@ export const selectCart = (state) => {
   return state.cart.cart;
 };
 export const selectCartTotal = (state) => state.cart.cartTotal;
+export const selectCartIsError = (state) => state.cart.isError;
+export const selectCartIsLoading = (state) => state.cart.isLoading;
 
 export default cartSlice.reducer;

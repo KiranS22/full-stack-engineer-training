@@ -1,12 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { selectFilteredProducts } from "../../Redux/features/Slices/Products/Products";
-import { useSelector } from "react-redux";
+import {
+  selectFilteredProducts,
+  fetchAllProducts,
+} from "../../Redux/features/Slices/Products/Products";
+import { useSelector, useDispatch } from "react-redux";
 import Slider from "./Slider/Slider";
+import { useEffect } from "react";
 
 const Home = () => {
+  const dispatch = useDispatch();
   const products = useSelector(selectFilteredProducts);
   let latestProducts = products.slice(0, 3);
+  useEffect(() => {
+    dispatch(fetchAllProducts());
+  }, []);
 
   return (
     <>
@@ -77,7 +85,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-      
     </>
   );
 };

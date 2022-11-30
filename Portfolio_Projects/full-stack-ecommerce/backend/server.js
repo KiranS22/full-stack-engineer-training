@@ -1,10 +1,12 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const pool = require("./elephant");
+const pool = require("./db");
 const session = require("express-session");
 const pgSessionStore = require("connect-pg-simple")(session);
+const { uuid } = require('uuidv4');
 const app = express();
+const cookieParser = require("cookie-parser");
 const cookie = require("cookie");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
@@ -16,17 +18,22 @@ app.use(
 );
 
 app.use(express.json());
-
-
-
+app.use(cookieParser());
+app.set('trust proxy', 1)
 const PORT = process.env.PORT || 4000;
 
 app.use(
   session({
+    genid: function(req){
+      console.log('path sid generation',req.path);
+      let sid = uuid();
+      console.log('Generating SID', sid);
+      return sid
+    },
     resave: true,
     saveUninitialized: false,
     secret: process.env.SECRET_KEY,
-    cookie: { maxAge: 1000 * 60 * 60 * 24, secure: false, sameSite: false },
+    cookie: { maxAge: 1000 * 60 * 60 * 24, secure: false, sameSite: 'lax' },
     store: new pgSessionStore({
       pool: pool,
       createTableIfMissing: true,

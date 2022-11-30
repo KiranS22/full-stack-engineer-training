@@ -24,12 +24,11 @@ const Navbar = () => {
 
   const logoutHandler = async () => {
     try {
-      const { data } = await axios.post(
+      const { data } = await axios.get(
         `${process.env.REACT_APP_SERVER_URL}/auth/logout`,
-        {
+        { 
           withCredentials: true,
-        }
-      );
+        });
       if (data.status === "success") {
         dispatch(logOutUser());
         navigate("/login");

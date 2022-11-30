@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const stripeRouter = express.Router();
 const stripe = require("stripe")(process.env.STRIPE_KEY);
-const pool = require("../../elephant");
+const pool = require("../../db");
 
 stripeRouter.post("/checkout", async (req, res) => {
   const { items } = req.body;
@@ -83,8 +83,7 @@ stripeRouter.get("/order/success", async (req, res) => {
       res.redirect(`${process.env.CLIENT_URL}/checkout-success`);
     }
   } catch (err) {
-    res.send({status:"Error", message: err.meesage})
+    res.send({ status: "Error", message: err.meesage });
   }
-
 });
 module.exports = stripeRouter;

@@ -1,6 +1,6 @@
 const express = require("express");
 const cartRouter = express.Router();
-const pool = require("../../elephant");
+const pool = require("../../db");
 cartRouter.get("/", async (req, res) => {
   if (req.session.user) {
     const { user } = req.session;

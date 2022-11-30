@@ -1,10 +1,19 @@
-import React  from "react";
-import { selectAllOrders } from "../../Redux/features/Slices/Orders/orders";
-import { useSelector } from "react-redux";
+import React from "react";
+import {
+  selectAllOrders,
+  fetchUserOrders,
+} from "../../Redux/features/Slices/Orders/orders";
+import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 const Order_History = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchUserOrders());
+  }, []);
   const orders = useSelector(selectAllOrders);
+
   return (
     <>
       <header className="mt-4 mb-4">

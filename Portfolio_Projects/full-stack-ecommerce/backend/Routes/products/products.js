@@ -1,18 +1,15 @@
 const express = require("express");
 const productsRouter = express.Router();
-const pool = require("../../elephant");
+const pool = require("../../db");
 
 // /products (GET)
 productsRouter.get("/", async (req, res) => {
-  req.session.save((err) => {
-    console.log("saved");
-  });
+ // req.session.save((err) => {});
 
   try {
     const allProducts = await pool.query(
       "SELECT * FROM products ORDER BY id DESC"
     );
-    console.log(allProducts.rows);
     res.send(allProducts.rows);
   } catch (err) {
     console.log(err);
@@ -48,7 +45,7 @@ productsRouter.get("/:id", async (req, res) => {
     console.log(err);
   }
 });
-//update single product)
+//update single product funtionality may be comingg later 
 productsRouter.put("/:id", async (req, res) => {
   const { price } = req.body;
   const { id } = req.params;

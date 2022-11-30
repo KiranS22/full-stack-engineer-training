@@ -12,6 +12,7 @@ import CartItem from "./CartItem";
 import axios from "axios";
 import CheckoutBtn from "./Payments/CheckoutBtn";
 import { selectUser } from "../../Redux/features/Slices/Auth/Auth";
+import { fetchAllCartItems } from "../../Redux/features/Slices/Cart/Cart";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -26,11 +27,11 @@ const Cart = () => {
       `${process.env.REACT_APP_SERVER_URL}/cart`,
       { withCredentials: true }
     );
-    
   };
 
   useEffect(() => {
-    
+    dispatch(fetchAllCartItems());
+
     dispatch(findCartItemsTotal());
   }, [cart]);
   const emptyCart = async () => {

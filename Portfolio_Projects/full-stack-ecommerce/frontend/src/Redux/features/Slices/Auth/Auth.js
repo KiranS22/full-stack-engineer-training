@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: null,
   isLoggedIn: false,
+  isLoadimg: false,
+  isError: false,
 };
 
 //can you hear me?No
@@ -30,4 +32,3 @@ export const { logInUser, logOutUser, updateUser } = Auth.actions;
 export const selectUser = (state) => state.auth.user;
 export const selectIsLoggedIn = (state) => state.auth.isLoggedIn;
 export default Auth.reducer;
-

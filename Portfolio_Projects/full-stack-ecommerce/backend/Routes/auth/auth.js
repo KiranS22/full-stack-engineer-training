@@ -1,8 +1,10 @@
 const express = require("express");
 const authRouter = express.Router();
-const pool = require("../../elephant");
+const pool = require("../../db");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
+const session = require("express-session");
+const pgSessionStore = require("connect-pg-simple")(session);
 
 authRouter.post("/login", async (req, res) => {
   console.log("log in Route hit!");
@@ -20,7 +22,7 @@ authRouter.post("/login", async (req, res) => {
         //Saving IN Session
         req.session.loggedIn = true;
         req.session.user = foundUser.rows[0];
-
+        req.session.save();
         //Send a Success Message Back
         res.send({ user: req.session.user, status: "success" });
       } else {
@@ -65,6 +67,7 @@ authRouter.get("/auth-user", (req, res) => {
   //No req.session.user
   try {
     if (req.session.user) {
+      console.log("We have a User");
       res.status(200).send({ user: req.session.user, status: "success" });
     } else {
       res.status(203).send({
@@ -77,14 +80,16 @@ authRouter.get("/auth-user", (req, res) => {
   }
 });
 
-authRouter.post("/logout", async (req, res) => {
+authRouter.get("/logout", async (req, res) => {
   try {
-    const id = req.sessionID;
+    const id = req.session.id;
+    console.log("ID:", id);
+
+    
 
     req.session.destroy(async (err) => {
-      console.log("Session Destroyed!");
-
       if (err) {
+        console.log('session destroy', err.message);
         res.send({ status: "Error", message: err.message });
       }
 
@@ -92,10 +97,15 @@ authRouter.post("/logout", async (req, res) => {
         "DELETE FROM user_sessions WHERE sid = $1",
         [id]
       );
-      res.clearCookie("connect.sid");
 
+      console.log("Session Destroyed!");
+      //Error with sessions getting destoyed probably here
+      res.clearCookie("connect.sid");
       res.send({ status: "success", message: "User has logged out" });
     });
+
+    
+    
   } catch (err) {
     console.log("Error:", err.message);
     res.send({ status: "Error", message: err.message });
