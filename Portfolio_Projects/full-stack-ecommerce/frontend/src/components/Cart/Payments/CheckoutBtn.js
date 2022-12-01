@@ -6,8 +6,7 @@ const CheckoutBtn = () => {
   const cartItems = useSelector(selectCart);
   console.log("cart items from selector", cartItems);
   const handlePayNow = async () => {
-    console.log("I have paif you money!");
-
+    debugger
     const response = await axios.post(
       `${process.env.REACT_APP_SERVER_URL}/stripe/checkout`,
       {

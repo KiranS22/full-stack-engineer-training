@@ -40,7 +40,7 @@ ordersRouter.get("/:orderid", async (req, res) => {
     } else {
     }
   } catch (err) {
-    console.log("Error:", err.message);
+    res.send({ status: "Error", message: err.essage });
   }
 });
 

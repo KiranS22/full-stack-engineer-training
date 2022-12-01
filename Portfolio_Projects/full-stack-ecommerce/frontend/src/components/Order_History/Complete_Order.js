@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { fetchAllProducts } from "../../Redux/features/Slices/Products/Products";
 const Complete_Order = () => {
   const [order, setOrder] = useState({});
   const [products, setProducts] = useState([]);
   const { orderid } = useParams();
+  const dispatch = useDispatch();
   const getcompleteOrder = async () => {
     const response = await axios.get(
       `${process.env.REACT_APP_SERVER_URL}/orders/${orderid}`,
       { withCredentials: true }
     );
     setProducts(response.data.products);
+    console.log("products", products);
 
     setOrder(response.data.order);
+    console.log("order", order);
   };
   useEffect(() => {
+    dispatch(fetchAllProducts);
     getcompleteOrder();
   }, []);
 

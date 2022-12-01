@@ -43,6 +43,7 @@ stripeRouter.post("/checkout", async (req, res) => {
 //Create an Order
 //Move the items from cart to Ordered_products
 stripeRouter.get("/order/success", async (req, res) => {
+  console.log("Success Route hit");
   try {
     const session = await stripe.checkout.sessions.retrieve(
       req.query.session_id
@@ -58,6 +59,7 @@ stripeRouter.get("/order/success", async (req, res) => {
       );
       console.log("Uers' cart data", usersCart.rows[0]);
       //   //Creating An Order
+      debugger
       let amount_total = session.amount_total / 100;
       const newOrder = await pool.query(
         "INSERT INTO  orders (user_id, placed_at, stripe_payment_id,amount_due, email) VALUES($1, $2, $3, $4, $5) RETURNING *",
