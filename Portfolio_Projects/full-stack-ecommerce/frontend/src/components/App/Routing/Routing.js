@@ -25,10 +25,10 @@ const Routing = () => {
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/products" exact element={<AllProducts />} />
+          <Route path="/checkout-success" element={<SuccessfulPayment />} />
           <Route path="/" element={<ProtectedRoutes />}>
             <Route path="/products/add" exact element={<AddProduct />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/checkout-success" element={<SuccessfulPayment />} />
             <Route path="/order-history" element={<Order_History />} />
             <Route
               path="/order-history/:orderid"

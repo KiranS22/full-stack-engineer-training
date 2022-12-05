@@ -6,6 +6,8 @@ const pool = require("../../db");
 
 stripeRouter.post("/checkout", async (req, res) => {
   const { items } = req.body;
+  console.log("Checkout Hit");
+
   let purchasedItems = [];
   try {
     for (let i = 0; i < items.length; i++) {
@@ -31,19 +33,19 @@ stripeRouter.post("/checkout", async (req, res) => {
       payment_method_types: ["card"],
       line_items: purchasedItems,
       mode: "payment",
-      success_url: `${process.env.CLIENT_URL}/checkout-success`,
+      success_url:
+        "http://localhost:4000/stripe/order/success?session_id={CHECKOUT_SESSION_ID}",
       cancel_url: `${process.env.CLIENT_URL}/cart`,
     });
     res.send({ url: session.url });
   } catch (err) {
-    console.log("Error:", err.message);
+    res.send({ status: "Error", message: err.meesage });
   }
 });
 
 //Create an Order
 //Move the items from cart to Ordered_products
 stripeRouter.get("/order/success", async (req, res) => {
-  console.log("Success Route hit");
   try {
     const session = await stripe.checkout.sessions.retrieve(
       req.query.session_id
@@ -59,7 +61,6 @@ stripeRouter.get("/order/success", async (req, res) => {
       );
       console.log("Uers' cart data", usersCart.rows[0]);
       //   //Creating An Order
-      debugger
       let amount_total = session.amount_total / 100;
       const newOrder = await pool.query(
         "INSERT INTO  orders (user_id, placed_at, stripe_payment_id,amount_due, email) VALUES($1, $2, $3, $4, $5) RETURNING *",
@@ -88,4 +89,5 @@ stripeRouter.get("/order/success", async (req, res) => {
     res.send({ status: "Error", message: err.meesage });
   }
 });
+
 module.exports = stripeRouter;

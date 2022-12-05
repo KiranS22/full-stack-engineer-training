@@ -30,7 +30,7 @@ const Cart = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchAllCartItems());
+  
 
     dispatch(findCartItemsTotal());
   }, [cart]);

@@ -10,6 +10,7 @@ import { selectCartIsLoading } from "../../Redux/features/Slices/Cart/Cart";
 import { selectOrdersIsLoading } from "../../Redux/features/Slices/Orders/orders";
 import { selectProductsIsLoading } from "../../Redux/features/Slices/Products/Products";
 import { useSelector } from "react-redux";
+import { fetchAllCartItems } from "../../Redux/features/Slices/Cart/Cart";
 const App = () => {
   const loadingProducts = useSelector(selectProductsIsLoading);
   const loadingOrders = useSelector(selectOrdersIsLoading);
@@ -18,7 +19,7 @@ const App = () => {
     try {
       const response = await axios.get(
         `${process.env.REACT_APP_SERVER_URL}/auth/auth-user`,
-        { 
+        {
           withCredentials: true,
         }
       );
@@ -39,6 +40,7 @@ const App = () => {
   useEffect(() => {
     // async thunks
     getLoggedInUser();
+    dispatch(fetchAllCartItems());
     //Send an Axios Request to the backend, and check if the user is authenticated. If Yes, then dispatch and loginUser.
   }, []);
 
