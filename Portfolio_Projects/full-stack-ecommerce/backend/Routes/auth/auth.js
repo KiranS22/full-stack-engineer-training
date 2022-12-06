@@ -57,7 +57,7 @@ authRouter.post("/register", async (req, res) => {
       "INSERT INTO users(first_name, last_name, email, password, phone_number, address, city, postcode) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
       [firstName, lastName, email, hash, tel, address, city, postcode]
     );
-    res.send({ user: allUsers.rows[0], status: "success" });
+    res.status(200).send({ user: allUsers.rows[0], status: "success" });
   } catch (err) {
     console.log("Error:", err.message);
   }
@@ -67,7 +67,7 @@ authRouter.get("/auth-user", (req, res) => {
   //No req.session.user
   try {
     if (req.session.user) {
-      console.log("We have a User");
+  
       res.status(200).send({ user: req.session.user, status: "success" });
     } else {
       res.status(203).send({

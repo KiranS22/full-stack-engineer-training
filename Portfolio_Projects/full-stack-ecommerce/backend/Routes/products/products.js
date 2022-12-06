@@ -4,13 +4,12 @@ const pool = require("../../db");
 
 // /products (GET)
 productsRouter.get("/", async (req, res) => {
- // req.session.save((err) => {});
 
   try {
     const allProducts = await pool.query(
       "SELECT * FROM products ORDER BY id DESC"
     );
-    res.send(allProducts.rows);
+    res.status(200).send(allProducts.rows);
   } catch (err) {
     console.log(err);
     res.status(403).send({ status: "error", message: err.message });
@@ -26,7 +25,7 @@ productsRouter.post("/", async (req, res) => {
       [name, price, category, description, imageUrl]
     );
 
-    res.send({ status: "success", product: allProducts.rows[0] });
+    res.status(200).send({ status: "success", product: allProducts.rows[0] });
   } catch (err) {
     console.log(err);
   }

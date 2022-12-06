@@ -11,9 +11,9 @@ ordersRouter.get("/", async (req, res) => {
         "SELECT * FROM orders WHERE user_id= $1",
         [user.id]
       );
-      res.send(AllOrdersFromUser.rows);
+      res.status(200).send(AllOrdersFromUser.rows);
     } else {
-      res.send({ status: "fail", message: "User is not logged in" });
+      res.status(401).send({ status: "fail", message: "User is not logged in" });
     }
   } catch (err) {
     console.log("Error:", err.message);
@@ -44,7 +44,7 @@ ordersRouter.get("/:orderid", async (req, res) => {
   }
 });
 
-//DELETE AN ORDER- will be a
+//DELETE AN ORDER- will be added later
 ordersRouter.delete("/:orderid", async (req, res) => {
   try {
     const { orderid } = req.params;
