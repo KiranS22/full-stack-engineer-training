@@ -58,7 +58,7 @@ An environment variables (env) file relates to valiables that are specific to ea
 
 Navigate to the frontend or backenx folder > Click on .env and edit the variable names as you see approprate. If you do not customise the environmrnt variables you may expirence erors with the code in this repository.
 
-## Things I've learnt whilst making this oroject
+## Things I've learnt whilst making this Poroject
 
 I made this project as part of the 'full-Stack Engineer Career Path' on Codecademy. This is my first ever PERN-Stack app, so as you can imagine I have learnt alot during this process.
 

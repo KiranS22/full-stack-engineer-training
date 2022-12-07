@@ -39,7 +39,7 @@ stripeRouter.post("/checkout", async (req, res) => {
     });
     res.send({ url: session.url });
   } catch (err) {
-    res.send({ status: "Error", message: err.meesage });
+    res.status(404).send({ status: "Error", message: err.message });
   }
 });
 

@@ -13,10 +13,12 @@ ordersRouter.get("/", async (req, res) => {
       );
       res.status(200).send(AllOrdersFromUser.rows);
     } else {
-      res.status(401).send({ status: "fail", message: "User is not logged in" });
+      res
+        .status(403)
+        .send({ status: "error", message: "User is not logged in" });
     }
   } catch (err) {
-    console.log("Error:", err.message);
+    res.status(404).send({ status: "error", message: err.message });
   }
 });
 
@@ -38,9 +40,10 @@ ordersRouter.get("/:orderid", async (req, res) => {
 
       res.send({ products: orderProducts.rows, order: orderInfo.rows[0] });
     } else {
+      res.status(403).send({ status: "error", message: "User Not Logged In" });
     }
   } catch (err) {
-    res.send({ status: "Error", message: err.essage });
+    res.status(404).send({ status: "error", message: err.message });
   }
 });
 

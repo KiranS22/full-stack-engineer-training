@@ -24,17 +24,19 @@ authRouter.post("/login", async (req, res) => {
         req.session.user = foundUser.rows[0];
         req.session.save();
         //Send a Success Message Back
-        res.send({ user: req.session.user, status: "success" });
+        res.status(201).send({ user: req.session.user, status: "success" });
       } else {
-        res.send(
-          "A user with these credentials dose not exist! Please register"
-        );
+        res
+          .status(200)
+          .send(
+            "A user with these credentials dose not exist! Please register"
+          );
       }
     } else {
-      res.send("User with that email or password not found");
+      res.status(200).send("User with that email or password not found");
     }
   } catch (err) {
-    console.log("something went wrong", err);
+    res.status(404).send({ status: "error", message: err.message });
   }
 });
 authRouter.post("/register", async (req, res) => {
@@ -59,7 +61,7 @@ authRouter.post("/register", async (req, res) => {
     );
     res.status(200).send({ user: allUsers.rows[0], status: "success" });
   } catch (err) {
-    console.log("Error:", err.message);
+    res.status(401).send({ status: "error", message: err.message });
   }
 });
 
@@ -67,10 +69,9 @@ authRouter.get("/auth-user", (req, res) => {
   //No req.session.user
   try {
     if (req.session.user) {
-  
-      res.status(200).send({ user: req.session.user, status: "success" });
+      res.status(201).send({ user: req.session.user, status: "success" });
     } else {
-      res.status(203).send({
+      res.status(403).send({
         status: "error",
         message: "User is not logged In",
       });
@@ -85,11 +86,9 @@ authRouter.get("/logout", async (req, res) => {
     const id = req.session.id;
     console.log("ID:", id);
 
-    
-
     req.session.destroy(async (err) => {
       if (err) {
-        console.log('session destroy', err.message);
+        console.log("session destroy", err.message);
         res.send({ status: "Error", message: err.message });
       }
 
@@ -101,14 +100,12 @@ authRouter.get("/logout", async (req, res) => {
       console.log("Session Destroyed!");
       //Error with sessions getting destoyed probably here
       res.clearCookie("connect.sid");
-      res.send({ status: "success", message: "User has logged out" });
+      res
+        .status(200)
+        .send({ status: "success", message: "User has logged out" });
     });
-
-    
-    
   } catch (err) {
-    console.log("Error:", err.message);
-    res.send({ status: "Error", message: err.message });
+    res.status(404).send({ status: "error", message: err.message });
   }
 });
 authRouter.put("/update-profile", async (req, res) => {
@@ -121,13 +118,13 @@ authRouter.put("/update-profile", async (req, res) => {
       [firstName, lastName, tel, address, city, postcode, email]
     );
 
-    res.send({
+    res.status(200).send({
       status: "success",
       message: "Profile Updated Sucessfully",
       user: response.rows[0],
     });
   } catch (err) {
-    res.send({ status: "Error", message: err.message });
+    res.status(404).send({ status: "Error", message: err.message });
   }
 });
 
