@@ -9,9 +9,9 @@ cartRouter.get("/", async (req, res) => {
         "SELECT * FROM cart INNER JOIN products ON cart.product_id = products.id WHERE cart.user_id = $1",
         [user.id]
       );
-      res.send(usersCart.rows);
+      res.status(200).send(usersCart.rows);
     } catch (err) {
-      console.log("Error:", err.message);
+      res.status(404).send({ status: "error", message: err.message });
     }
   } else {
     res.send([]);
@@ -54,7 +54,7 @@ cartRouter.post("/:productid", async (req, res) => {
         .send({ status: "error", message: "User is not loggedIn!" });
     }
   } catch (err) {
-    console.log("Error:", err.message);
+    res.status(404).send({ status: "error", message: err.message });
   }
 });
 
@@ -68,9 +68,11 @@ cartRouter.delete("/:productid", async (req, res) => {
         [productid, user.id]
       );
       res.send({ status: "success", message: "Item deleted successfully!" });
+    } else {
+      res.status(403).send({ status: "error", message: "User not logged In" });
     }
   } catch (err) {
-    console.log("Error", err.message);
+    res.status(404).send({ status: "error", message: err.message });
   }
 });
 //clear the whole cart from the database

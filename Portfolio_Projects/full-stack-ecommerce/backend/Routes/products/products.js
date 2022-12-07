@@ -4,7 +4,6 @@ const pool = require("../../db");
 
 // /products (GET)
 productsRouter.get("/", async (req, res) => {
-
   try {
     const allProducts = await pool.query(
       "SELECT * FROM products ORDER BY id DESC"
@@ -12,7 +11,7 @@ productsRouter.get("/", async (req, res) => {
     res.status(200).send(allProducts.rows);
   } catch (err) {
     console.log(err);
-    res.status(403).send({ status: "error", message: err.message });
+    res.status(404).send({ status: "error", message: err.message });
   }
 });
 
@@ -39,12 +38,12 @@ productsRouter.get("/:id", async (req, res) => {
       "SELECT * FROM products WHERE id = $1",
       [id]
     );
-    res.send(singleProduct.rows[0]);
+    res.status(200).send(singleProduct.rows[0]);
   } catch (err) {
-    console.log(err);
+    res.status(404).send({ status: "error", message: err.message });
   }
 });
-//update single product funtionality may be comingg later 
+//update single product funtionality may be comingg later
 productsRouter.put("/:id", async (req, res) => {
   const { price } = req.body;
   const { id } = req.params;
@@ -54,11 +53,13 @@ productsRouter.put("/:id", async (req, res) => {
       "UPDATE  products SET price = $1 WHERE id = $2",
       [price, id]
     );
-    res.send("prodct Updated Successfully");
+    res.status(200).send("prodct Updated Successfully");
   } catch (err) {
-    console.log(err);
+    res.status(404).send({status: 'error', message: err.message})
   }
 });
+
+// Delete a single product from 
 productsRouter.delete("/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -67,9 +68,9 @@ productsRouter.delete("/:id", async (req, res) => {
       "DELETE FROM  products WHERE id = $1",
       [id]
     );
-    res.send("product deleted Successfully");
+    res.status(200).send("product deleted Successfully");
   } catch (err) {
-    console.log(err);
+    res.status(404),send({status: 'error', message: err.message})
   }
 });
 
