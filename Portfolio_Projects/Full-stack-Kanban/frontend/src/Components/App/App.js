@@ -1,10 +1,12 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import Routing from "./Routing/Routing";
+import "./app.css"
 
 function App() {
   return (
-   <>
-   </>
+    <>
+      <Routing />
+    </>
   );
 }
 
