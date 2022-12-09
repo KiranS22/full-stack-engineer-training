@@ -8,19 +8,19 @@ const Home = () => {
         <div className="text-center ">
           <Input />
         </div>
-        <div className="row b align-items-start mt-4">
-          <div className="col b-2 mt-4">
+        <div className="row align-items-start mt-4">
+          <div className="col custom-border mt-4">
             <header className="heading">
               <h2>To Do</h2>
             </header>
           </div>
-          <div className="col b-2 mt-4">
+          <div className="col custom-border mt-4">
             <header className="heading">
               <h2>In Progress</h2>
             </header>
             <p></p>
           </div>
-          <div className="col b-2 mt-4">
+          <div className="col custom-border mt-4">
             {" "}
             <header className="heading">
               <h2>Done</h2>
@@ -29,7 +29,10 @@ const Home = () => {
           </div>
         </div>
       </div>
+    
     </>
+    
+    
   );
 };
 

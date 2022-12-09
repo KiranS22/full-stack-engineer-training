@@ -17,10 +17,15 @@
   width: 100vw;
 }
 
-.heading h2{
+.heading h2 {
   font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-size: 20;
   text-align: center;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid #fff;
+  border-top: 2px solid #fff;
+}
+.custom-border {
+  border-left: 2px solid #fff;
+  border-right: 2px solid #fff;
 }
