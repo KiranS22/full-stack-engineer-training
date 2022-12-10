@@ -1,5 +1,6 @@
 import React from "react";
 import Input from "../Input/input";
+import Tasks from "../Tasks/Tasks";
 import "./home.css";
 const Home = () => {
   return (
@@ -13,6 +14,9 @@ const Home = () => {
             <header className="heading">
               <h2>To Do</h2>
             </header>
+            <div className="task container">
+              <Tasks />
+            </div>
           </div>
           <div className="col custom-border mt-4">
             <header className="heading">
@@ -29,10 +33,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    
     </>
-    
-    
   );
 };
 
