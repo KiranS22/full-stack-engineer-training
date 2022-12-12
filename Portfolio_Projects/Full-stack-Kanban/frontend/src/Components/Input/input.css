@@ -9,11 +9,5 @@ label {
   font-weight: 800;
   font-size: 18px;
 }
-.underline {
-  border-bottom: 1px solid transparent;
-  transition: 0.2s linear;
-}
 
-.underline:hover {
-  border-bottom: 1px solid #000;
-}
+ 

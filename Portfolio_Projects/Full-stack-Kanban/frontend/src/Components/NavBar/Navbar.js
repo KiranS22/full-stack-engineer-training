@@ -43,6 +43,11 @@ const Navbar = () => {
                 Login
               </Link>
             </li>
+            <li>
+              <div className="toggler nav-link">
+                <Toggler />
+              </div>
+            </li>
           </ul>
         </div>
       </nav>

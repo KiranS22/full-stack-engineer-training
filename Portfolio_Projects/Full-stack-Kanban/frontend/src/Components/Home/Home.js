@@ -1,11 +1,12 @@
 import React from "react";
 import Input from "../Input/input";
 import Tasks from "../Tasks/Tasks";
+import Toggler from "../Toggler/Toggler";
 import "./home.css";
 const Home = () => {
   return (
     <>
-      <div className="home-container">
+      <div className="home-container-light">
         <div className="text-center ">
           <Input />
         </div>
@@ -14,7 +15,7 @@ const Home = () => {
             <header className="heading">
               <h2>To Do</h2>
             </header>
-            <div className="task container">
+            <div className="task-container ">
               <Tasks />
             </div>
           </div>

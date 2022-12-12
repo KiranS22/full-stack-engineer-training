@@ -7,5 +7,30 @@
 
 /* Font Imports  */
 /* Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,200;1,300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,200;1,300&display=swap");
 
+/* Light Mode Classes */
+.body-bg-light {
+  background-color: white;
+}
+
+.content-light {
+  color: black;
+}
+
+.home-container-light {
+
+  background-color: beige;
+  height: 100vh;
+}
+
+/* Dark MOde Classes */
+.body-bg-dark {
+  background-color: rgb(44, 44, 44);
+}
+.content-dark {
+  color: white;
+}
+
+.home-container-dark {
+}

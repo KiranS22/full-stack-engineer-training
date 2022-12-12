@@ -4,7 +4,8 @@ import "./login.css";
 const Login = () => {
   return (
     <>
-      <div className="container">
+      <h1>Login Page</h1>
+      {/* <div className="container">
         {" "}
         <section className="vh-100 container">
           <div className="container-fluid h-custom">
@@ -105,7 +106,7 @@ const Login = () => {
             </div>
           </div>
         </section>
-      </div>
+      </div> */}
     </>
   );
 };

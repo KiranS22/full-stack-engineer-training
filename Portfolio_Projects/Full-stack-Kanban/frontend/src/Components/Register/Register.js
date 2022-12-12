@@ -1,9 +1,12 @@
 import React from "react";
-
+import { selectTheme } from "../../Redux/features/Slices/Toggler/Toggler";
+import { useSelector } from "react-redux";
 const Register = () => {
+  const mode = useSelector(selectTheme);
   return (
     <>
-      <section>
+      <h1 className={`content-${mode}`}>Register Page</h1>
+      {/* <section>
         <div className="container-fluid ">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-md-9 col-lg-6 col-xl-5">
@@ -208,7 +211,7 @@ const Register = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 };
