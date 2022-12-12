@@ -2,11 +2,15 @@ import React from "react";
 import "./navbar.css";
 import { Link } from "react-router-dom";
 import Toggler from "../Toggler/Toggler";
+import { selectTheme } from "../../Redux/features/Slices/Toggler/Toggler";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const mode = useSelector(selectTheme);
+
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg" id={`nav-bg-${mode}`}>
         <button
           className="navbar-toggler"
           type="button"
@@ -21,12 +25,12 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav mx-auto">
             <li className="nav-item active">
-              <Link className="nav-link" to="/">
+              <Link className={`nav-link nav-link${mode}`} to="/">
                 Home <span className="sr-only">(current)</span>
               </Link>
             </li>
             <li className="nav-item underline">
-              <Link className="nav-link" to="/about">
+              <Link className={`nav-link nav-link${mode}`} to="/about">
                 About
               </Link>
             </li>
@@ -34,12 +38,12 @@ const Navbar = () => {
               Get Kanabised
             </Link>
             <li className="nav-item underline">
-              <Link className="nav-link" to="/register">
+              <Link className={`nav-link nav-link${mode}`} to="/register">
                 Register
               </Link>
             </li>
             <li className="nav-item underline">
-              <Link className="nav-link" to="/login">
+              <Link className={`nav-link nav-link${mode}`} to="/login">
                 Login
               </Link>
             </li>

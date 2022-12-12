@@ -9,7 +9,7 @@ function App() {
   console.log(mode);
   return (
     <>
-      <div className={`body-bg-${mode}`}>
+      <div id={`body-bg-${mode}`}>
         <Routing />
       </div>
     </>

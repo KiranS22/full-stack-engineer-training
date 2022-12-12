@@ -1,12 +1,14 @@
 import React from "react";
 import Input from "../Input/input";
 import Tasks from "../Tasks/Tasks";
-import Toggler from "../Toggler/Toggler";
+import { selectTheme } from "../../Redux/features/Slices/Toggler/Toggler";
+import { useSelector } from "react-redux";
 import "./home.css";
 const Home = () => {
+  const mode = useSelector(selectTheme);
   return (
     <>
-      <div className="home-container-light">
+      <div className={`home-container-${mode} content-${mode}`}>
         <div className="text-center ">
           <Input />
         </div>

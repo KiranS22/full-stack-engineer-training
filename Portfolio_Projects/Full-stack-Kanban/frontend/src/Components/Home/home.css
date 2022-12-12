@@ -13,11 +13,10 @@
   border-top: 2px solid #fff;
 }
 .custom-border {
-  /* border-left: 2px solid #fff;
-  border-right: 2px solid #fff; */
-  border: 3px solid red;
+  border-left: 2px solid #fff;
+  border-right: 2px solid #fff;
 }
 
-.custom-border-2{
+.custom-border-2 {
   border: 3px solid blue;
 }

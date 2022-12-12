@@ -10,31 +10,66 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,200;1,300&display=swap");
 
 /* Light Mode Classes */
-.body-bg-light {
+#body-bg-light {
   background-color: white;
 }
 
-.nav-bg-light{
-  
+#nav-bg-light {
+  background-color: #f8f9fa;
 }
-
-.content-light {
+#nav-link-light:hover {
+  border-bottom: 2px solid #000000;
+}
+#content-light {
   color: black;
 }
 
 .home-container-light {
-
-  background-color: beige;
+  background-color: #f5f5dc;
   height: 100vh;
+}
+#logo-light {
+  color: #000000;
+  font-family: "Shrikhand", cursive;
+}
+#nav-link-dark {
+  color: #fff;
+}
+
+#custom-border-light {
+  border-left: 2px solid rgb(4, 28, 17);
+  border-right: 2px solid rgb(4, 28, 17);
 }
 
 /* Dark MOde Classes */
-.body-bg-dark {
+#body-bg-dark {
   background-color: rgb(44, 44, 44);
 }
-.content-dark {
+#content-dark {
   color: white;
 }
 
 .home-container-dark {
+  background-color: #69695e;
+  height: 100vh;
+}
+
+#nav-bg-dark {
+  background-color: #f8f9fa;
+}
+#nav-link-dark {
+  color: #fff;
+}
+#nav-link-dark:hover {
+  border-bottom: 2px solid #fff;
+}
+
+#logo-dark {
+  color: #fff;
+  font-family: "Shrikhand", cursive;
+}
+
+#custom-border-light {
+  border-left: 2px solid #fff;
+  border-right: 2px solid #fff;
 }
