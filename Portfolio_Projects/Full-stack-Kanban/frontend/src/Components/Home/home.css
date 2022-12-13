@@ -9,14 +9,7 @@
   font-weight: 300;
   font-size: 20;
   text-align: center;
-  border-bottom: 2px solid #fff;
-  border-top: 2px solid #fff;
-}
-.custom-border {
-  border-left: 2px solid #fff;
-  border-right: 2px solid #fff;
+
 }
 
-.custom-border-2 {
-  border: 3px solid blue;
-}
+

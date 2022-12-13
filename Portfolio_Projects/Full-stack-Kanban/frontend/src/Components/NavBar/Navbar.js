@@ -10,7 +10,10 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-lg" id={`nav-bg-${mode}`}>
+      <nav
+        className="navbar navbar-expand-lg  navbar-nav"
+        id={`nav-bg-${mode}`}
+      >
         <button
           className="navbar-toggler"
           type="button"
@@ -25,25 +28,37 @@ const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav mx-auto">
             <li className="nav-item active">
-              <Link className={`nav-link nav-link${mode}`} to="/">
+              <Link className="nav-link" id={`nav-link-home-${mode}`} to="/">
                 Home <span className="sr-only">(current)</span>
               </Link>
             </li>
             <li className="nav-item underline">
-              <Link className={`nav-link nav-link${mode}`} to="/about">
+              <Link
+                className="nav-link"
+                id={`nav-link-about-${mode}`}
+                to="/about"
+              >
                 About
               </Link>
             </li>
-            <Link className="navbar-brand logo" to="/">
+            <Link className="navbar-brand logo" id={`logo-${mode}`} to="/">
               Get Kanabised
             </Link>
             <li className="nav-item underline">
-              <Link className={`nav-link nav-link${mode}`} to="/register">
+              <Link
+                className="nav-link"
+                id={`nav-link-login-${mode}`}
+                to="/register"
+              >
                 Register
               </Link>
             </li>
             <li className="nav-item underline">
-              <Link className={`nav-link nav-link${mode}`} to="/login">
+              <Link
+                className="nav-link"
+                id={`nav-link-login-${mode}`}
+                to="/login"
+              >
                 Login
               </Link>
             </li>
