@@ -1,11 +1,54 @@
 import React from "react";
 import "./login.css";
+import { selectTheme } from "../../Redux/features/Slices/Toggler/Toggler";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { selectIsLoggedIn } from "../../Redux/features/Slices/Auth/Auth";
+import { logInUser } from "../../Redux/features/Slices/Auth/Auth";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+  const loggedIn = useSelector(selectIsLoggedIn);
+  const userAlreadyLoggedIn = () => {
+    if (loggedIn) {
+      navigate("/");
+    }
+  };
+
+  useEffect(() => {
+    userAlreadyLoggedIn();
+  }, [loggedIn]);
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/auth/login`,
+        user,
+        { withCredentials: true }
+      );
+
+      console.log("login response", response.data);
+      dispatch(logInUser(response.data.user));
+      const status = response.data.status;
+      if (status === "success") {
+        navigate("/");
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+  const mode = useSelector(selectTheme);
   return (
     <>
-      <h1>Login Page</h1>
-      {/* <div className="container">
+      <div className="container" id={`content-${mode}`}>
         {" "}
         <section className="vh-100 container">
           <div className="container-fluid h-custom">
@@ -23,7 +66,7 @@ const Login = () => {
                   <div className="row">
                     <div className="col-md-3">
                       <button
-                        onClick={() => googleHandler()}
+                        // onClick={() => googleHandler()}
                         className="btn btn-outline-dark"
                         style={{ textTransform: "none" }}
                       >
@@ -82,18 +125,21 @@ const Login = () => {
                   </div>
 
                   <div className="text-center text-lg-start mt-4 pt-2">
-                    <button
-                      type="sumbit"
-                      className="btn btn-primary btn-lg stylesForButton"
-                      style={{
-                        paddingLeft: "2.5rem",
-                        paddingRight: "2.5rem",
-                        backgroundColor: "#68243c",
-                        color: "#ffffff",
-                      }}
-                    >
-                      Login
-                    </button>
+                    {mode == "light" ? (
+                      <button
+                        type="sumbit"
+                        className={` btn btn-primary btn-lg `}
+                      >
+                        Login
+                      </button>
+                    ) : (
+                      <button
+                        type="sumbit"
+                        className={` btn btn-outline-info btn-lg `}
+                      >
+                        Login
+                      </button>
+                    )}
                     <p className="small fw-bold mt-2 pt-1 mb-0">
                       Don't have an account?{" "}
                       <Link to="/register" className="link-danger">
@@ -106,7 +152,7 @@ const Login = () => {
             </div>
           </div>
         </section>
-      </div> */}
+      </div>
     </>
   );
 };

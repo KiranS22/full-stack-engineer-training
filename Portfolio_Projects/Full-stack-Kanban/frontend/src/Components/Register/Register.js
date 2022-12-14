@@ -1,12 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { selectTheme } from "../../Redux/features/Slices/Toggler/Toggler";
 import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 const Register = () => {
   const mode = useSelector(selectTheme);
+  const navigate = useNavigate();
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    verifyPassword: "",
+    tel: "",
+    address: "",
+    city: "",
+    postcode: "",
+  });
+  const [value, setValue] = useState();
+
+  const handleSubmit = async (e) => {
+    console.log("user", user);
+    e.preventDefault();
+    if (user.password !== user.verifyPassword) {
+      alert("Passwords Must Match");
+    } else {
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/auth/register`,
+        { ...user, tel: value },
+        { withCredentials: true }
+      );
+      console.log(response.data);
+      const status = response.data.status;
+      if (status === "success") {
+        navigate("/login");
+      }
+    }
+  };
   return (
     <>
-      <h1 className={`content-${mode}`}>Register Page</h1>
-      {/* <section>
+      <section id={`content-${mode}`}>
         <div className="container-fluid ">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-md-9 col-lg-6 col-xl-5">
@@ -194,12 +229,18 @@ const Register = () => {
                 </div>
 
                 <div className="text-center text-lg-start mt-4 pt-2">
-                  <button
-                    type="submit"
-                    className="btn  btn-outline-dark btn-lg"
-                  >
-                    Register
-                  </button>
+                  {mode === "light" ? (
+                    <button
+                      type="submit"
+                      className="btn  btn-outline-primary btn-lg"
+                    >
+                      Register
+                    </button>
+                  ) : (
+                    <button type="submit" className="btn  btn-outline-info btn-lg">
+                      Register
+                    </button>
+                  )}
                   <p className="small fw-bold mt-2 pt-1 mb-0">
                     Already have an account?{" "}
                     <Link to="/login" className="link-danger">
@@ -211,7 +252,7 @@ const Register = () => {
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
     </>
   );
 };

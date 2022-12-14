@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  mode: "dark",
+  mode: "light",
 };
 
 const Toggle = createSlice({
@@ -9,7 +9,7 @@ const Toggle = createSlice({
   initialState,
   reducers: {
     toggleTheme: (state, action) => {
-      if (state.mode === "light") {
+      if (action.payload === true) {
         state.mode = "dark";
       } else {
         state.mode = "light";

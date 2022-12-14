@@ -48,15 +48,9 @@
   border-top: 2px solid #000;
 }
 
-#custom-border-light {
-  border-left: 2px solid rgb(4, 28, 17);
-  border-right: 2px solid rgb(4, 28, 17);
-}
-
 #custom-border-light-1,
 #custom-border-light-2,
 #custom-border-light-3 {
-  border-left: 2px solid rgb(26, 26, 26);
   border-right: 2px solid rgb(26, 26, 26);
 }
 /* Task card light mode stylings */
@@ -86,16 +80,15 @@
   background-color: #505050;
   height: 100vh;
 }
-#headimg-1-dark,
-#headimg-2-dark,
-#headimg-3-dark {
+#heading-1-dark,
+#heading-2-dark,
+#heading-3-dark {
   border-bottom: 2px solid #fff;
   border-top: 2px solid #fff;
 }
 #custom-border-dark-1,
 #custom-border-dark-2,
 #custom-border-dark-3 {
-  border-left: 2px solid #fff;
   border-right: 2px solid #fff;
 }
 /* Navbar dark stylings  */

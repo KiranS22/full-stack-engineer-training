@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./toggler.css";
 import { useDispatch } from "react-redux";
 import { toggleTheme } from "../../Redux/features/Slices/Toggler/Toggler";
 
 const Toggler = () => {
-  const [checked, setChecked] = useState(true);
+  const defaultMode = JSON.parse(localStorage.getItem("mode"));
+  const [checked, setChecked] = useState(defaultMode ?? false);
   const dispatch = useDispatch();
-  const toggleModes = () => {
-    console.log(checked);
-    setChecked(!checked);
-    //Dispatch
-    dispatch(toggleTheme());
+  useEffect(() => {
+    dispatch(toggleTheme(checked));
+  }, []);
+  const toggleModes = (e) => {
+    let c = e.target.checked;
+    setChecked(c);
+    localStorage.setItem("mode", JSON.stringify(c));
+    dispatch(toggleTheme(c));
   };
 
   return (
@@ -19,8 +23,8 @@ const Toggler = () => {
         <input
           className="form-check-input"
           type="checkbox"
-          defaultChecked={checked}
-          onChange={() => toggleModes()}
+          value={checked}
+          onChange={toggleModes}
           id="flexSwitchCheckDefault"
         />
         <label

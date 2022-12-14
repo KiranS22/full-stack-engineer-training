@@ -13,21 +13,24 @@ const Home = () => {
           <Input />
         </div>
         <div className="row align-items-start mt-4">
-          <div className="col  mt-4" id={`custom-border${mode}`}>
+          <div className="col  mt-4" id={`custom-border-${mode}-1`}>
             <header className="heading" id={`heading-1-${mode}`}>
               <h2>To Do</h2>
             </header>
-            <div className="task-container ">
+            <div
+              className="task-container "
+              style={{ border: "5px solid green" }}
+            >
               <Tasks />
             </div>
           </div>
-          <div className="col mt-4" id={`custom-border-2-${mode}`}>
+          <div className="col mt-4" id={`custom-border-${mode}-2`}>
             <header className="heading" id={`heading-1-${mode}`}>
               <h2>In Progress</h2>
             </header>
             <p></p>
           </div>
-          <div className="col  mt-4">
+          <div className="col  mt-4" id={`custom-border-${mode}-3`}>
             {" "}
             <header className="heading" id={`heading-3-${mode}`}>
               <h2>Done</h2>
