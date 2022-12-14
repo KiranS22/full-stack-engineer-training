@@ -29,6 +29,8 @@ const tasks = createSlice({
   },
 });
 export const selectTsskCount = (state) => state.tasks.tasksCount;
+export const selectTask = (state) => state.task.id;
+
 export const { addTask, deleteTask, completeOrNot } = tasks.actions;
 
 export default tasks.reducer;
