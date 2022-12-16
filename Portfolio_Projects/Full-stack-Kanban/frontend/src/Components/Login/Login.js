@@ -27,18 +27,22 @@ const Login = () => {
     userAlreadyLoggedIn();
   }, [loggedIn]);
   const handleSubmit = async (e) => {
+    console.log("function running");
+    e.preventDefault();
     try {
-      e.preventDefault();
       const response = await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/auth/login`,
-        user,
-        { withCredentials: true }
+        user
       );
-
-      console.log("login response", response.data);
-      dispatch(logInUser(response.data.user));
+      console.log(("response", response));
       const status = response.data.status;
+      console.log("status", status);
       if (status === "success") {
+        const { user, token } = response.data;
+        console.log("User in login", user);
+        console.log("Token in login", token);
+        dispatch(logInUser({ token, user }));
+
         navigate("/");
       }
     } catch (err) {
@@ -129,6 +133,7 @@ const Login = () => {
                       <button
                         type="sumbit"
                         className={` btn btn-primary btn-lg `}
+                        onClick={(e) => handleSubmit(e)}
                       >
                         Login
                       </button>
@@ -136,6 +141,7 @@ const Login = () => {
                       <button
                         type="sumbit"
                         className={` btn btn-outline-info btn-lg `}
+                        onClick={(e) => handleSubmit(e)}
                       >
                         Login
                       </button>

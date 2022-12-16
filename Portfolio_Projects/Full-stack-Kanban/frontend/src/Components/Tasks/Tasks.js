@@ -8,7 +8,7 @@ const Tasks = () => {
   const [{ isDraging }, drag] = useDrag(() => ({
     type: "card",
     collect: (monitor) => ({
-      item: { id: id },
+      // item: { id: id },
       isDragging: !!monitor.isDragging(),
     }),
   }));

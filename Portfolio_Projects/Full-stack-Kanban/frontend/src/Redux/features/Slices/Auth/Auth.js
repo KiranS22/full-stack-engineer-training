@@ -5,6 +5,7 @@ const initialState = {
   isLoggedIn: false,
   isLoadimg: false,
   isError: false,
+  token: null,
 };
 
 const Auth = createSlice({
@@ -12,12 +13,18 @@ const Auth = createSlice({
   initialState,
   reducers: {
     logInUser: (state, action) => {
-      state.user = action.payload;
-      state.isLoggedIn = true;
+      console.log(action.payload);
+      const { user, token } = action.payload;
+      if (user && token) {
+        state.user = user;
+        state.isLoggedIn = true;
+        state.token = token;
+      }
     },
     logOutUser: (state, action) => {
       state.user = null;
       state.isLoggedIn = false;
+      state.token = null;
     },
     updateUser: (state, action) => {
       state.user = action.payload;
@@ -28,4 +35,5 @@ const Auth = createSlice({
 export const { logInUser, logOutUser, updateUser } = Auth.actions;
 export const selectUser = (state) => state.auth.user;
 export const selectIsLoggedIn = (state) => state.auth.isLoggedIn;
+export const selectToken = (state) => state.auth.token;
 export default Auth.reducer;

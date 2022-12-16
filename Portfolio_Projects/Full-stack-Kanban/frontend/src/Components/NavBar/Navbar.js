@@ -4,10 +4,18 @@ import { Link } from "react-router-dom";
 import Toggler from "../Toggler/Toggler";
 import { selectTheme } from "../../Redux/features/Slices/Toggler/Toggler";
 import { useSelector } from "react-redux";
-
+import {
+  selectIsLoggedIn,
+  logOutUser,
+} from "../../Redux/features/Slices/Auth/Auth";
+import { useDispatch } from "react-redux";
 const Navbar = () => {
   const mode = useSelector(selectTheme);
-
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const dispatch = useDispatch();
+  const handleLogOut = () => {
+    dispatch(logOutUser());
+  };
   return (
     <>
       <nav
@@ -44,24 +52,40 @@ const Navbar = () => {
             <Link className="navbar-brand logo" id={`logo-${mode}`} to="/">
               Get Kanabised
             </Link>
-            <li className="nav-item underline">
-              <Link
-                className="nav-link"
-                id={`nav-link-login-${mode}`}
-                to="/register"
-              >
-                Register
-              </Link>
-            </li>
-            <li className="nav-item underline">
-              <Link
-                className="nav-link"
-                id={`nav-link-login-${mode}`}
-                to="/login"
-              >
-                Login
-              </Link>
-            </li>
+            {isLoggedIn ? (
+              <li className="nav-item underline">
+                <Link
+                  className="nav-link"
+                  id={`nav-link-about-${mode}`}
+                  to="/about"
+                  onClick={() => handleLogOut()}
+                >
+                  Log Out
+                </Link>
+              </li>
+            ) : (
+              <>
+                {" "}
+                <li className="nav-item underline">
+                  <Link
+                    className="nav-link"
+                    id={`nav-link-login-${mode}`}
+                    to="/register"
+                  >
+                    Register
+                  </Link>
+                </li>
+                <li className="nav-item underline">
+                  <Link
+                    className="nav-link"
+                    id={`nav-link-logout-${mode}`}
+                    to="/login"
+                  >
+                    Login
+                  </Link>
+                </li>
+              </>
+            )}
             <li>
               <div className="toggler nav-link">
                 <Toggler />

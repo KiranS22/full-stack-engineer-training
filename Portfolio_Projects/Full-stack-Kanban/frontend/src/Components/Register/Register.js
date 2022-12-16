@@ -22,23 +22,28 @@ const Register = () => {
   const [value, setValue] = useState();
 
   const handleSubmit = async (e) => {
-    console.log("user", user);
-    e.preventDefault();
-    if (user.password !== user.verifyPassword) {
-      alert("Passwords Must Match");
-    } else {
-      const response = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/auth/register`,
-        { ...user, tel: value },
-        { withCredentials: true }
-      );
-      console.log(response.data);
-      const status = response.data.status;
-      if (status === "success") {
-        navigate("/login");
+    try {
+      console.log("user", user);
+      console.log("URL", process.env.REACT_APP_SERVER_URL);
+      e.preventDefault();
+      if (user.password !== user.verifyPassword) {
+        alert("Passwords Must Match");
+      } else {
+        const response = await axios.post(
+          `${process.env.REACT_APP_SERVER_URL}/auth/register`,
+          { ...user, tel: value }
+        );
+        console.log(response.data);
+        const status = response.data.status;
+        if (status === "success") {
+          navigate("/login");
+        }
       }
+    } catch (err) {
+      console.log(err.message);
     }
   };
+
   return (
     <>
       <section id={`content-${mode}`}>
@@ -237,7 +242,10 @@ const Register = () => {
                       Register
                     </button>
                   ) : (
-                    <button type="submit" className="btn  btn-outline-info btn-lg">
+                    <button
+                      type="submit"
+                      className="btn  btn-outline-info btn-lg"
+                    >
                       Register
                     </button>
                   )}

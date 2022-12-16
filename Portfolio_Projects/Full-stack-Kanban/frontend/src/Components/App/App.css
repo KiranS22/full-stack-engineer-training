@@ -22,14 +22,16 @@
 #nav-link-home-light:hover,
 #nav-link-about-light:hover,
 #nav-link-login-light:hover,
-#nav-link-register-light:hover {
+#nav-link-register-light:hover,
+#nav-link-logout-light:hover {
   border-bottom: 2px solid #000000;
 }
 
 #nav-link-home-light,
 #nav-link-about-light,
 #nav-link-login-light,
-#nav-link-register-light {
+#nav-link-register-light,
+#nav-link-logout-light {
   color: black;
 }
 #logo-light {
@@ -98,7 +100,8 @@
 #nav-link-home-dark:hover,
 #nav-link-about-dark:hover,
 #nav-link-login-dark:hover,
-#nav-link-register-dark:hover {
+#nav-link-register-dark:hover,
+#nav-link-logout-dark:hover {
   border-bottom: 2px solid #fff;
 }
 

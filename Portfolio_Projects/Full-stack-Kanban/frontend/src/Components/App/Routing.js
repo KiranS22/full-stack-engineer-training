@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "../../Home/Home";
-import Navbar from "../../NavBar/Navbar";
-import Register from "../../Register/Register";
-import Login from "../../Login/Login";
-import About from "../../About/About";
-
+import Home from "../Home/Home";
+import Navbar from "../NavBar/Navbar";
+import Register from "../Register/Register";
+import Login from "../Login/Login";
+import About from "../About/About";
+import ProtectedRoutes from "./Routing/ProtectedRoutes";
 
 const Routing = () => {
   return (
@@ -13,7 +13,9 @@ const Routing = () => {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" exact element={<Home />} />
+          <Route path="/" element={<ProtectedRoutes />}>
+            <Route path="/" exact element={<Home />} />
+           </Route>
           <Route path="/login" exact element={<Login />} />
           <Route path="/register" exact element={<Register />} />
           <Route path="/about" exact element={<About />} />
