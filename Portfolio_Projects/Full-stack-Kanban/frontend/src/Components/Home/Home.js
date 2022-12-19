@@ -17,10 +17,7 @@ const Home = () => {
             <header className="heading" id={`heading-1-${mode}`}>
               <h2>To Do</h2>
             </header>
-            <div
-              className="task-container "
-              style={{ border: "5px solid green" }}
-            >
+            <div className="task-container ">
               <Tasks />
             </div>
           </div>

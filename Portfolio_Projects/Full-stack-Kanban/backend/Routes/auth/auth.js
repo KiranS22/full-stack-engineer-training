@@ -67,4 +67,21 @@ authRouter.post("/login", async (req, res) => {
   }
 });
 
+authRouter.get("/auth-user", (req, res) => {
+  try {
+    res.send(req.headers);
+
+    // if (req.session.user) {
+    //   res.status(201).send({ user: req.session.user, status: "success" });
+    // } else {
+    //   res.status(403).send({
+    //     status: "error",
+    //     message: "User is not logged In",
+    //   });
+    // }
+  } catch (err) {
+    res.status(404).send({ status: "error", message: err.message });
+  }
+});
+
 module.exports = authRouter;
