@@ -13,9 +13,9 @@ const Routing = () => {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<ProtectedRoutes />}>
+          {/* <Route path="/" element={<ProtectedRoutes />}> */}
             <Route path="/" exact element={<Home />} />
-           </Route>
+           {/* </Route> */}
           <Route path="/login" exact element={<Login />} />
           <Route path="/register" exact element={<Register />} />
           <Route path="/about" exact element={<About />} />

@@ -19,12 +19,14 @@ const Auth = createSlice({
         state.user = user;
         state.isLoggedIn = true;
         state.token = token;
+        localStorage.setItem("token", token);
       }
     },
     logOutUser: (state, action) => {
       state.user = null;
       state.isLoggedIn = false;
       state.token = null;
+      localStorage.removeItem("token");
     },
     updateUser: (state, action) => {
       state.user = action.payload;

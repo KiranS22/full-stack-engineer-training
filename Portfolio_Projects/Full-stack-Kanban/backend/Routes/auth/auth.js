@@ -44,11 +44,7 @@ authRouter.post("/login", async (req, res) => {
       const user = foundUser.rows[0];
       //email is matched now compare password
       if (await bcrypt.compare(password, user.password)) {
-        let userInfo = {
-          email: user.email,
-          id: user.id,
-        };
-        const token = await jwt.sign(userInfo, process.env.SECRET_KEY);
+        const token = await jwt.sign(user, process.env.SECRET_KEY);
         console.log(token);
         //Send a Success Message Back
         res.status(201).send({ user: user, token: token, status: "success" });
@@ -69,8 +65,6 @@ authRouter.post("/login", async (req, res) => {
 
 authRouter.get("/auth-user", (req, res) => {
   try {
-    res.send(req.headers);
-
     // if (req.session.user) {
     //   res.status(201).send({ user: req.session.user, status: "success" });
     // } else {

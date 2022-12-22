@@ -39,8 +39,6 @@ const Login = () => {
       console.log("status", status);
       if (status === "success") {
         const { user, token } = response.data;
-        console.log("User in login", user);
-        console.log("Token in login", token);
         dispatch(logInUser({ token, user }));
 
         navigate("/");

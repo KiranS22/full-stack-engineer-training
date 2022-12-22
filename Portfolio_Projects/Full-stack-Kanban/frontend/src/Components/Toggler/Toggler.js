@@ -29,7 +29,7 @@ const Toggler = () => {
         />
         <label
           className="form-check-label"
-          for="flexSwitchCheckDefault"
+          htmlFor="flexSwitchCheckDefault"
         ></label>
       </div>
     </>

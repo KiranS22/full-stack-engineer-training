@@ -1,8 +1,52 @@
 # PERN Stack Kanban
 
-## Links to wireFrames
+I created this project as my final application on the Codecademy Full-Stack-Engineer path.
+
+## Why Should You Get Kanbanised?
+
+Get Kanbanised, is an organisation tool that helps users plan their tasks effectively. This is great for students who have large assignments, as they can break them down into smaller tasks, that then become easier to complete.
+
+## How to Use?
+
+The tasks can be in one of three states:"To Do", "In Progress" and "Done", the tasks can be moved to-and-from each section - using the mouse to drag and drop each task card.
+
+## Key Features
+
+- Create a task
+- Read your existing tasks
+- Update your existing tasks
+- Delete your existing tasks
+- Register a user
+- Log in a user
+- Log iut a user
+- Light and dark mode
+- Drag and drop task cards
+
+## Languages and Frameworks Used
+
+- PostgreSQL
+- Express
+- Reactjs
+- Redux
+- Nodejs
+- CSS
+- React Router
+-  JWT
+- React-beautiful-dnd
+- Axios
+- React-phone-number-input
+- React Redux
+- Pool
+
+## Wireframes and Schemas
+
+### wifeframe
 
 [Main interface of Kanban](https://app.moqups.com/RI2JvheoPG0phQTp7oRcCMD704NvZ7zj/view/page/ad64222d5)
+
+### Database Schema
+
+![Kanban Database Schema](../Table%20Schemas/kanban_db_schema.png)
 
 # Getting Started with Create React App and Redux
 
