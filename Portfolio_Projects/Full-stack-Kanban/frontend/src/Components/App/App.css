@@ -48,6 +48,7 @@
 #heading-3-light {
   border-bottom: 2px solid #000;
   border-top: 2px solid #000;
+  color: #000;
 }
 
 #custom-border-light-1,
@@ -80,13 +81,15 @@
 /* Home page Dark mode stylings */
 .home-container-dark {
   background-color: #505050;
-  height: 100vh;
+  height: 100%;
+  width: 100%;
 }
 #heading-1-dark,
 #heading-2-dark,
 #heading-3-dark {
   border-bottom: 2px solid #fff;
   border-top: 2px solid #fff;
+  color: #fff;
 }
 #custom-border-dark-1,
 #custom-border-dark-2,
@@ -136,8 +139,7 @@
 }
 #card-body-dark:hover {
   box-shadow: rgba(255, 255, 255, 0.25) 0px 54px 55px,
-    rgba(255, 255, 255 0.12) 0px -12px 30px,
-    rgba(255, 255, 255, 0.12) 0px 4px 6px,
+    rgba(255, 255, 255 0.12) 0px -12px 30px, rgba(255, 255, 255, 12) 0px 4px 6px,
     rgba(255, 255, 255, 0.17) 0px 12px 13px,
     rgba(255, 255, 255, 0.09) 0px -3px 5px;
 }

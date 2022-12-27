@@ -7,16 +7,49 @@ import { useDispatch } from "react-redux";
 import { logInUser } from "../../Redux/features/Slices/Auth/Auth";
 import jwt_decode from "jwt-decode";
 import { DragDropContext } from "react-beautiful-dnd";
-import { selectTask } from "../../Redux/features/Slices/Tasks/tasks";
+
+// Importing Update Task
+import { taskUpdateStatus } from "../../utils/utils";
+
+import {
+  fetchAllTasks,
+  updateStatus,
+} from "../../Redux/features/Slices/Tasks/tasks";
 function App() {
   const mode = useSelector(selectTheme);
-  const dispatch = useDispatch();
-  const tasks = useSelector(selectTask);
-  const [card, setCard] = useState(tasks);
-  const handleDragEnd = () => {
-    console.log("card ", card);
-  };
 
+  const dispatch = useDispatch();
+  const handleDragEnd = async (result) => {
+    console.log(result);
+    const { draggableId: taskId, source, destination } = result;
+    console.log("Source: ", source);
+    console.log("Destination:", destination);
+    console.log("taskid:", taskId);
+    if (!destination) return;
+
+    //if source.destinationId matches destination.destinationId
+
+    if (
+      source.droppableId === destination.droppableId &&
+      source.index === destination.index
+    )
+      return;
+
+    //if source.droppableId is progress
+    // const destinatio
+    if (destination.droppableId !== source.droppableId) {
+      let updatedTask = { status: destination.droppableId };
+
+      //API Request
+      const data = await taskUpdateStatus(updatedTask, taskId);
+      if (data.status === "success") {
+        console.log("Data from the backend", data);
+        dispatch(updateStatus({ status: updatedTask.status, id: taskId }));
+      }
+    }
+
+    //if source.droppableId is done
+  };
   const getLoggedInUser = async () => {
     try {
       const validToken = localStorage.getItem("token");
@@ -32,14 +65,11 @@ function App() {
   useEffect(() => {
     // async thunks
     getLoggedInUser();
+    dispatch(fetchAllTasks());
   }, []);
 
   return (
-    <DragDropContext
-      onDragEnd={() => {
-        handleDragEnd();
-      }}
-    >
+    <DragDropContext onDragEnd={handleDragEnd}>
       <div id={`body-bg-${mode}`}>
         <Routing />
       </div>

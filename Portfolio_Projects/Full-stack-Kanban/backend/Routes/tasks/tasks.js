@@ -29,34 +29,59 @@ taskRouter.post("/", async (req, res) => {
   }
 });
 
-//update single task
-taskRouter.put("/:id", async (req, res) => {
+//update single tasks status
+taskRouter.put("/update-status/:id", async (req, res) => {
   try {
     const { task } = req.body;
     const { id } = req.params;
 
     const updatetask = await pool.query(
-      "UPDATE  tasks SET task_name =$2  status = $2 WHERE id = $2",
-      [task, "", id]
+      "UPDATE tasks SET status = $1 WHERE id = $2",
+      [task.status, id]
     );
-    res.status(200).send("prodct Updated Successfully");
+    res.status(200).send({
+      status: "success",
+      message: "Task Status  Updated Successfully!",
+    });
   } catch (err) {
     res.status(404).send({ status: "error", message: err.message });
   }
 });
 
+//update single tasks content
+taskRouter.put("/update-info/:id", async (req, res) => {
+  try {
+
+    const { task } = req.body;
+    const { id } = req.params;
+
+    const updatetask = await pool.query(
+      "UPDATE tasks SET task_name = $1 WHERE id = $2",
+      [task, id]
+    );
+    res.status(200).send({
+      status: "success",
+      message: "Task Content Updated Successfully!",
+    });
+  } catch (err) {
+    res.status(404).send({ status: "error", message: err.message });
+  }
+});
 // Delete a single task from database
 taskRouter.delete("/:id", async (req, res) => {
   const { id } = req.params;
+  console.log("backend id", id);
 
   try {
     const deletedProduct = await pool.query(
       "DELETE FROM  tasks WHERE id = $1",
       [id]
     );
-    res.status(200).send("product deleted Successfully");
+    res
+      .status(200)
+      .send({ status: "success", message: "Task deleted Successfully" });
   } catch (err) {
-    res.status(404), send({ status: "error", message: err.message });
+    res.status(404).send({ status: "error", message: err.message });
   }
 });
 

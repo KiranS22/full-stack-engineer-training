@@ -36,14 +36,29 @@ const tasks = createSlice({
       state.tasksCount++;
       state.tasks.push(action.payload);
     },
+    updateStatus: (state, { payload }) => {
+      const { status, id } = payload;
+      console.log("Payload:", state.tasks.tasks);
+      state.tasks = state.tasks.map((task) => {
+        if (task.id === id) {
+          task.status = status;
+        }
+        return task;
+      });
+    },
     deleteTask: (state, action) => {
+      console.log("delete", action.payload);
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
       state.tasksCount--;
     },
-    completeOrNot: (state, action) => {
-      //action.payload as the id
-      let task = state.tasks.filter((task) => task.id === action.payload)[0];
-      task.isComplete = !task.isComplete;
+    updateContent: (state, { payload }) => {
+      const { content, id } = payload;
+      state.tasks = state.tasks.map((task) => {
+        if (task.id === id) {
+          task.task_name = content;
+        }
+        return task;
+      });
     },
   },
   extraReducers: (builder) => {
@@ -65,8 +80,17 @@ const tasks = createSlice({
   },
 });
 export const selectTsskCount = (state) => state.tasks.tasksCount;
-export const selectTask = (state) => state.tasks.tasks;
 
-export const { addTask, deleteTask, completeOrNot } = tasks.actions;
+export const selectTodoTasks = (state) =>
+  state.tasks.tasks.filter((task) => task.status === "todo");
+
+export const selectDoingTasks = (state) =>
+  state.tasks.tasks.filter((task) => task.status === "doing");
+
+export const selectDoneTasks = (state) =>
+  state.tasks.tasks.filter((task) => task.status === "done");
+
+export const { addTask, updateStatus, deleteTask, updateContent } =
+  tasks.actions;
 
 export default tasks.reducer;

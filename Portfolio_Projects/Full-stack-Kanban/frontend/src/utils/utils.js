@@ -17,11 +17,13 @@ export const taskPost = async (task) => {
   }
 };
 
-export const taskUpdate = async (task, id) => {
+export const taskUpdateStatus = async (task, id) => {
+  console.log("task update function", task);
+
   try {
     const token = localStorage.getItem("token");
     const response = await axios.put(
-      `${process.env.REACT_APP_SERVER_URL}/tasks/${id}`,
+      `${process.env.REACT_APP_SERVER_URL}/tasks/update-status/${id}`,
       { task: task },
       {
         headers: {
@@ -35,7 +37,26 @@ export const taskUpdate = async (task, id) => {
   }
 };
 
-export const taskDelete = async (task, id) => {
+export const taskUpdateContent = async (task, id) => {
+
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.put(
+      `${process.env.REACT_APP_SERVER_URL}/tasks/update-info/${id}`,
+      { task: task },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  } catch (err) {
+    console.log({ status: "error", message: err.message });
+  }
+};
+export const taskDelete = async (id) => {
+  console.log("func running", "id", id);
   try {
     const token = localStorage.getItem("token");
     const response = await axios.delete(

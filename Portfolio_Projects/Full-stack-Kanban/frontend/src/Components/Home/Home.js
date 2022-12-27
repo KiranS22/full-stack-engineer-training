@@ -5,7 +5,11 @@ import { selectTheme } from "../../Redux/features/Slices/Toggler/Toggler";
 import { useSelector, useDispatch } from "react-redux";
 import "./home.css";
 import { fetchAllTasks } from "../../Redux/features/Slices/Tasks/tasks";
-import { selectTask } from "../../Redux/features/Slices/Tasks/tasks";
+import {
+  selectTodoTasks,
+  selectDoingTasks,
+  selectDoneTasks,
+} from "../../Redux/features/Slices/Tasks/tasks";
 import { Droppable } from "react-beautiful-dnd";
 
 const Home = () => {
@@ -14,19 +18,21 @@ const Home = () => {
     dispatch(fetchAllTasks());
   }, []);
   const mode = useSelector(selectTheme);
-  const tasks = useSelector(selectTask);
+  const todoTasks = useSelector(selectTodoTasks);
+  const doingTasks = useSelector(selectDoingTasks);
+  const doneTasks = useSelector(selectDoneTasks);
 
   return (
-    <>
-      <div className={`home-container-${mode} content-${mode}`}>
+    <div className={` home-container-${mode}`}>
+      <div className={`container  content-${mode}`}>
         <div className="text-center ">
           <Input />
         </div>
-        <div className="row align-items-start mt-4">
-          <Droppable droppableId="incomplete">
+        <div className="row  mt-4">
+          <Droppable droppableId="todo">
             {(provided) => (
               <div
-                className="col  mt-4"
+                className="col-12 col-sm-6 col-md-4 mt-4"
                 id={`custom-border-${mode}-1`}
                 ref={provided.innerRef}
                 {...provided.droppableProps}
@@ -35,25 +41,31 @@ const Home = () => {
                   <h2>To Do</h2>
                 </header>
                 <div className="task-container ">
-                  {tasks.map((task, index) => {
+                  {todoTasks.map((task, index) => {
                     return <Task task={task} index={index} />;
                   })}
                 </div>
+                {provided.placeholder}
               </div>
             )}
           </Droppable>
-          <Droppable droppableId="progress">
+          <Droppable droppableId="doing">
             {(provided) => (
               <div
-                className="col mt-4"
-                id={`custom-border-${mode}-2`}
+                className="col-12 col-sm-6 col-md-4 mt-4"
+                // id={`custom-border-${mode}-2`}
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
                 <header className="heading" id={`heading-1-${mode}`}>
                   <h2>In Progress</h2>
                 </header>
-                <p></p>
+                <div className="task-container ">
+                  {doingTasks.map((task, index) => {
+                    return <Task task={task} index={index} />;
+                  })}
+                </div>
+                {provided.placeholder}
               </div>
             )}
           </Droppable>
@@ -61,8 +73,8 @@ const Home = () => {
           <Droppable droppableId="done">
             {(provided) => (
               <div
-                className="col  mt-4"
-                id={`custom-border-${mode}-3`}
+                className="col-12 col-sm-6 col-md-4 mt-4"
+                // id={`custom-border-${mode}-3`}
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
@@ -70,13 +82,16 @@ const Home = () => {
                 <header className="heading" id={`heading-3-${mode}`}>
                   <h2>Done</h2>
                 </header>
-                <p></p>
+                {doneTasks.map((task, index) => {
+                  return <Task task={task} index={index} />;
+                })}
+                {provided.placeholder}
               </div>
             )}
           </Droppable>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
