@@ -3,7 +3,6 @@ import Input from "../Input/input";
 import Task from "../Tasks/Task";
 import { selectTheme } from "../../Redux/features/Slices/Toggler/Toggler";
 import { useSelector, useDispatch } from "react-redux";
-import "./home.css";
 import { fetchAllTasks } from "../../Redux/features/Slices/Tasks/tasks";
 import {
   selectTodoTasks,

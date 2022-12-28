@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./toggler.css";
 import { useDispatch } from "react-redux";
 import { toggleTheme } from "../../Redux/features/Slices/Toggler/Toggler";
 

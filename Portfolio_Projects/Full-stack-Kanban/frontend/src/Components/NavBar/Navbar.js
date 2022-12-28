@@ -1,5 +1,4 @@
 import React from "react";
-import "./navbar.css";
 import { Link } from "react-router-dom";
 import Toggler from "../Toggler/Toggler";
 import { selectTheme } from "../../Redux/features/Slices/Toggler/Toggler";
@@ -26,29 +25,21 @@ const Navbar = () => {
           className="navbar-toggler"
           type="button"
           data-toggle="collapse"
-          data-target="#navbarNav"
-          aria-controls="navbarNav"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav mx-auto">
             <li className="nav-item active">
               <Link className="nav-link" id={`nav-link-home-${mode}`} to="/">
                 Home <span className="sr-only">(current)</span>
               </Link>
             </li>
-            <li className="nav-item underline">
-              <Link
-                className="nav-link"
-                id={`nav-link-about-${mode}`}
-                to="/about"
-              >
-                About
-              </Link>
-            </li>
+
             <Link className="navbar-brand logo" id={`logo-${mode}`} to="/">
               Get Kanabised
             </Link>
@@ -57,7 +48,7 @@ const Navbar = () => {
                 <Link
                   className="nav-link"
                   id={`nav-link-about-${mode}`}
-                  to="/about"
+                  to="/login"
                   onClick={() => handleLogOut()}
                 >
                   Log Out
@@ -78,7 +69,7 @@ const Navbar = () => {
                 <li className="nav-item underline">
                   <Link
                     className="nav-link"
-                    id={`nav-link-logout-${mode}`}
+                    id={`nav-link-login-${mode}`}
                     to="/login"
                   >
                     Login

@@ -25,38 +25,31 @@ authRouter.post("/register", async (req, res) => {
     );
     res.status(200).send({ user: allUsers.rows[0], status: "success" });
   } catch (err) {
-    console.log(err.message);
     res.status(401).send({ status: "error", message: err.message });
   }
 });
 
 authRouter.post("/login", async (req, res) => {
-  console.log("log in Route hit!");
   try {
     const { email, password } = req.body;
     const foundUser = await pool.query("SELECT *  FROM users WHERE email= $1", [
       email,
     ]);
 
-    console.log("Found:", foundUser.rows[0]);
-
     if (foundUser.rows.length > 0) {
       const user = foundUser.rows[0];
       //email is matched now compare password
       if (await bcrypt.compare(password, user.password)) {
         const token = await jwt.sign(user, process.env.SECRET_KEY);
-        console.log(token);
+
         //Send a Success Message Back
         res.status(201).send({ user: user, token: token, status: "success" });
-      } else {
-        res
-          .status(200)
-          .send(
-            "A user with these credentials dose not exist! Please register"
-          );
       }
     } else {
-      res.status(200).send("User with that email or password not found");
+      res.status(200).send({
+        status: "something went wrong",
+        message: "User with that email or password not found",
+      });
     }
   } catch (err) {
     res.status(404).send({ status: "error", message: err.message });
@@ -65,8 +58,6 @@ authRouter.post("/login", async (req, res) => {
 
 authRouter.get("/auth-user", (req, res) => {
   try {
-   
-
   } catch (err) {
     res.status(404).send({ status: "error", message: err.message });
   }

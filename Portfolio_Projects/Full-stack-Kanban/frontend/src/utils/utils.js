@@ -1,4 +1,32 @@
 import axios from "axios";
+
+export const userLogin = async (user) => {
+  try {
+    const response = await axios.post(
+      `${process.env.REACT_APP_SERVER_URL}/auth/login`,
+      user
+    );
+    return response.data;
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+export const registerUser = async (user, value) => {
+  try {
+    if (user.password !== user.verifyPassword) {
+      alert("Passwords Must Match");
+    } else {
+      const response = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/auth/register`,
+        { ...user, tel: value }
+      );
+      return response.data;
+    }
+  } catch (err) {
+    console.log(err.message);
+  }
+};
 export const taskPost = async (task) => {
   try {
     const token = localStorage.getItem("token");
@@ -38,7 +66,6 @@ export const taskUpdateStatus = async (task, id) => {
 };
 
 export const taskUpdateContent = async (task, id) => {
-
   try {
     const token = localStorage.getItem("token");
     const response = await axios.put(

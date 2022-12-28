@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./tasks.css";
 import { selectTheme } from "../../Redux/features/Slices/Toggler/Toggler";
 import { useSelector } from "react-redux";
 import { Draggable } from "react-beautiful-dnd";
@@ -60,19 +59,28 @@ const Task = ({ task, index }) => {
           </div>
 
           {isEdit ? (
-            <form onSubmit={(e) => handleSubmit(e, task.id)}>
+            <form className="mt-3" onSubmit={(e) => handleSubmit(e, task.id)}>
               <input
                 value={content}
                 className="form-control"
                 onChange={(e) => setContent(e.target.value)}
               />
-              <button className="btn btn-primary btn-sm" type="submit">
-                Save
-              </button>
+              <div className="text-end">
+                <button
+                  className={
+                    mode == "light"
+                      ? `btn btn-primary btn-sm my-2 text-end`
+                      : `btn btn-outline-info btn-sm my-2 text-end`
+                  }
+                  type="submit"
+                >
+                  Save
+                </button>
+              </div>
             </form>
           ) : (
             <div className="card m-2 p-2" id={`card-${mode}`}>
-              {task.task_name}
+              <p>{task.task_name}</p>
             </div>
           )}
         </div>

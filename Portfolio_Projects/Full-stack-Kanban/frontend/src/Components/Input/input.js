@@ -1,11 +1,12 @@
 import React from "react";
-import "./input.css";
+
 import { useState } from "react";
 import { taskPost } from "../../utils/utils";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchAllTasks } from "../../Redux/features/Slices/Tasks/tasks";
-
+import { selectTheme } from "../../Redux/features/Slices/Toggler/Toggler";
 const Input = () => {
+  const mode = useSelector(selectTheme);
   const [task, setTask] = useState("");
   const dispatch = useDispatch();
   const handleSubmit = async (e) => {
@@ -19,7 +20,7 @@ const Input = () => {
   };
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
-      <label className="mt-4" htmlFor="task">
+      <label id={`label-${mode}`} className="mt-4" htmlFor="task">
         Task:
       </label>
       <input

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { selectTheme } from "../../Redux/features/Slices/Toggler/Toggler";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { registerUser } from "../../utils/utils";
 import "react-phone-number-input/style.css";
 import PhoneInput from "react-phone-number-input";
 const Register = () => {
@@ -22,25 +22,14 @@ const Register = () => {
   const [value, setValue] = useState();
 
   const handleSubmit = async (e) => {
-    try {
-      console.log("user", user);
-      console.log("URL", process.env.REACT_APP_SERVER_URL);
-      e.preventDefault();
-      if (user.password !== user.verifyPassword) {
-        alert("Passwords Must Match");
-      } else {
-        const response = await axios.post(
-          `${process.env.REACT_APP_SERVER_URL}/auth/register`,
-          { ...user, tel: value }
-        );
-        console.log(response.data);
-        const status = response.data.status;
-        if (status === "success") {
-          navigate("/login");
-        }
-      }
-    } catch (err) {
-      console.log(err.message);
+    e.preventDefault();
+    const data = await registerUser(user, value);
+    const status = data.status;
+    const message = data.message;
+    if (status === "success") {
+      navigate("/login");
+    } else {
+      alert(message);
     }
   };
 
@@ -58,29 +47,9 @@ const Register = () => {
             </div>
             <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
               <form onSubmit={(e) => handleSubmit(e)} method="POST">
-                <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-                  <p className="lead fw-normal mb-0 me-3">Register with</p>
-                  <button
-                    type="button"
-                    className="btn btn-outline-dark"
-                    style={{ textTransform: "none" }}
-                  >
-                    <img
-                      style={{
-                        width: "20px",
-                        marginBottom: "3px",
-                        marginRight: "5px",
-                      }}
-                      alt="Google sign-in"
-                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
-                    />
-                    Google
-                  </button>
-                </div>
+                <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start"></div>
 
-                <div className="divider d-flex align-items-center my-4">
-                  <p className="text-center fw-bold mx-3 mb-0">Or</p>
-                </div>
+                <div className="divider d-flex align-items-center my-4"></div>
 
                 <label className="form-label" htmlFor="firstName">
                   First Name:
@@ -234,21 +203,17 @@ const Register = () => {
                 </div>
 
                 <div className="text-center text-lg-start mt-4 pt-2">
-                  {mode === "light" ? (
-                    <button
-                      type="submit"
-                      className="btn  btn-outline-primary btn-lg"
-                    >
-                      Register
-                    </button>
-                  ) : (
-                    <button
-                      type="submit"
-                      className="btn  btn-outline-info btn-lg"
-                    >
-                      Register
-                    </button>
-                  )}
+                  <button
+                    type="submit"
+                    className={
+                      mode == "light"
+                        ? `btn btn-primary btn-sm my-2 text-end`
+                        : `btn btn-outline-info btn-sm my-2 text-end`
+                    }
+                  >
+                    Register
+                  </button>
+
                   <p className="small fw-bold mt-2 pt-1 mb-0">
                     Already have an account?{" "}
                     <Link to="/login" className="link-danger">
