@@ -76,7 +76,7 @@ const Home = () => {
             {(provided) => (
               <div
                 className="col-12 col-sm-6 col-md-4 mt-4"
-                // id={`custom-border-${mode}-3`}
+                id={`custom-border-${mode}-3`}
                 ref={provided.innerRef}
                 {...provided.droppableProps}
               >
