@@ -4,7 +4,7 @@ import "./app.css";
 import { selectTheme } from "../../Redux/features/Slices/Toggler/Toggler";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { logInUser } from "../../Redux/features/Slices/Auth/Auth";
+import { logInUser, selectUser } from "../../Redux/features/Slices/Auth/Auth";
 import jwt_decode from "jwt-decode";
 import { DragDropContext } from "react-beautiful-dnd";
 
@@ -17,14 +17,12 @@ import {
 } from "../../Redux/features/Slices/Tasks/tasks";
 function App() {
   const mode = useSelector(selectTheme);
+  const user = useSelector(selectUser);
 
   const dispatch = useDispatch();
   const handleDragEnd = async (result) => {
-    console.log(result);
     const { draggableId: taskId, source, destination } = result;
-    console.log("Source: ", source);
-    console.log("Destination:", destination);
-    console.log("taskid:", taskId);
+
     if (!destination) return;
 
     //if source.destinationId matches destination.destinationId
@@ -65,7 +63,10 @@ function App() {
   useEffect(() => {
     // async thunks
     getLoggedInUser();
-    dispatch(fetchAllTasks());
+    console.log("user inside UE", user);
+    if (user !== null) {
+      dispatch(fetchAllTasks());
+    }
   }, []);
 
   return (

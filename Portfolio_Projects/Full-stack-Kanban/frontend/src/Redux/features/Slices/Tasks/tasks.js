@@ -24,6 +24,7 @@ export const fetchAllTasks = createAsyncThunk(
 const initialState = {
   tasks: [],
   tasksCount: 0,
+  // Kept in to help monitor future bugs. Not being used in project
   isLoading: false,
   isError: false,
 };
@@ -71,6 +72,7 @@ const tasks = createSlice({
       state.tasks = action.payload;
       state.isLoading = false;
       state.isError = false;
+      state.tasksCount = action.payload.length;
     });
 
     builder.addCase(fetchAllTasks.rejected, (state, action) => {
@@ -89,6 +91,7 @@ export const selectDoingTasks = (state) =>
 
 export const selectDoneTasks = (state) =>
   state.tasks.tasks.filter((task) => task.status === "done");
+export const selectTaskCount = (state) => state.tasks.tasksCount;
 
 export const { addTask, updateStatus, deleteTask, updateContent } =
   tasks.actions;

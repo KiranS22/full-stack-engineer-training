@@ -8,6 +8,7 @@ import {
   selectTodoTasks,
   selectDoingTasks,
   selectDoneTasks,
+  selectTaskCount,
 } from "../../Redux/features/Slices/Tasks/tasks";
 import { Droppable } from "react-beautiful-dnd";
 
@@ -20,6 +21,7 @@ const Home = () => {
   const todoTasks = useSelector(selectTodoTasks);
   const doingTasks = useSelector(selectDoingTasks);
   const doneTasks = useSelector(selectDoneTasks);
+  const taskCount = useSelector(selectTaskCount);
 
   return (
     <div className={` home-container-${mode}`}>
@@ -27,6 +29,7 @@ const Home = () => {
         <div className="text-center ">
           <Input />
         </div>
+        <h3 className={` content-${mode}`}>{taskCount}</h3>
         <div className="row  mt-4">
           <Droppable droppableId="todo">
             {(provided) => (

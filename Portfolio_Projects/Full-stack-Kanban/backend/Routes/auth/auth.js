@@ -47,7 +47,7 @@ authRouter.post("/login", async (req, res) => {
       }
     } else {
       res.status(200).send({
-        status: "something went wrong",
+        status: "error",
         message: "User with that email or password not found",
       });
     }

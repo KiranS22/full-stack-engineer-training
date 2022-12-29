@@ -1,7 +1,3 @@
-//import $ from "jquery";
-//import Popper from "popper.js";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "../node_modules/bootstrap/dist/js/bootstrap.bundle.min";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
@@ -9,6 +5,8 @@ import { store } from "../src/Redux/app/store";
 import App from "./Components/App/App";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
 
 const container = document.getElementById("root");
 const root = createRoot(container);

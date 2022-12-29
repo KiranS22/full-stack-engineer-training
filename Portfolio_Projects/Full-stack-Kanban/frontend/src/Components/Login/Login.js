@@ -15,6 +15,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [errMessage, setErrorMessage] = useState("");
   const loggedIn = useSelector(selectIsLoggedIn);
   const userAlreadyLoggedIn = () => {
     if (loggedIn) {
@@ -28,18 +29,23 @@ const Login = () => {
   const handleSubmit = async (e) => {
     console.log("function running");
     e.preventDefault();
-    const data = await userLogin(user)
+    const data = await userLogin(user);
+    console.log("login page data:", data);
     const status = data.status;
     const message = data.message;
+    console.log("status", status);
     if (status === "success") {
       const { user, token } = data;
       dispatch(logInUser({ token, user }));
 
       navigate("/");
-    } else if (status === "something went wrong") {
-      alert(message);
+    } else {
+      setErrorMessage(message);
+
+      setInterval(() => {
+        setErrorMessage("");
+      }, 3000);
     }
-   
   };
   const mode = useSelector(selectTheme);
   return (
@@ -58,7 +64,9 @@ const Login = () => {
               </div>
               <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
                 <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start"></div>
-
+                {errMessage != "" ? (
+                  <h4 className={`content-error-${mode}`}>{errMessage}</h4>
+                ) : null}
                 <form onSubmit={(e) => handleSubmit(e)}>
                   <div className="divider d-flex align-items-center my-4"></div>
 

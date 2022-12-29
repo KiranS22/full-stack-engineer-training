@@ -17,72 +17,74 @@ const Navbar = () => {
   };
   return (
     <>
-      <nav
-        className="navbar navbar-expand-lg  navbar-nav"
-        id={`nav-bg-${mode}`}
-      >
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mx-auto">
-            <li className="nav-item active">
-              <Link className="nav-link" id={`nav-link-home-${mode}`} to="/">
-                Home <span className="sr-only">(current)</span>
-              </Link>
-            </li>
-
-            <Link className="navbar-brand logo" id={`logo-${mode}`} to="/">
-              Get Kanabised
-            </Link>
-            {isLoggedIn ? (
-              <li className="nav-item underline">
-                <Link
-                  className="nav-link"
-                  id={`nav-link-about-${mode}`}
-                  to="/login"
-                  onClick={() => handleLogOut()}
-                >
-                  Log Out
+      <nav className="navbar navbar-expand-lg " id={`nav-bg-${mode}`}>
+        <div className="container-fluid" style={{ justifyContent: "center" }}>
+          <Link className="navbar-brand logo" id={`logo-${mode}`} to="/">
+            Get Kanabised
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div
+            className="collapse navbar-collapse"
+            style={{ flexGrow: "0" }}
+            id="navbarSupportedContent"
+          >
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+              <li className="nav-item">
+                <Link className="nav-link" id={`nav-link-home-${mode}`} to="/">
+                  Home
                 </Link>
               </li>
-            ) : (
-              <>
-                {" "}
-                <li className="nav-item underline">
+              {isLoggedIn ? (
+                <li className="nav-item">
                   <Link
                     className="nav-link"
-                    id={`nav-link-login-${mode}`}
-                    to="/register"
-                  >
-                    Register
-                  </Link>
-                </li>
-                <li className="nav-item underline">
-                  <Link
-                    className="nav-link"
-                    id={`nav-link-login-${mode}`}
+                    id={`nav-link-about-${mode}`}
                     to="/login"
+                    onClick={() => handleLogOut()}
                   >
-                    Login
+                    Log Out
                   </Link>
                 </li>
-              </>
-            )}
-            <li>
-              <div className="toggler nav-link">
-                <Toggler />
-              </div>
-            </li>
-          </ul>
+              ) : (
+                <>
+                  {" "}
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link"
+                      id={`nav-link-login-${mode}`}
+                      to="/register"
+                    >
+                      Register
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link"
+                      id={`nav-link-login-${mode}`}
+                      to="/login"
+                    >
+                      Login
+                    </Link>
+                  </li>
+                </>
+              )}
+              <li className="nav-item">
+                <div className="toggler nav-link">
+                  <Toggler />
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
       </nav>
     </>

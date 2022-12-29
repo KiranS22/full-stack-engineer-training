@@ -19,6 +19,10 @@ const authorize = (req, res, next) => {
     if (decoded) {
       req.user = decoded;
       next();
+    } else {
+      res
+        .status(401)
+        .send({ status: "error", message: "Missing or Invalid token" });
     }
   } else {
     res
