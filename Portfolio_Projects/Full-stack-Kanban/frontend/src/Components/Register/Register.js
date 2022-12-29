@@ -19,7 +19,8 @@ const Register = () => {
     city: "",
     postcode: "",
   });
-  const [value, setValue] = useState();
+  const [value, setValue] = useState("");
+  const [errMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,8 +29,12 @@ const Register = () => {
     const message = data.message;
     if (status === "success") {
       navigate("/login");
-    } else {
-      alert(message);
+    }else {
+      setErrorMessage(message);
+
+      setInterval(() => {
+        setErrorMessage("");
+      }, 3000);
     }
   };
 
@@ -46,6 +51,7 @@ const Register = () => {
               />
             </div>
             <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+            <h4 className={`content-error-${mode}`}>{errMessage}</h4>
               <form onSubmit={(e) => handleSubmit(e)} method="POST">
                 <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start"></div>
 

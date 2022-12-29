@@ -29,7 +29,7 @@ const Home = () => {
         <div className="text-center ">
           <Input />
         </div>
-        <h3 className={` content-${mode}`}>{taskCount}</h3>
+        <h3 className={`content-${mode}`}>{taskCount}</h3>
         <div className="row  mt-4">
           <Droppable droppableId="todo">
             {(provided) => (

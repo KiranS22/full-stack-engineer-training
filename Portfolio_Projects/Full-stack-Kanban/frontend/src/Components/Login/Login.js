@@ -27,13 +27,10 @@ const Login = () => {
     userAlreadyLoggedIn();
   }, [loggedIn]);
   const handleSubmit = async (e) => {
-    console.log("function running");
     e.preventDefault();
     const data = await userLogin(user);
-    console.log("login page data:", data);
     const status = data.status;
     const message = data.message;
-    console.log("status", status);
     if (status === "success") {
       const { user, token } = data;
       dispatch(logInUser({ token, user }));

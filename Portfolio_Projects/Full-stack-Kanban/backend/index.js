@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 4000;
 require("dotenv").config();
 app.use(express.json());
 app.use(cors());
+// Sending token in headers middlewhere 
 const authorize = (req, res, next) => {
   if (req.headers.authorization) {
     const token = req.headers.authorization.slice(7);
