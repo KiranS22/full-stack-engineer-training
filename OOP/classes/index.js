@@ -43,23 +43,23 @@ class Car {
 const car1 = new Car("blue", 2000);
 const car2 = new Car("black", 2015);
 const car3 = new Car("green", 2005);
-// console.log("first car ", car1);
-// console.log("second car ", car2);
-// console.log("third car ", car3);
-// console.log("car1Color", car1.color);
-// car1.carInfo();
-// car3.carInfo();
-// console.log("-------------------------");
-// console.log("before setter ", car1);
-// car1.setColor("pink");
-// console.log("After setter", car1);
-// console.log("-------------------------");
-// console.log("before setter ", car1);
-// car1.setModel(2002);
-// console.log("After setter", car1);
-// console.log(car1.getColor());
-// console.log(car1.getModel());
-// console.log(car1.getTires());
+console.log("first car ", car1);
+console.log("second car ", car2);
+console.log("third car ", car3);
+console.log("car1Color", car1.color);
+car1.carInfo();
+car3.carInfo();
+console.log("-------------------------");
+console.log("before setter ", car1);
+car1.setColor("pink");
+console.log("After setter", car1);
+console.log("-------------------------");
+console.log("before setter ", car1);
+car1.setModel(2002);
+console.log("After setter", car1);
+console.log(car1.getColor());
+console.log(car1.getModel());
+console.log(car1.getTires());
 
 // Shop class
 
@@ -108,8 +108,6 @@ class Shop {
         console.log("product", product);
         this.products[i].quantity -= qty;
         console.log(`You've bought ${qty} ${productName}'s`);
-      } else {
-        // console.log(`Sorry, we have run out of ${products.name}`);
       }
     }
   }
