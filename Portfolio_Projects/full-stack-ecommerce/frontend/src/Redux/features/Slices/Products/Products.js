@@ -40,7 +40,7 @@ const Products = createSlice({
       );
     },
     addProduct: (state, action) => {
-      console.log("add product action.payload", action.payload);
+     
       state.products.push(action.payload);
       state.filteredProducts.push(action.payload);
     },

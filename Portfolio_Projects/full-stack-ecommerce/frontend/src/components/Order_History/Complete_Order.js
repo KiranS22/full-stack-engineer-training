@@ -14,10 +14,10 @@ const Complete_Order = () => {
       { withCredentials: true }
     );
     setProducts(response.data.products);
-    console.log("products", products);
+
 
     setOrder(response.data.order);
-    console.log("order", order);
+  
   };
   useEffect(() => {
     dispatch(fetchAllProducts);

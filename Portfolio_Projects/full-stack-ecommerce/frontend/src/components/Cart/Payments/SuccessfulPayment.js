@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { useParams } from "react-router-dom";
+import React from "react";
 
 const SuccessfulPayment = () => {
   return (
-    <div className="container">
-      <div className="success card">
+    <div className="container" style={{ height: "82vh" }}>
+      <div
+        className="success card"
+        style={{ marginTop: "8rem", padding: "2rem" }}
+      >
         <div
           style={{
             borderRadius: "200px",

@@ -15,9 +15,8 @@ const Navbar = () => {
   const cartCount = useSelector(selectCartCount);
   const loggedIn = useSelector(selectIsLoggedIn);
   const navigate = useNavigate();
-  console.log("Logged in status", loggedIn);
+
   const searchProducts = (e) => {
-    console.log(e.target.value);
     setSearchTerm(e.target.value);
     dispatch(filterSearch(e.target.value));
   };
@@ -26,17 +25,17 @@ const Navbar = () => {
     try {
       const { data } = await axios.get(
         `${process.env.REACT_APP_SERVER_URL}/auth/logout`,
-        { 
+        {
           withCredentials: true,
-        });
+        }
+      );
       if (data.status === "success") {
         dispatch(logOutUser());
         navigate("/login");
       } else {
-        console.log("something went wrong");
       }
     } catch (err) {
-      console.log(err);
+      console.log({ status: "Error", message: err.meesage })
     }
   };
   return (

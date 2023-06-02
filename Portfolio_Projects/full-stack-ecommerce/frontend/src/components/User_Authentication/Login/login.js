@@ -34,14 +34,14 @@ const Login = () => {
         { withCredentials: true }
       );
 
-      console.log("login response", response.data);
+
       dispatch(logInUser(response.data.user));
       const status = response.data.status;
       if (status === "success") {
         navigate("/");
       }
     } catch (err) {
-      console.log(err.message);
+      console.log({ status: "Error", message: err.meesage })
     }
   };
 

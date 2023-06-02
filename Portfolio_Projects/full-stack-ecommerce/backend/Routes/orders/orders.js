@@ -56,7 +56,7 @@ ordersRouter.delete("/:orderid", async (req, res) => {
     ]);
     res.send("order deleted Successfully");
   } catch (err) {
-    console.log("Error:", err.message);
+    res.status(404).send({ status: "error", message: err.message });
   }
 });
 

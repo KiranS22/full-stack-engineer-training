@@ -6,7 +6,7 @@ const pool = require("../../db");
 
 stripeRouter.post("/checkout", async (req, res) => {
   const { items } = req.body;
-  console.log("Checkout Hit");
+
 
   let purchasedItems = [];
   try {
@@ -59,14 +59,14 @@ stripeRouter.get("/order/success", async (req, res) => {
         "SELECT * FROM cart WHERE user_id = $1",
         [user.id]
       );
-      console.log("Uers' cart data", usersCart.rows[0]);
+
       //   //Creating An Order
       let amount_total = session.amount_total / 100;
       const newOrder = await pool.query(
         "INSERT INTO  orders (user_id, placed_at, stripe_payment_id,amount_due, email) VALUES($1, $2, $3, $4, $5) RETURNING *",
         [user.id, new Date(), session.id, amount_total, user.email]
       );
-      console.log("new order", newOrder.rows[0]); //Contains Order Data
+
       // iNSERTING into Ordered_products Table
       //order_id, product_id
 

@@ -87,7 +87,7 @@ cartRouter.delete("/", async (req, res) => {
       });
     }
   } catch (err) {
-    console.log("Error".err.message);
+    res.status(404).send({ status: "error", message: err.message });
   }
 });
 module.exports = cartRouter;

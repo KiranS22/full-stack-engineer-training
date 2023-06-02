@@ -7,14 +7,13 @@ const session = require("express-session");
 const pgSessionStore = require("connect-pg-simple")(session);
 
 authRouter.post("/login", async (req, res) => {
-  console.log("log in Route hit!");
+
   try {
     const { email, password } = req.body;
     const foundUser = await pool.query("SELECT *  FROM users WHERE email= $1", [
       email,
     ]);
 
-    console.log("Found:", foundUser.rows[0]);
 
     if (foundUser.rows.length > 0) {
       //email is matched now compare password
@@ -40,7 +39,7 @@ authRouter.post("/login", async (req, res) => {
   }
 });
 authRouter.post("/register", async (req, res) => {
-  console.log("inside regester route!");
+
   try {
     const {
       firstName,
@@ -84,11 +83,10 @@ authRouter.get("/auth-user", (req, res) => {
 authRouter.get("/logout", async (req, res) => {
   try {
     const id = req.session.id;
-    console.log("ID:", id);
+
 
     req.session.destroy(async (err) => {
       if (err) {
-        console.log("session destroy", err.message);
         res.send({ status: "Error", message: err.message });
       }
 
@@ -97,7 +95,6 @@ authRouter.get("/logout", async (req, res) => {
         [id]
       );
 
-      console.log("Session Destroyed!");
       //Error with sessions getting destoyed probably here
       res.clearCookie("connect.sid");
       res

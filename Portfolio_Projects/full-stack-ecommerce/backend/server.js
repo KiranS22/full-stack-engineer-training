@@ -1,4 +1,5 @@
 require("dotenv").config();
+const YAML = require("yamljs");
 const express = require("express");
 const cors = require("cors");
 const pool = require("./db");
@@ -11,11 +12,11 @@ const cookie = require("cookie");
 const passport = require("passport");
 const swaggerUi = require("swagger-ui-express");
 
-const YAML = require("yamljs");
 
 const swaggerDocument = YAML.load("./backendDocs.yaml");
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 app.use(
   cors({
@@ -32,14 +33,13 @@ const PORT = process.env.PORT || 4000;
 app.use(
   session({
     genid: function (req) {
-      console.log("path sid generation", req.path);
       let sid = uuid();
-      console.log("Generating SID", sid);
       return sid;
     },
     resave: true,
     saveUninitialized: false,
     secret: process.env.SECRET_KEY,
+
     cookie: { maxAge: 1000 * 60 * 60 * 24, secure: false, sameSite: "lax" },
     store: new pgSessionStore({
       pool: pool,
@@ -111,7 +111,6 @@ const ordersRouter = require("./Routes/orders/orders");
 const stripeRouter = require("./Routes/Stripe/Stripe");
 
 app.get("/", (req, res) => {
-  console.log("Backend Working");
   res.send({ message: "Hello" });
 });
 

@@ -20,7 +20,7 @@ const Register = () => {
   const [value, setValue] = useState();
 
   const handleSubmit = async (e) => {
-    console.log("user", user);
+
     e.preventDefault();
     if (user.password !== user.verifyPassword) {
       alert("Passwords Must Match");
@@ -30,7 +30,7 @@ const Register = () => {
         { ...user, tel: value },
         { withCredentials: true }
       );
-      console.log(response.data);
+  
       const status = response.data.status;
       if (status === "success") {
         navigate("/login");

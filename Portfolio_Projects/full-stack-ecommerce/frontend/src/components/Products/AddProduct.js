@@ -14,7 +14,7 @@ const AddProduct = () => {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -22,7 +22,7 @@ const AddProduct = () => {
         `${process.env.REACT_APP_SERVER_URL}/products`,
         product
       );
-      console.log("frontend add product", response.data);
+
 
       if (response.data.status === "success") {
         let product = response.data.product;
@@ -39,7 +39,7 @@ const AddProduct = () => {
         imageUrl: "",
       });
     } catch (err) {
-      console.log(err);
+      console.log({ status: "Error", message: err.meesage })
     }
   };
   return (

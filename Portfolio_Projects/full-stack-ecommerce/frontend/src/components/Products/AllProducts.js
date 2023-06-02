@@ -15,7 +15,7 @@ const AllProducts = () => {
     dispatch(fetchAllProducts());
   }, []);
   const filteredProducts = useSelector(selectFilteredProducts);
-  console.log("Filtered:", filteredProducts);
+;
   const dispatch = useDispatch();
   const handleClick = async (product) => {
     try {
