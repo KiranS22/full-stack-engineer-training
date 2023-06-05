@@ -23,8 +23,10 @@ authRouter.post("/register", async (req, res) => {
       "INSERT INTO users(first_name, last_name, email, password, phone_number, address, city, postcode) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
       [firstName, lastName, email, hash, tel, address, city, postcode]
     );
+
     res.status(200).send({ user: allUsers.rows[0], status: "success" });
   } catch (err) {
+    console.log("errr", err.message);
     res.status(401).send({ status: "error", message: err.message });
   }
 });

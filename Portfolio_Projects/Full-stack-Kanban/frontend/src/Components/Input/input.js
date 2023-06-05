@@ -13,6 +13,7 @@ const Input = () => {
     e.preventDefault();
     setTask("");
     const data = await taskPost(task);
+    console.log("task data in frontend", data);
     const { status } = data;
     if (status === "success") {
       dispatch(fetchAllTasks());

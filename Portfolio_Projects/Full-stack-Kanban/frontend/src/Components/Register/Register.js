@@ -23,13 +23,15 @@ const Register = () => {
   const [errMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
+    console.log(" Register Button Hit ");
     e.preventDefault();
     const data = await registerUser(user, value);
+    console.log("Dta from register", data);
     const status = data.status;
     const message = data.message;
     if (status === "success") {
       navigate("/login");
-    }else {
+    } else {
       setErrorMessage(message);
 
       setInterval(() => {
@@ -51,7 +53,7 @@ const Register = () => {
               />
             </div>
             <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-            <h4 className={`content-error-${mode}`}>{errMessage}</h4>
+              <h4 className={`content-error-${mode}`}>{errMessage}</h4>
               <form onSubmit={(e) => handleSubmit(e)} method="POST">
                 <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start"></div>
 

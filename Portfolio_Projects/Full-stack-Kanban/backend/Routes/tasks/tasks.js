@@ -20,9 +20,10 @@ taskRouter.post("/", async (req, res) => {
   try {
     const { task } = req.body;
     const newTask = await pool.query(
-      "INSERT INTO tasks(task_name, user_id) VALUES($1, $2) RETURNING *",
-      [task, req.user.id]
+      "INSERT INTO tasks(task_name, user_id, status) VALUES($1, $2, $3) RETURNING *",
+      [task, req.user.id, "todo"]
     );
+    console.log("new task", newTask);
     res.status(200).send({ status: "success", task: newTask.rows[0] });
   } catch (err) {
     res.status(401).send({ status: "error", message: err.message });
@@ -51,7 +52,6 @@ taskRouter.put("/update-status/:id", async (req, res) => {
 //update single tasks content
 taskRouter.put("/update-info/:id", async (req, res) => {
   try {
-
     const { task } = req.body;
     const { id } = req.params;
 

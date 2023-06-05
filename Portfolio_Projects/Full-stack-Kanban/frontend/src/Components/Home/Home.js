@@ -22,6 +22,7 @@ const Home = () => {
   const doingTasks = useSelector(selectDoingTasks);
   const doneTasks = useSelector(selectDoneTasks);
   const taskCount = useSelector(selectTaskCount);
+  console.log("toDo", todoTasks, "Doing", doingTasks, "Done", doneTasks);
 
   return (
     <div className={` home-container-${mode}`}>
