@@ -1,6 +1,7 @@
 const express = require("express");
 const cartRouter = express.Router();
 const pool = require("../../db");
+
 cartRouter.get("/", async (req, res) => {
   if (req.session.user) {
     const { user } = req.session;
@@ -17,7 +18,7 @@ cartRouter.get("/", async (req, res) => {
     res.send([]);
   }
 });
-// Add to cart
+
 cartRouter.post("/:productid", async (req, res) => {
   try {
     if (req.session.user) {
@@ -25,7 +26,6 @@ cartRouter.post("/:productid", async (req, res) => {
       const { productid } = req.params;
       const { product_qty, product_price } = req.body;
 
-      //Check if this user has already added the product
       const existingProducts = await pool.query(
         "SELECT * from cart WHERE product_id =$1 AND user_id =$2",
         [productid, user.id]
@@ -34,7 +34,6 @@ cartRouter.post("/:productid", async (req, res) => {
         const foundProduct = existingProducts.rows[0];
         const foundProductQty = foundProduct.product_qty;
         const updatedQty = Number(foundProductQty) + 1;
-        //Update quantity of foundProduct
         const updatedProduct = await pool.query(
           "UPDATE  cart SET product_qty = $1 WHERE product_id = $2 AND user_id = $3",
           [updatedQty, productid, user.id]
@@ -48,10 +47,7 @@ cartRouter.post("/:productid", async (req, res) => {
         res.send({ status: "success", message: "Product added successfully" });
       }
     } else {
-      // 403 - Forbidden Response
-      res
-        .status(403)
-        .send({ status: "error", message: "User is not loggedIn!" });
+      res.status(403).send({ status: "error", message: "User is not loggedIn!" });
     }
   } catch (err) {
     res.status(404).send({ status: "error", message: err.message });
@@ -75,7 +71,7 @@ cartRouter.delete("/:productid", async (req, res) => {
     res.status(404).send({ status: "error", message: err.message });
   }
 });
-//clear the whole cart from the database
+
 cartRouter.delete("/", async (req, res) => {
   try {
     if (req.session.user) {
@@ -90,4 +86,5 @@ cartRouter.delete("/", async (req, res) => {
     res.status(404).send({ status: "error", message: err.message });
   }
 });
+
 module.exports = cartRouter;

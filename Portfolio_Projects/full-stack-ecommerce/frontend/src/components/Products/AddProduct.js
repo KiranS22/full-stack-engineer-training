@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { addProduct } from "../../Redux/features/Slices/Products/Products";
 import { useDispatch } from "react-redux";
 
@@ -23,10 +25,8 @@ const AddProduct = () => {
         product
       );
 
-
       if (response.data.status === "success") {
         let product = response.data.product;
-        //dispatch Add Product
         dispatch(addProduct(product));
         navigate("/products");
       }
@@ -39,7 +39,8 @@ const AddProduct = () => {
         imageUrl: "",
       });
     } catch (err) {
-      console.log({ status: "Error", message: err.meesage })
+      toast.error("Something went wrong, please try again later");
+      console.error(err);
     }
   };
   return (
