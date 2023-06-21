@@ -23,7 +23,7 @@ const Profile = () => {
       { withCredentials: true }
     );
     if (response.data.status == "success") {
-      // setUser(response.data.user);
+   
       dispatch(updateUser(response.data.user));
     }
   };
