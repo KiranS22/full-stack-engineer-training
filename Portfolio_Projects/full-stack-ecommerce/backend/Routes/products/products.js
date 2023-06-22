@@ -1,6 +1,7 @@
 const express = require("express");
 const productsRouter = express.Router();
 const pool = require("../../db");
+// const pool = require("../../elephant");
 
 // /products (GET)
 productsRouter.get("/", async (req, res) => {
@@ -43,7 +44,7 @@ productsRouter.get("/:id", async (req, res) => {
   }
 });
 
-// Update single product 
+// Update single product
 productsRouter.put("/:id", async (req, res) => {
   const { price } = req.body;
   const { id } = req.params;

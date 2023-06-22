@@ -5,13 +5,13 @@ const cors = require("cors");
 const pool = require("./db");
 const session = require("express-session");
 const pgSessionStore = require("connect-pg-simple")(session);
-const { uuid } = require("uuidv4");
+// const { uuid } = require("uuidv4");
+const { v4: uuidv4 } = require("uuid");
 const app = express();
 const cookieParser = require("cookie-parser");
 const cookie = require("cookie");
 const passport = require("passport");
 const swaggerUi = require("swagger-ui-express");
-
 
 const swaggerDocument = YAML.load("./backendDocs.yaml");
 
@@ -33,7 +33,7 @@ const PORT = process.env.PORT || 4000;
 app.use(
   session({
     genid: function (req) {
-      let sid = uuid();
+      let sid = uuidv4();
       return sid;
     },
     resave: true,
