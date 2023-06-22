@@ -7,29 +7,18 @@ const session = require("express-session");
 const pgSessionStore = require("connect-pg-simple")(session);
 
 authRouter.post("/login", async (req, res) => {
-
   try {
     const { email, password } = req.body;
-    const foundUser = await pool.query("SELECT *  FROM users WHERE email= $1", [
-      email,
-    ]);
-
+    const foundUser = await pool.query("SELECT *  FROM users WHERE email= $1", [email]);
 
     if (foundUser.rows.length > 0) {
-      //email is matched now compare password
       if (await bcrypt.compare(password, foundUser.rows[0].password)) {
-        //Saving IN Session
         req.session.loggedIn = true;
         req.session.user = foundUser.rows[0];
         req.session.save();
-        //Send a Success Message Back
         res.status(201).send({ user: req.session.user, status: "success" });
       } else {
-        res
-          .status(200)
-          .send(
-            "A user with these credentials dose not exist! Please register"
-          );
+        res.status(200).send("A user with these credentials does not exist! Please register");
       }
     } else {
       res.status(200).send("User with that email or password not found");
@@ -38,8 +27,8 @@ authRouter.post("/login", async (req, res) => {
     res.status(404).send({ status: "error", message: err.message });
   }
 });
-authRouter.post("/register", async (req, res) => {
 
+authRouter.post("/register", async (req, res) => {
   try {
     const {
       firstName,
@@ -65,15 +54,11 @@ authRouter.post("/register", async (req, res) => {
 });
 
 authRouter.get("/auth-user", (req, res) => {
-  //No req.session.user
   try {
     if (req.session.user) {
       res.status(201).send({ user: req.session.user, status: "success" });
     } else {
-      res.status(403).send({
-        status: "error",
-        message: "User is not logged In",
-      });
+      res.status(403).send({ status: "error", message: "User is not logged In" });
     }
   } catch (err) {
     res.status(404).send({ status: "error", message: err.message });
@@ -84,31 +69,24 @@ authRouter.get("/logout", async (req, res) => {
   try {
     const id = req.session.id;
 
-
     req.session.destroy(async (err) => {
       if (err) {
         res.send({ status: "Error", message: err.message });
       }
 
-      const response = await pool.query(
-        "DELETE FROM user_sessions WHERE sid = $1",
-        [id]
-      );
+      const response = await pool.query("DELETE FROM user_sessions WHERE sid = $1", [id]);
 
-      //Error with sessions getting destoyed probably here
       res.clearCookie("connect.sid");
-      res
-        .status(200)
-        .send({ status: "success", message: "User has logged out" });
+      res.status(200).send({ status: "success", message: "User has logged out" });
     });
   } catch (err) {
     res.status(404).send({ status: "error", message: err.message });
   }
 });
+
 authRouter.put("/update-profile", async (req, res) => {
   try {
-    const { firstName, lastName, email, tel, address, city, postcode } =
-      req.body;
+    const { firstName, lastName, email, tel, address, city, postcode } = req.body;
 
     const response = await pool.query(
       "UPDATE users SET first_name = $1, last_name = $2,  phone_number = $3, address = $4, city=$5, postcode=$6 WHERE email = $7 RETURNING *",
@@ -117,7 +95,7 @@ authRouter.put("/update-profile", async (req, res) => {
 
     res.status(200).send({
       status: "success",
-      message: "Profile Updated Sucessfully",
+      message: "Profile Updated Successfully",
       user: response.rows[0],
     });
   } catch (err) {
@@ -136,9 +114,9 @@ authRouter.get(
     failureRedirect: `${process.env.BASE_URL}/login`,
   }),
   function (req, res) {
-    // Successful authentication, redirect home.
     res.redirect(`${process.env.CLIENT_URL}`);
     req.session.user = req.user;
   }
 );
+
 module.exports = authRouter;

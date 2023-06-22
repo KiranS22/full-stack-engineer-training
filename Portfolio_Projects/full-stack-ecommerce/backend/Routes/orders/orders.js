@@ -1,7 +1,6 @@
 const express = require("express");
 const ordersRouter = express.Router();
 const pool = require("../../db");
-//GET ALL ORDERS ON A SPECIFIC USERS ACCOUNT
 
 ordersRouter.get("/", async (req, res) => {
   try {
@@ -22,7 +21,6 @@ ordersRouter.get("/", async (req, res) => {
   }
 });
 
-//GET A SPECIFIC ORDER ON A SPECIFIC USERS ACCOUNT
 ordersRouter.get("/:orderid", async (req, res) => {
   const { orderid } = req.params;
 
@@ -47,7 +45,6 @@ ordersRouter.get("/:orderid", async (req, res) => {
   }
 });
 
-//DELETE AN ORDER- will be added later
 ordersRouter.delete("/:orderid", async (req, res) => {
   try {
     const { orderid } = req.params;
