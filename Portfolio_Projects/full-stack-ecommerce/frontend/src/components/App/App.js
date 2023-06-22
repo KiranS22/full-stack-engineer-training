@@ -1,47 +1,39 @@
-import ApplicationRoutes from "./Routing/Routing";
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.min.js";
-import "../../Resources/CSS/app.css";
-import axios from "axios";
-import { logInUser } from "../../Redux/features/Slices/Auth/Auth";
-import { selectCartIsLoading } from "../../Redux/features/Slices/Cart/Cart";
-import { selectOrdersIsLoading } from "../../Redux/features/Slices/Orders/orders";
-import { selectProductsIsLoading } from "../../Redux/features/Slices/Products/Products";
-import { useSelector } from "react-redux";
-import { fetchAllCartItems } from "../../Redux/features/Slices/Cart/Cart";
+import React, { useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
+import { logInUser } from '../../Redux/features/Slices/Auth/Auth';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCartIsLoading } from '../../Redux/features/Slices/Cart/Cart';
+import { selectProductsIsLoading } from '../../Redux/features/Slices/Products/Products';
+import { fetchAllCartItems } from '../../Redux/features/Slices/Cart/Cart';
+import ApplicationRoutes from './Routing/Routing';
+
 const App = () => {
   const loadingProducts = useSelector(selectProductsIsLoading);
-  const loadingOrders = useSelector(selectOrdersIsLoading);
   const loadingCart = useSelector(selectCartIsLoading);
+  const dispatch = useDispatch();
+
   const getLoggedInUser = async () => {
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_SERVER_URL}/auth/auth-user`,
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/auth/auth-user`, {
+        withCredentials: true,
+      });
 
-      if (response.data.status == "success") {
+      if (response.data.status === 'success') {
         const { user } = response.data;
-       
         dispatch(logInUser(user));
       } else {
-        console.log("something went wrong");
+        toast.error('Something went wrong');
       }
     } catch (err) {
-      console.log({ status: "Error", message: err.meesage });
+      toast.error('Something went wrong');
     }
   };
 
-  const dispatch = useDispatch();
   useEffect(() => {
-    // async thunks
     getLoggedInUser();
     dispatch(fetchAllCartItems());
-    //Send an Axios Request to the backend, and check if the user is authenticated. If Yes, then dispatch and loginUser.
   }, []);
 
   return (
@@ -52,6 +44,7 @@ const App = () => {
         </div>
       ) : null}
       <ApplicationRoutes />
+      <ToastContainer />
     </>
   );
 };

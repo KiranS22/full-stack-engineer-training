@@ -10,12 +10,11 @@ productsRouter.get("/", async (req, res) => {
     );
     res.status(200).send(allProducts.rows);
   } catch (err) {
-    console.log(err);
     res.status(404).send({ status: "error", message: err.message });
   }
 });
 
-//Add a new product
+// Add a new product
 productsRouter.post("/", async (req, res) => {
   const { name, price, category, description, imageUrl } = req.body;
   try {
@@ -30,7 +29,7 @@ productsRouter.post("/", async (req, res) => {
   }
 });
 
-//Get a Single product.
+// Get a Single product.
 productsRouter.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -43,7 +42,8 @@ productsRouter.get("/:id", async (req, res) => {
     res.status(404).send({ status: "error", message: err.message });
   }
 });
-//update single product funtionality may be comingg later
+
+// Update single product 
 productsRouter.put("/:id", async (req, res) => {
   const { price } = req.body;
   const { id } = req.params;
@@ -53,13 +53,13 @@ productsRouter.put("/:id", async (req, res) => {
       "UPDATE  products SET price = $1 WHERE id = $2",
       [price, id]
     );
-    res.status(200).send("prodct Updated Successfully");
+    res.status(200).send("Product Updated Successfully");
   } catch (err) {
-    res.status(404).send({status: 'error', message: err.message})
+    res.status(404).send({ status: 'error', message: err.message });
   }
 });
 
-// Delete a single product from 
+// Delete a single product
 productsRouter.delete("/:id", async (req, res) => {
   const { id } = req.params;
 
@@ -68,9 +68,9 @@ productsRouter.delete("/:id", async (req, res) => {
       "DELETE FROM  products WHERE id = $1",
       [id]
     );
-    res.status(200).send("product deleted Successfully");
+    res.status(200).send("Product deleted Successfully");
   } catch (err) {
-    res.status(404),send({status: 'error', message: err.message})
+    res.status(404).send({ status: 'error', message: err.message });
   }
 });
 
