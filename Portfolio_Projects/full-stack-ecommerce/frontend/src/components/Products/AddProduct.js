@@ -46,7 +46,7 @@ const AddProduct = () => {
   return (
     <>
       <header className="text-center mt-4">
-        <h2>Add A Product</h2>
+        <h2 className="page-titles">Add A Product</h2>
       </header>
       <div className="container">
         <form onSubmit={(e) => handleSubmit(e)}>

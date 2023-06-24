@@ -42,17 +42,26 @@ authRouter.post("/register", async (req, res) => {
       postcode,
     } = req.body;
 
+    // Check if the user already exists
+    const existingUser = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+    if (existingUser.rows.length > 0) {
+      return res.status(409).send({ status: "invaild", message: "User already exists" });
+    }
+
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(password, salt);
+
     const allUsers = await pool.query(
       "INSERT INTO users(first_name, last_name, email, password, phone_number, address, city, postcode) VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *",
       [firstName, lastName, email, hash, tel, address, city, postcode]
     );
+
     res.status(200).send({ user: allUsers.rows[0], status: "success" });
   } catch (err) {
     res.status(401).send({ status: "error", message: err.message });
   }
 });
+
 
 authRouter.get("/auth-user", (req, res) => {
   try {

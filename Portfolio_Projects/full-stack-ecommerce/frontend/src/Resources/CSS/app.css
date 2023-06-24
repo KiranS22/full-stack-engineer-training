@@ -8,7 +8,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Fasthand&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400&display=swap");
-
+/* page title stylings */
+.page-titles{
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
 nav,
 footer {
   background-color: rgb(202, 228, 241);
@@ -45,6 +50,11 @@ body {
 .f-icon {
   font-size: 20px;
   margin: 0 10px;
+}
+footer {
+  bottom: 0;
+  left: 0;
+  position: fixed;
 }
 /* Class for about section */
 .about-section {

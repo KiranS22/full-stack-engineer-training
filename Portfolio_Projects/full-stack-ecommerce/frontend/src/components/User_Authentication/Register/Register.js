@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import "../../../Resources/CSS/app.css";
 import axios from "axios";
 import "react-phone-number-input/style.css";
@@ -20,7 +23,6 @@ const Register = () => {
   const [value, setValue] = useState();
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
     if (user.password !== user.verifyPassword) {
       alert("Passwords Must Match");
@@ -30,10 +32,11 @@ const Register = () => {
         { ...user, tel: value },
         { withCredentials: true }
       );
-  
       const status = response.data.status;
       if (status === "success") {
         navigate("/login");
+      } else if (status === "invalid") {
+        toast.error("Looks like you already have an account. Please login.");
       }
     }
   };
@@ -246,6 +249,7 @@ const Register = () => {
           </div>
         </div>
       </section>
+      <ToastContainer />
     </>
   );
 };
