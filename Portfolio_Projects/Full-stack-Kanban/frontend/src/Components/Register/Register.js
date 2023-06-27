@@ -23,10 +23,10 @@ const Register = () => {
   const [errMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e) => {
-    console.log(" Register Button Hit ");
+ 
     e.preventDefault();
     const data = await registerUser(user, value);
-    console.log("Dta from register", data);
+
     const status = data.status;
     const message = data.message;
     if (status === "success") {

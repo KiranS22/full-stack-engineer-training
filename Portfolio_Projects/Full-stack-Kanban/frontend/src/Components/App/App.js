@@ -41,7 +41,7 @@ function App() {
       //API Request
       const data = await taskUpdateStatus(updatedTask, taskId);
       if (data.status === "success") {
-        console.log("Data from the backend", data);
+    
         dispatch(updateStatus({ status: updatedTask.status, id: taskId }));
       }
     }
@@ -63,7 +63,6 @@ function App() {
   useEffect(() => {
     // async thunks
     getLoggedInUser();
-    console.log("user inside UE", user);
     if (user !== null) {
       dispatch(fetchAllTasks());
     }

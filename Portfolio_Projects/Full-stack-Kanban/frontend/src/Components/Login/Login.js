@@ -29,7 +29,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await userLogin(user);
-    console.log("data in Log in", data);
+   
     const status = data.status;
     const message = data.message;
     if (status === "success") {

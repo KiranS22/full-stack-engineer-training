@@ -5,7 +5,6 @@ const cors = require("cors");
 const pool = require("./db");
 const session = require("express-session");
 const pgSessionStore = require("connect-pg-simple")(session);
-// const { uuid } = require("uuidv4");
 const { v4: uuidv4 } = require("uuid");
 const app = express();
 const cookieParser = require("cookie-parser");
@@ -110,9 +109,6 @@ const productsRouter = require("./Routes/products/products");
 const ordersRouter = require("./Routes/orders/orders");
 const stripeRouter = require("./Routes/Stripe/Stripe");
 
-app.get("/", (req, res) => {
-  res.send({ message: "Hello" });
-});
 
 app.use("/products", productsRouter);
 app.use("/cart", cartRouter);
